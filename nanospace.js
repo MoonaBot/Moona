@@ -15,6 +15,8 @@ class MainClient extends Client {
                 GatewayIntentBits.MessageContent,
             ]
         });
+        this.on("error", console.log);
+        this.on("warn", console.log);
 
     this.config = require("./settings/config.js");
     this.button = require("./settings/button.js");
@@ -32,7 +34,6 @@ class MainClient extends Client {
     this.manager = new Manager({
 		nodes: this.config.NODES,
 		autoPlay: true,
-		volumeDecrementer: 0.75,
 		forceSearchLinkQueries: true,
 		defaultSearchPlatform: client.config.DEFAULT_SEARCH,
 		allowedLinksRegexes: Object.values(Manager.regex),

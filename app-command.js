@@ -1,50 +1,48 @@
-const { plsParseArgs } = require('plsargs');
-const args = plsParseArgs(process.argv.slice(2));
-const chillout = require("chillout");
-const { makeSureFolderExists } = require("stuffs");
-const path = require("path");
-const readdirRecursive = require("recursive-readdir");
-const { TOKEN } = require("./settings/config.js");
 const { ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } = require('discord.js');
+const { readdirSync } = require("node:fs");
+const path = require('path');
+
+const { TOKEN } = require("./settings/config.js");
+const args = process.argv.slice(2);
+
+const delay =  require("node:timers/promises").setTimeout;
 
 (async () => {
 
-  let command = [];
+  let commands = [];
 
-  let cleared = args.get(0) == "guild" ? args.get(2) == "clear" : (args.get(0) == "global" ? args.get(1) == "clear" : false);
-  let deployed = args.get(0) == "guild" ? "guild" : args.get(0) == "global" ? "global" : null;
+  let cleared = args[0] == "guild" ? args[2] == "clear" : (args[0] == "global" ? args[1] == "clear" : false);
+  let deployed = args[0] == "guild" ? "guild" : args[0] == "global" ? "global" : null;
 
   if (!deployed) {
     console.error(`Invalid sharing mode! Valid modes: guild, global`);
-    console.error(`Usage example: node deploySlash.js guild <guildId> [clear]`);
-    console.error(`Usage example: node deploySlash.js global [clear]`);
+    console.error(`Usage example: node app-command.js guild <guildId> [clear]`);
+    console.error(`Usage example: node app-command.js global [clear]`);
     return process.exit(1);
   }
 
   if (!cleared) {
-    let interactionsFolder = path.resolve("./commands");
-
-    await makeSureFolderExists(interactionsFolder);
-
+    const folder = path.resolve("commands");
     let store = [];
 
-    console.log("Reading interaction files..")
-
-    let interactionFilePaths = await readdirRecursive(interactionsFolder);
-    interactionFilePaths = interactionFilePaths.filter(i => {
-      let state = path.basename(i).startsWith("-");
-      return !state;
-    });
-
-    await chillout.forEach(interactionFilePaths, (interactionFilePath) => {
-      const cmd = require(interactionFilePath);
-      console.log(`Interaction "${cmd.type == "CHAT_INPUT" ? `/${cmd.name.join(" ")}` : `${cmd.name[0]}`}" ${cmd.name[1] || ""} ${cmd.name[2] || ""} added to the transform list!`);
-      store.push(cmd);
-    });
+    readdirSync(folder)
+        .filter(i => {
+            let state = path.basename(i).startsWith("-");
+            return !state;
+        })
+        .forEach((directory) => {
+            const files = readdirSync(`${folder}/${directory}`);
+            for (const file of files) {
+                const command = require(`${folder}/${directory}/${file}`);
+                //console.log(`Interaction "${command.type == "CHAT_INPUT" ? `/${command.name.join(" ")}` : `${command.name[0]}`}" ${command.name[1] || ""} ${command.name[2] || ""} added to the transform list!`);
+                store.push(command);
+            }
+        });
+    await delay(5000);
 
     store = store.sort((a, b) => a.name.length - b.name.length)
 
-    command = store.reduce((all, current) => {
+    commands = store.reduce((all, current) => {
       switch (current.name.length) {
         case 1: {
           all.push({
@@ -145,22 +143,22 @@ const { ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } 
       return all;
     }, []);
     
-    command = command.map(i => ApplicationCommandManager.transformCommand(i));
+    commands = commands.map(i => ApplicationCommandManager.transformCommand(i));
   } else {
     console.info("No interactions read, all existing ones will be cleared...");
   }
 
-  const rest = new REST({ version: "9" }).setToken(TOKEN);
+  const rest = new REST({ version: 10 }).setToken(TOKEN);
   const client = await rest.get(Routes.user());
   console.info(`Account information received! ${client.username}#${client.discriminator} (${client.id})`);
 
   console.info(`Interactions are posted on discord!`);
   switch (deployed) {
     case "guild": {
-      let guildId = args.get(1);
+      let guildId = args[1];
       console.info(`Deploy mode: guild (${guildId})`);
 
-      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: command });
+      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: commands });
 
       console.info(`Shared commands may take 3-5 seconds to arrive.`);
       break;
@@ -177,5 +175,3 @@ const { ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } 
 
   console.info(`Interactions shared!`);
 })();
-
-/// Credit https://github.com/akanora/Youtube-Together (Handler) || Edit by: https://github.com/Adivise
