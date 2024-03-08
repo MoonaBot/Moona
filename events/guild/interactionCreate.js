@@ -114,7 +114,7 @@ module.exports = async(client, interaction) => {
           }
       }
     
-      const command = client.slash.find(command => {
+      const command = client.commands.find(command => {
         switch (command.name.length) {
           case 1: return command.name[0] == interaction.commandName;
           case 2: return command.name[0] == interaction.commandName && command.name[1] == subCommandName;
