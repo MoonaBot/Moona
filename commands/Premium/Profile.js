@@ -47,7 +47,7 @@ module.exports = {
         // draw black blur avatar
         ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
-        ctx.fillRect(20, 25, 215, 215);
+        ctx.fillRect(20, 20, 215, 215);
         ctx.globalAlpha = 1;
 
         const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.subString(0, 15)+'...' : interaction.user.globalName;
@@ -122,13 +122,13 @@ module.exports = {
         ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
         // stoke style bold
         ctx.lineWidth = 10;
-        ctx.strokeStyle = '#FB97F1';
+        ctx.strokeStyle = '#000001';
         ctx.stroke();
         ctx.closePath();
         ctx.clip();*/
 
         const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
-        ctx.drawImage(avatar, 25, 30, 200, 200);
+        ctx.drawImage(avatar, 30, 30, 200, 200);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
 

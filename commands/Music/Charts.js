@@ -73,9 +73,9 @@ module.exports = {
                 try {
                     if (ctx.measureText(d.track_title).width > 700) {
                         const title = d.track_title.substring(0, 50);
-                        ctx.fillText(`${i + 1} | Played: ${d.track_count} • ${title}...`, 50, 320 + (i * 60));
+                        ctx.fillText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 320 + (i * 60));
                     } else {
-                        ctx.fillText(`${i + 1} | Played: ${d.track_count} • ${d.track_title}`, 50, 320 + (i * 60));
+                        ctx.fillText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 320 + (i * 60));
                     }
                 } catch (e) {
                     ctx.fillText('No data found', 30, 320 + (i * 60));
@@ -86,7 +86,7 @@ module.exports = {
             ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
             // stoke style bold
             ctx.lineWidth = 10;
-            ctx.strokeStyle = '#FB97F1';
+            ctx.strokeStyle = '#000001';
             ctx.stroke();
             ctx.closePath();
             ctx.clip();
