@@ -128,7 +128,7 @@ module.exports = {
         ctx.clip();*/
 
         const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
-        ctx.drawImage(avatar, 30, 30, 200, 200);
+        ctx.drawImage(avatar, 25, 25, 195.5, 195.5);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
 
