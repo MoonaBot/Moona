@@ -3,6 +3,11 @@ const Chart = require("../../settings/models/GuildChart.js");
 const GChart = require("../../settings/models/GlobalChart.js");
 const Canvas = require("@napi-rs/canvas");
 
+const fs = require("node:fs");
+const path = require("node:path");
+const fontsPath = path.resolve("assets/assets/fonts/Rubix-Regular.ttf");
+Canvas.GlobalFonts.register(fs.readFileSync(fontsPath));
+
 module.exports = {
     name: ["chart"], // The name of the command
     description: "Display Top 5 songs of the (global/guild)", // The description of the command (for help text)
@@ -57,11 +62,11 @@ module.exports = {
             ctx.fillRect(20, 250, 955, 350);
             ctx.globalAlpha = 1;
 
-            ctx.font = 'bold 25px Verdana';
+            ctx.font = 'bold 25px Rubik';
             ctx.fillStyle = '#ffffff';
             ctx.fillText('TOP 5 CHARTS | GLOBAL', 250, 140);
 
-            ctx.font = '25px Verdana';
+            ctx.font = '25px Rubik';
             ctx.fillStyle = '#ffffff';
   
             database.map((d, i) => {
@@ -116,11 +121,11 @@ module.exports = {
             ctx.fillRect(20, 250, 955, 350);
             ctx.globalAlpha = 1;
 
-            ctx.font = 'bold 25px Verdana';
+            ctx.font = 'bold 25px Rubik';
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`TOP 5 CHARTS | ${interaction.guild.name}`, 250, 140);
 
-            ctx.font = '25px Verdana';
+            ctx.font = '25px Rubik';
             ctx.fillStyle = '#ffffff';
             // desc
             top10.map((d, i) => {

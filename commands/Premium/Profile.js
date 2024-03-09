@@ -2,7 +2,12 @@ const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const moment = require('moment');
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
-const { createCanvas, GlobalFonts, loadImage } = require("@napi-rs/canvas");
+const Canvas  = require("@napi-rs/canvas");
+
+const fs = require("node:fs");
+const path = require("node:path");
+const fontsPath = path.resolve("assets/assets/fonts/Rubix-Regular.ttf");
+Canvas.GlobalFonts.register(fs.readFileSync(fontsPath));
 
 module.exports = {
     name: ["profile"],
@@ -30,10 +35,10 @@ module.exports = {
 
         console.info(GlobalFonts.families);
 
-        const canvas = createCanvas(1000, 625);
+        const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
 
-        const placer = await loadImage("./settings/images/chart.png");
+        const placer = await Canvas.loadImage("./settings/images/chart.png");
         ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
 
         // draw black blur background
@@ -42,7 +47,7 @@ module.exports = {
         ctx.fillRect(20, 250, 955, 350);
         ctx.globalAlpha = 1;
 
-        ctx.font = 'bold 50px Verdana';
+        ctx.font = 'bold 50px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(interaction.user.globalName, 250, 70);
 
@@ -69,19 +74,19 @@ module.exports = {
             }
         }
 
-        ctx.font = 'bold 25px Verdana';
+        ctx.font = 'bold 25px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`${plan} (${expire})`, 250, 110);
 
-        ctx.font = '25px Verdana';
+        ctx.font = '25px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Songs Played: ${profile.playedCount}`, 250, 150);
 
-        ctx.font = '25px Verdana';
+        ctx.font = '25px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Commands Used: ${profile.useCount}`, 250, 190);
 
-        ctx.font = '25px Verdana';
+        ctx.font = '25px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Listen Time: ${listen}`, 250, 230);
 
@@ -90,11 +95,11 @@ module.exports = {
         // 10 
         const top10 = sorted.slice(0, 5);
 
-        ctx.font = 'bold 25px Verdana';
+        ctx.font = 'bold 25px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Top 5 Songs`, 50, 290);
 
-        ctx.font = '25px Verdana';
+        ctx.font = '25px Rubik';
         ctx.fillStyle = '#ffffff';
         // desc
         top10.map((d, i) => {
@@ -117,7 +122,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();
 
-        const avatar = await loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
+        const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
