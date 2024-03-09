@@ -2,7 +2,7 @@ const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const moment = require('moment');
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
-const Canvas = require("@napi-rs/canvas");
+const { createCanvas, GlobalFonts, loadImage } = require("@napi-rs/canvas");
 
 module.exports = {
     name: ["profile"],
@@ -28,10 +28,12 @@ module.exports = {
         const profile = await Profile.findOne({ userId: interaction.user.id });
         const listenTime = moment.duration(profile.listenTime).format("d [days], h [hours], m [minutes]");
 
-        const canvas = Canvas.createCanvas(1000, 625);
+        console.info(GlobalFonts.families);
+
+        const canvas = createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
 
-        const placer = await Canvas.loadImage("./settings/images/chart.png");
+        const placer = await loadImage("./settings/images/chart.png");
         ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
 
         // draw black blur background
@@ -42,7 +44,7 @@ module.exports = {
 
         ctx.font = 'bold 50px Verdana';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText("Profile", 250, 70);
+        ctx.fillText(interaction.user.globalName, 250, 70);
 
         let listen = "";
 
@@ -61,7 +63,7 @@ module.exports = {
         } else {
             plan = toOppositeCase(info.premium.plan || "Free");
             if (info.premium.expiresAt < Date.now()) {
-                expire = "Never";
+                expire = "Never Expired";
             } else {
                 expire = timeLeft;
             }
@@ -69,7 +71,7 @@ module.exports = {
 
         ctx.font = 'bold 25px Verdana';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• ${interaction.user.tag} | ${plan} (${expire})`, 280, 110);
+        ctx.fillText(`${plan} (${expire})`, 250, 110);
 
         ctx.font = '25px Verdana';
         ctx.fillStyle = '#ffffff';
@@ -99,9 +101,9 @@ module.exports = {
             // font exceeds canvas height
             if (ctx.measureText(d.track_title).width > 700) {
                 const title = d.track_title.substring(0, 50);
-                ctx.fillText(`${i + 1} | Played: ${d.track_count} • ${title}...`, 50, 340 + (i * 60));
+                ctx.fillText(`${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
             } else {
-                ctx.fillText(`${i + 1} | Played: ${d.track_count} • ${d.track_title}`, 50, 340 + (i * 60));
+                ctx.fillText(`${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
             }
         });
 
@@ -115,7 +117,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();
 
-        const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
+        const avatar = await loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
