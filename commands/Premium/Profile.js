@@ -44,9 +44,11 @@ module.exports = {
         ctx.fillRect(20, 250, 955, 350);
         ctx.globalAlpha = 1;
 
-        ctx.font = 'bold 50px Rubik';
+        const username = interaction.user.globaName.length > 20 ? interaction.user.globalName.subString(0, 17)+'...' : interaction.user.globalName;
+
+        ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(interaction.user.globalName, 250, 70);
+        ctx.fillText(username, 250, 70);
 
         let listen = "";
 
@@ -71,19 +73,19 @@ module.exports = {
             }
         }
 
-        ctx.font = 'bold 25px Rubik';
+        ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`${plan} (${expire})`, 250, 110);
 
-        ctx.font = '25px Rubik';
+        ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Songs Played: ${profile.playedCount}`, 250, 150);
 
-        ctx.font = '25px Rubik';
+        ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Commands Used: ${profile.useCount}`, 250, 190);
 
-        ctx.font = '25px Rubik';
+        ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Listen Time: ${listen}`, 250, 230);
 
@@ -92,20 +94,20 @@ module.exports = {
         // 10 
         const top10 = sorted.slice(0, 5);
 
-        ctx.font = 'bold 25px Rubik';
+        ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Top 5 Songs`, 50, 290);
 
-        ctx.font = '25px Rubik';
+        ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         // desc
         top10.map((d, i) => {
             // font exceeds canvas height
             if (ctx.measureText(d.track_title).width > 700) {
-                const title = d.track_title.substring(0, 50);
-                ctx.fillText(`${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
+                const title = d.track_title.substring(0, 67);
+                ctx.fillText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
             } else {
-                ctx.fillText(`${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
+                ctx.fillText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
             }
         });
 
