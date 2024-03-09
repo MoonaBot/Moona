@@ -6,7 +6,7 @@ const Canvas  = require("@napi-rs/canvas");
 
 const fs = require("node:fs");
 const path = require("node:path");
-const fontsPath = path.resolve("assets/assets/fonts/Rubix-Regular.ttf");
+const fontsPath = path.resolve("assets/assets/fonts/Rubik-Regular.ttf");
 Canvas.GlobalFonts.register(fs.readFileSync(fontsPath));
 
 module.exports = {
