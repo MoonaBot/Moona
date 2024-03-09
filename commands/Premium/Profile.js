@@ -44,7 +44,13 @@ module.exports = {
         ctx.fillRect(20, 250, 955, 350);
         ctx.globalAlpha = 1;
 
-        const username = interaction.user.globalName.length > 20 ? interaction.user.globalName.subString(0, 17)+'...' : interaction.user.globalName;
+        // draw black blur avatar
+        ctx.fillStyle = '#000001';
+        ctx.globalAlpha = 0.5;
+        ctx.fillRect(25, 25, 205, 205);
+        ctx.globalAlpha = 1;
+
+        const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.subString(0, 15)+'...' : interaction.user.globalName;
 
         ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
@@ -79,11 +85,11 @@ module.exports = {
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Songs Played: ${profile.playedCount}`, 250, 150);
+        ctx.fillText(`• Songs Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x`, 250, 150);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Commands Used: ${profile.useCount}`, 250, 190);
+        ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
@@ -96,7 +102,7 @@ module.exports = {
 
         ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Top 5 Songs`, 50, 290);
+        ctx.fillText(`Top 5 Songs`, 50, 290);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
@@ -104,7 +110,7 @@ module.exports = {
         top10.map((d, i) => {
             // font exceeds canvas height
             if (ctx.measureText(d.track_title).width > 700) {
-                const title = d.track_title.substring(0, 67);
+                const title = d.track_title.substring(0, 50);
                 ctx.fillText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
             } else {
                 ctx.fillText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
