@@ -3,10 +3,9 @@ const Chart = require("../../settings/models/GuildChart.js");
 const GChart = require("../../settings/models/GlobalChart.js");
 const Canvas = require("@napi-rs/canvas");
 
-const fs = require("node:fs");
 const path = require("node:path");
 const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
-Canvas.GlobalFonts.register(fs.readFileSync(fontsPath));
+Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 
 module.exports = {
     name: ["chart"], // The name of the command
