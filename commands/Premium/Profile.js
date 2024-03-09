@@ -44,7 +44,7 @@ module.exports = {
         ctx.fillRect(20, 250, 955, 350);
         ctx.globalAlpha = 1;
 
-        const username = interaction.user.globaName.length > 20 ? interaction.user.globalName.subString(0, 17)+'...' : interaction.user.globalName;
+        const username = interaction.user.globalName.length > 20 ? interaction.user.globalName.subString(0, 17)+'...' : interaction.user.globalName;
 
         ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
