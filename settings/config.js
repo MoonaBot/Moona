@@ -14,7 +14,7 @@ module.exports = {
       directory: process.cwd() + "/languages", // <= location of language
     },
 
-    DEV_ID: [], // if you want to use command bot only, you can put your id here example: ["123456789", "123456789"]
+    DEV_ID: ['561170896480501790', '656099976681750529'], // if you want to use command bot only, you can put your id here example: ["123456789", "123456789"]
 
     MONGO_URI: process.env.MONGO_URI || "YOUR_MONGO_URI", // your mongo uri
     LIMIT_TRACK: parseInt(process.env.LIMIT_TRACK || "50"),  //<= dafault is "50" // limit track in playlist
@@ -23,10 +23,10 @@ module.exports = {
     DEFAULT_SEARCH: "ytsearch", // default search engine & "ytmsearch" / "ytsearch" / "scsearch" / "spsearch"
     NODES: [
       { 
-        identifier: "NanoSpace",
-        host: process.env.NODE_HOST || "lavalink.devamop.in",
+        identifier: "Kaori",
+        host: process.env.NODE_HOST || "lavalink3.alfari.id",
         port: parseInt(process.env.NODE_PORT || "443"),
-        password: process.env.NODE_PASSWORD || "DevamOP",
+        password: process.env.NODE_PASSWORD || "catfein",
         secure: true
       } 
     ],
