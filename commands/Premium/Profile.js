@@ -33,8 +33,6 @@ module.exports = {
         const profile = await Profile.findOne({ userId: interaction.user.id });
         const listenTime = moment.duration(profile.listenTime).format("d [days], h [hours], m [minutes]");
 
-        console.info(GlobalFonts.families);
-
         const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
 
