@@ -26,7 +26,7 @@ module.exports = {
         inVoice: false,
         sameVoice: false,
     },
-    run: (interaction, client, user, language) => {
+    run: async(interaction, client, user, language) => {
     await interaction.deferReply({ content: 'Sedang diproses...' });
 
     let code = interaction.options.getString("code");
