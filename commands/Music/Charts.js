@@ -15,14 +15,12 @@ module.exports = {
         {
             name: 'global',
             description: 'Top 5 Songs of the global',
-            type: ApplicationCommandOptionType.Subcommand,
-            required: true,
+            type: ApplicationCommandOptionType.Subcommand
         },
         {
             name: 'server',
             description: 'Top 5 Songs on this server',
-            type: ApplicationCommandOptionType.Subcommand,
-            required: true,
+            type: ApplicationCommandOptionType.Subcommand
         }
     ],
     permissions: {

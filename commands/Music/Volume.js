@@ -7,7 +7,7 @@ module.exports = {
     options: [
         {
             name: "amount:number",
-            description: "The amount of volume to set the bot sound (Max. 100)",
+            description: "The amount of volume to set the bot sound between (1 - 100)",
             type: ApplicationCommandOptionType.Integer,
             min_value: 1,
             max_value: 100

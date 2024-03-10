@@ -3,7 +3,7 @@ const { readdirSync } = require("fs");
 
 module.exports = {
     name: ["help"],
-    description: "Displays all commands that the bot has.",
+    description: "Display a list of commands",
     category: "Utility",
     permissions: {
         channel: [],

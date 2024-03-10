@@ -8,7 +8,7 @@ module.exports = {
     options: [
         {
             name: "song",
-            description: "Input of the song",
+            description: "The song you want to play",
             type: ApplicationCommandOptionType.String,
             required: true,
             autocomplete: true

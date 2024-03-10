@@ -8,14 +8,12 @@ module.exports = {
         {
             name: "current",
             description: "Looping the current song",
-            type: ApplicationCommandOptionType.Subcommand,
-            required:true
+            type: ApplicationCommandOptionType.Subcommand
         },
         {
             name: "queue",
             description: "Looping all songs in the queue",
-            type: ApplicationCommandOptionType.Subcommand,
-            required: true
+            type: ApplicationCommandOptionType.Subcommand
         }
     ],
     permissions: {
