@@ -46,7 +46,7 @@ module.exports = {
 
                         const embed = new EmbedBuilder()
                             .setDescription(`${client.i18n.get(language, "music", "playskip_track", {
-                                title: res.tracks[0].title,
+                                title: subText(res.tracks[0].title, 70),
                                 url: res.tracks[0].uri,
                                 duration: convertTime(res.tracks[0].duration, true),
                                 request: res.tracks[0].requester
@@ -78,7 +78,7 @@ module.exports = {
 
                         const embed = new EmbedBuilder()
                             .setDescription(`${client.i18n.get(language, "music", "playskip_result", {
-                                title: res.tracks[0].title,
+                                title: subText(res.tracks[0].title,70),
                                 url: res.tracks[0].uri,
                                 duration: convertTime(res.tracks[0].duration, true),
                                 request: res.tracks[0].requester

@@ -31,7 +31,7 @@ module.exports = {
         shuffle: {
             label: "Shuffle",
             emoji: "🔀",
-            style: "Secondary"
+            style: "Success"
         },
         voldown: {
             label: "Vol -",
@@ -51,7 +51,7 @@ module.exports = {
         queue: {
             label: "Queue",
             emoji: "📋",
-            style: "Secondary"
+            style: "Success"
         },
     },
 

@@ -46,9 +46,9 @@ module.exports = {
         await player.queue.splice(position - 1, 0, song);
 
         const embed = new EmbedBuilder()
-            .setColor(client.color) //**Moved • [${song.title}](${song.uri})** to ${position}
+            .setColor(client.color)
             .setDescription(`${client.i18n.get(language, "music", "move_desc", {
-                name: song.title,
+                name: subText(song.title, 70),
                 url: song.uri,
                 pos: position
             }) }`)

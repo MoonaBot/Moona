@@ -4,4 +4,4 @@
 no_player: "No song/s currently playing within this guild."
 
 # Need to join voice & same voice to use command!
-no_voice: "You need to be in a same/voice channel."
+no_voice: "You need to be in a same (voice channel)!"

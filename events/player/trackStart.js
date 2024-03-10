@@ -25,7 +25,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       .setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`**[${track.title}](${track.uri})**`)
+      .setDescription(`**[${subText(track.title,70)}](${track.uri})**`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -120,7 +120,7 @@ module.exports = async (client, player, track, payload) => {
             .setStyle(ButtonStyle[button.volup.style])
         );
    
-    const nplaying = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row, row2] });
+    const nplaying = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row] });
 
     const filter = (message) => {
       if(message.guild.members.me.voice.channel && message.guild.members.me.voice.channelId === message.member.voice.channelId) return true;

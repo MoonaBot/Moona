@@ -38,7 +38,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(`${client.i18n.get(language, "music", "removetrack_desc", {
-                name: song.title,
+                name: subText(song.title, 70),
                 url: song.uri,
                 duration: convertTime(song.duration, true),
                 request: song.requester

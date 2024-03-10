@@ -39,7 +39,7 @@ module.exports = {
         for (let i = 0; i < player.queue.length; i++) {
             const song = player.queue[i];
             songStrings.push(
-                `**${i + 1}.** [${song.title}](${song.uri}) \`[${formatDuration(song.duration)}]\` • ${song.requester}
+                `${i + 1}. [${subText(song.title, 70)}](${song.uri}) ${formatDuration(song.duration)} [${song.requester}]
                 `);
         }
 
@@ -53,7 +53,7 @@ module.exports = {
                 })}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                 .setColor(client.color)
                 .setDescription(`${client.i18n.get(language, "music", "queue_description", {
-                    title: song.title,
+                    title: subText(song.title, 70),
                     url: song.uri,
                     duration: formatDuration(song.duration),
                     request: song.requester,

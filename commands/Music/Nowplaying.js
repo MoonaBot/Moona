@@ -37,10 +37,10 @@ module.exports = {
         const embeded = new EmbedBuilder()
             .setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
             .setColor(client.color)
-            .setDescription(`**[${song.title}](${song.uri})**`)
-            .addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
+            .setDescription(`[${subText(song.title, 70)}](${song.uri})`)
+            /*.addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_request")}`, value: `${song.requester}`, inline: true })
-            .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })
+            .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/
             .setTimestamp();
 
             if (song.thumbnail) {
@@ -109,19 +109,19 @@ module.exports = {
         const nwp = await msg.edit({ content: " ", embeds: [embeded], components: [row] });
 
         if (realtime === 'true') {
-        client.interval = setInterval(async () => {
+        /*client.interval = setInterval(async () => {
             if (!player.playing) return;
             const CurrentDuration = formatDuration(player.position);
             const Part = Math.floor(player.position / song.duration * 30);
             const Emoji = player.playing ? "🔴 |" : "⏸ |";
 
-            embeded.data.fields[6] = { name: `${client.i18n.get(language, "music", "np_current_duration", {
+            /*embeded.data.fields[6] = { name: `${client.i18n.get(language, "music", "np_current_duration", {
                 current_duration: CurrentDuration,
                 total_duration: TotalDuration
             })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\`` };
 
             if (nwp) nwp.edit({ content: " ", embeds: [embeded], components: [row] })
-        }, 5000);
+        }, 5000);*/
         } else if (realtime === 'false') {
             if (!player.playing) return;
             if (nwp) nwp.edit({ content: " ", embeds: [embeded], components: [row] });
@@ -152,10 +152,10 @@ module.exports = {
                 .setColor(client.color);
             
             embeded.setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
-            embeded.data.fields[6] = { name: `${client.i18n.get(language, "music", "np_current_duration", {
+            /*embeded.data.fields[6] = { name: `${client.i18n.get(language, "music", "np_current_duration", {
                 current_duration: formatDuration(player.position),
                 total_duration: TotalDuration
-            })}`, value: `\`\`\`${player.playing ? "🔴 |" : "⏸ |"} ${'─'.repeat(Math.floor(player.position / song.duration * 30)) + '🎶' + '─'.repeat(30 - Math.floor(player.position / song.duration * 30))}\`\`\`` };
+            })}`, value: `\`\`\`${player.playing ? "🔴 |" : "⏸ |"} ${'─'.repeat(Math.floor(player.position / song.duration * 30)) + '🎶' + '─'.repeat(30 - Math.floor(player.position / song.duration * 30))}\`\`\`` };*/
 
             if(nwp) await nwp.edit({ embeds: [embeded] });
             interaction.reply({ embeds: [embed], ephemeral: true });
