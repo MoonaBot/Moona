@@ -29,7 +29,7 @@ module.exports = {
     const query = interaction.options.getString("commands");
     const embed = new EmbedBuilder()
        .setColor(client.color)
-       .setAuthor({ name: "Commands List", iconUrl: interaction.user.displayAvatarURL({ forceStatic:true }) })
+       .setAuthor({ name: "Commands List", iconURL: interaction.user.displayAvatarURL({ forceStatic:true }) })
        .setDescription(`${client.i18n.get(language, "utilities", "help_desc", { prefix: "/", server: 'https://discord.com' })}`)
     const buttons = [];
 
@@ -71,7 +71,6 @@ module.exports = {
         }
         const ctg = registerCategory[command.category];
         embed.setAuthor({ name: command.name.at(-1) })
-        .setTitle('')
         .setDescription(command.description)
         .setFooter({ text: `Cooldown ${cdTime(command.cooldown || 3000)}` });
 

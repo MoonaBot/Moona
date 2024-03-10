@@ -28,8 +28,8 @@ module.exports = {
     run: async (interaction, client, user, language, player) => {
         await interaction.deferReply({ ephemeral: false });
 
-        const value = interaction.options.getString("result");
-        const CurrentSong = player.queue.current;
+        let value = interaction.options.getString("result");
+        let CurrentSong = player.queue.current;
         if (!value && CurrentSong) value = CurrentSong.title;
 
         let lyrics = null;

@@ -30,10 +30,11 @@ module.exports = {
             return interaction.editReply({ embeds: [embed] });
         }
 
-        const desc = database.map((d, i) => `**${i + 1}.** \`${toOppositeCase(d.name)}\` | **Used:** \`${d.count}\``).join('\n'); //
+        const desc = database.map((d, i) => `${i + 1}. \`${toOppositeCase(d.name)}\` | \`${d.count.toLocaleString().replaceAll(",", ".")}\``).join('\n'); //
 
         const embed = new EmbedBuilder()
-            .setAuthor({ name: 'Top 10 Commands Used', iconURL: client.user.displayAvatarURL() })
+            //.setAuthor({ name: 'Top 10 Commands Used', iconURL: client.user.displayAvatarURL() })
+            .setTitle("Top 10 Command Popularity")
             .setThumbnail(client.user.displayAvatarURL())
             .setColor(client.color)
             .setDescription(desc);
