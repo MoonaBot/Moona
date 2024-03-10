@@ -6,5 +6,5 @@ client.connect()
 module.exports = client;
 
 global.subText = (text="", length=0) => {
-    return text.length > length ? text.substring(0, length-3) : text;
+    return text.length > length ? text.substring(0, length-3)+"..." : text;
 }
