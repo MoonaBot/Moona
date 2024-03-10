@@ -34,7 +34,7 @@ module.exports = {
     const buttons = [];
 
     if (!query) {
-        const categories = readdirSync("./commands").filter(category => !registerCategory[category].private);
+        const categories = readdirSync("./commands").filter(c => !c?.endsWith(".js")).filter(c => !registerCategory[c]?.private);
         embed.setFooter({ text: `Use the buttons below for specific commands information` });
 
         categories.forEach(category => {
@@ -62,7 +62,7 @@ module.exports = {
         return;
     }
     else {
-        const command = interaction.client.commands.get(query);
+        const command = interaction.client.commands.find(x => x.name.includes(query));
         if (!command) {
         embed.setColor("Red")
         embed.setDescription(`Oh no! I don't find \`${query}\` commands.`)
