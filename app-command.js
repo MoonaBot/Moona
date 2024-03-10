@@ -148,7 +148,6 @@ const delay =  require("node:timers/promises").setTimeout;
     console.info("No interactions read, all existing ones will be cleared...");
   }
 
-console.log(commands[36]);
   const rest = new REST({ version: 10 }).setToken(TOKEN);
   const client = await rest.get(Routes.user());
   console.info(`Account information received! ${client.username}#${client.discriminator} (${client.id})`);
