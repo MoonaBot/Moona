@@ -111,7 +111,7 @@ async function createButtonInteface(interaction, message, first) {
     const ctg = registerCategory[i.customId];
 
     const embed = new EmbedBuilder()
-        .setColor(i.client.config.color)
+        .setColor(interaction.client.color)
         .setTitle(`${ctg.emoji} ${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
         .setDescription(ctg.description+"\n\n"+
         commands.map(cmd => `\`${defaultPrefix}${cmd.name.at(-1)}\` : ${cmd.description}.`).join("\n")
