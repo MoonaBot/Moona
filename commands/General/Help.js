@@ -100,6 +100,7 @@ async function createButtonInteface(interaction, message, first) {
     collector.on("collect", async i => {
     await i.deferUpdate();
     buttons = buttons.map(button => button.setDisabled(false));
+    console.info(i.customId);
 
     if (i.customId === "back") {
         await i.editReply({ embeds: [first.embed], components: [first.action] });

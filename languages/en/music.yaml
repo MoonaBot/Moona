@@ -38,8 +38,8 @@ lyrics_toolong: "Lyrics too long to display!"
 
 ### Nowplaying command!
 np_loading: "Loading please wait..."
-np_title: "Now Playing..."
-np_title_pause: "Song Paused..."
+np_title: "Now playing"
+np_title_pause: "(Song Paused)"
 np_icon: "https://cdn.discordapp.com/emojis/741605543046807626.gif"
 
 # Embed Field

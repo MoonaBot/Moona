@@ -27,13 +27,13 @@ module.exports = {
         "description": "This is **Playlist commands** category"
     },
     "Premium": {
-        "private": false,
+        "private": true,
         "name": "Premium",
         "emoji": "<:premium:1216349761557499994>",
         "description": "This is **Premium commands** category"
     },
     "Setting": {
-        "private": false,
+        "private": true,
         "name": "Setting",
         "emoji": "<:setting:1216347675742572554>",
         "description": "This is *Setting commands** category"

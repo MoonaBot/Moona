@@ -35,9 +35,9 @@ module.exports = {
         const Emoji = player.playing ? "🔴 |" : "⏸ |";
         
         const embeded = new EmbedBuilder()
-            .setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
+            //.setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
             .setColor(client.color)
-            .setDescription(`[${subText(song.title, 70)}](${song.uri})`)
+            .setDescription(`${player.playing ? client.i18n.get(language, "music", "np_title") : client.i18n.get(language, "music", "np_title_pause")} [${subText(song.title, 70)}](${song.uri}) ${formatDuration(song.duration)} [${song.requester}]`)
             /*.addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_request")}`, value: `${song.requester}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/

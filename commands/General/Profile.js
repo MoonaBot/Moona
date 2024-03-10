@@ -34,7 +34,7 @@ module.exports = {
         let target = interaction.options.getUser("user");
 
         if (!target) target = interaction.user;
-        if (user.bot) {
+        if (target.bot) {
             interaction.channel.send("Bot don't have profile stats... So, i will replace to your profile as default.").then(msg => setTimeout(() => msg.delete(), 7000));
             target = interaction.user;
         }

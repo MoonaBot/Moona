@@ -12,7 +12,7 @@ total_duration_title: "Total Duration:"
 current_duration_title: "Current Duration: `[0:00 / %{current_duration}]`"
 
 # Need in voice to use button!
-join_voice: "You need to be in a same/voice channel to use this button."
+join_voice: "You need to be in a same (voice channel) to use this button."
 
 # Message Button
 switch_pause: Paused
