@@ -6,6 +6,7 @@ module.exports = async (client) => {
     const folder = path.resolve("commands");
 
     readdirSync(folder)
+        .filter(d => !d.endsWith(".json"))
         .forEach((directory) => {
             const start = Date.now();
             const files = readdirSync(`${folder}/${directory}`);
