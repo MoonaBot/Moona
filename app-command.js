@@ -159,7 +159,7 @@ console.log(commands[36]);
       let guildId = args[1];
       console.info(`Deploy mode: guild (${guildId})`);
 
-      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: commands });
+      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: commands }).catch(console.info);
 
       console.info(`Shared commands may take 3-5 seconds to arrive.`);
       break;
@@ -167,7 +167,7 @@ console.log(commands[36]);
     case "global": {
       console.info(`Deploy mode: global`);
 
-      await rest.put(Routes.applicationCommands(client.id), { body: commands });
+      await rest.put(Routes.applicationCommands(client.id), { body: commands }).catch(console.info);
 
       console.info(`Shared commands can take up to 1 hour to arrive. If you want it to come immediately, you can throw your bot from your server and get it back.`);
       break;
