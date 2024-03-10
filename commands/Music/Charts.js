@@ -46,7 +46,7 @@ module.exports = {
         const placer = await Canvas.loadImage("./assets/images/chart.png");
         ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
 
-        if (choice = "global") {
+        if (choice === "global") {
             const database = await GChart.find({}).sort({ track_count: -1 }).limit(5);
 
             // draw black blur background
@@ -98,7 +98,7 @@ module.exports = {
 
             return interaction.editReply({ files: [attachment] });
 
-        } else if (choice = "guild" || !choice) {
+        } else if (choice === "guild" || !choice) {
             const database = await Chart.findOne({ guildId: interaction.guild.id });
             // object
             if (!database) {
