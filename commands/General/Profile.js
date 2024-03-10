@@ -57,7 +57,7 @@ module.exports = {
         ctx.fillRect(20, 20, 215, 215);
         ctx.globalAlpha = 1;
 
-        const username = target.globalName.length > 18 ? target.globalName.substring(0, 15)+'...' : target.globalName;
+        const username = target.globalName ? (target.globalName.length > 18 ? target.globalName.substring(0, 15)+'...' : target.globalName) : (target.username.length > 18 ? target.username.substring(0, 15)+'...' : target.username);
 
         /*ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;

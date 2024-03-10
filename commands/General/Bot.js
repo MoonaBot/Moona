@@ -31,7 +31,7 @@ module.exports = {
 
     const { color } = interaction.client.config;
     const embed = new EmbedBuilder()
-        .setColor(colors)
+        .setColor(color)
         .setAuthor({ name: `Information Stats`, iconURL: iStatus[interaction.client.presence.status] })
         .setDescription(bot.description)
         .setThumbnail(interaction.client.user.displayAvatarURL({ forceStatic: true, size: 1024 }))
