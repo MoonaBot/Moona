@@ -29,8 +29,8 @@ module.exports = {
     const query = interaction.options.getString("commands");
     const embed = new EmbedBuilder()
        .setColor(client.color)
-       .setTitle("Commands List")
-       .setDescription(`${client.i18n.get(language, "utilities", "help_desc")}`)
+       .setAuthor({ name: "Commands List", iconUrl: interaction.user.displayAvatarURL({ forceStatic:true }) })
+       .setDescription(`${client.i18n.get(language, "utilities", "help_desc", { prefix: "/", server: 'https://discord.com' })}`)
     const buttons = [];
 
     if (!query) {
@@ -42,16 +42,16 @@ module.exports = {
             .filter(cmd => cmd.category === category)
             .map(cmd => `\`${cmd.name.at(-1)}\``);
         const ctg = registerCategory[category];
-        category = `${ctg.emoji} ${ctg.name} [${client.commands.filter(cmd => cmd.category === category).size}]`;
+        category = `${ctg.name} [${client.commands.filter(cmd => cmd.category === category).size}]`;
 
         embed.addFields(
             { name: category, value: commandList.join(", ") }
         )
         buttons.push(
             new ButtonBuilder()
-            .setCustomId(category)
+            .setCustomId(ctg.name)
             .setLabel(ctg.name)
-            .setEmoji(ctg.emoji)
+            //.setEmoji(ctg.emoji)
             .setStyle(ButtonStyle.Primary)
         );
         });
@@ -71,9 +71,9 @@ module.exports = {
         }
         const ctg = registerCategory[command.category];
         embed.setAuthor({ name: command.name.at(-1) })
-        //.setTitle(`${ctg.emoji} ${ctg.name}`)
+        .setTitle('')
         .setDescription(command.description)
-        .setFooter({ text: `Cooldown ${cdTime(command.cooldown)}` });
+        .setFooter({ text: `Cooldown ${cdTime(command.cooldown || 3000)}` });
 
         interaction.reply({ embeds: [embed], ephemeral: true });
         return;
@@ -112,7 +112,7 @@ async function createButtonInteface(interaction, message, first) {
 
     const embed = new EmbedBuilder()
         .setColor(interaction.client.color)
-        .setTitle(`${ctg.emoji} ${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
+        .setTitle(`${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
         .setDescription(ctg.description+"\n\n"+
         commands.map(cmd => `\`${defaultPrefix}${cmd.name.at(-1)}\` : ${cmd.description}.`).join("\n")
         )
