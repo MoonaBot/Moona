@@ -54,7 +54,7 @@ module.exports = {
 
         ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
-        ctx.fillRect(60, 20, ctx.measureText(username.length).length+10, 50);
+        ctx.fillRect(100, 20, /*ctx.measureText(username.length).length +*/ 100, 100);
         ctx.globalAlpha = 1;
 
         ctx.font = 'bold 55px Rubik';
@@ -132,7 +132,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();*/
 
-        const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png' }));
+        const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
         ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
