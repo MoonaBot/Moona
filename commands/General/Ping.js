@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
     name: ["ping"],
+    description: "Responding to delays in ms",
     category: "General",
     permissions: {
         channel: [],

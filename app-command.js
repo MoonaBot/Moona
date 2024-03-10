@@ -157,7 +157,7 @@ const delay =  require("node:timers/promises").setTimeout;
       let guildId = args[1];
       console.info(`Deploy mode: guild (${guildId})`);
 
-      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: commands }).catch(e=>console.info(e.rawErrors.errors['9']));
+      await rest.put(Routes.applicationGuildCommands(client.id, guildId), { body: commands }).catch(console.info);
 
       console.info(`Shared commands may take 3-5 seconds to arrive.`);
       break;
