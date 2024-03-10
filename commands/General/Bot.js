@@ -9,7 +9,7 @@ const iStatus = {
     "invisible": "https://cdn.discordapp.com/emojis/695461329800134696.png"
 };
 
-module.export = {
+module.exports = {
     name: ["stats", "bot"],
     description: "View a bot stats",
     category: "General",
