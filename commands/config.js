@@ -1,4 +1,4 @@
-{
+module.exports = {
     "Context": {
         "private": true
     },

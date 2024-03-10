@@ -49,22 +49,22 @@ module.exports = {
                 const uploadat = songInfo.uploadedAt;
                 
                 embeded.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
-                embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })
+                /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `${uploadat}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `**[Click Here](https://www.y2mate.com/youtube/${song.identifier})**`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_current_duration", {
                     current_duration: CurrentDuration,
                     total_duration: TotalDuration
-                })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\``, inline: false })
+                })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\``, inline: false })*/
             } else {
                 embeded.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }));
-                embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `Not Support`, inline: true })
+                /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `Not Support`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `Not Support`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `Not Support`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_current_duration", {
                     current_duration: CurrentDuration,
                     total_duration: TotalDuration
-                })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\``, inline: false })
+                })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\``, inline: false })*/
             }
 
         const button = client.button.nowplaying;
@@ -72,39 +72,39 @@ module.exports = {
         const row = new  ActionRowBuilder()
             .addComponents(
             new ButtonBuilder()
-                .setCustomId("pause")
-                .setLabel(`${button.pause.label}`)
-                .setEmoji(`${button.pause.emoji}`)
-                .setStyle(ButtonStyle[button.pause.style])
-            )
-            .addComponents(
-            new ButtonBuilder()
                 .setCustomId("replay")
-                .setLabel(`${button.replay.label}`)
+                //.setLabel(`${button.replay.label}`)
                 .setEmoji(`${button.replay.emoji}`)
                 .setStyle(ButtonStyle[button.replay.style])
             )
             .addComponents(
             new ButtonBuilder()
+                .setCustomId("pause")
+                //.setLabel(`${button.pause.label}`)
+                .setEmoji(`${button.pause.emoji}`)
+                .setStyle(ButtonStyle[button.pause.style])
+            )
+            .addComponents(
+            new ButtonBuilder()
                 .setCustomId("stop")
-                .setLabel(`${button.stop.label}`)
+                //.setLabel(`${button.stop.label}`)
                 .setEmoji(`${button.stop.emoji}`)
                 .setStyle(ButtonStyle[button.stop.style])
             )
             .addComponents(
             new ButtonBuilder()
-                .setCustomId("skip")
-                .setLabel(`${button.skip.label}`)
-                .setEmoji(`${button.skip.emoji}`)
-                .setStyle(ButtonStyle[button.skip.style])
-            )
-            .addComponents(
-            new ButtonBuilder()
                 .setCustomId("loop")
-                .setLabel(`${button.loop.label}`)
+                //.setLabel(`${button.loop.label}`)
                 .setEmoji(`${button.loop.emoji}`)
                 .setStyle(ButtonStyle[button.loop.style])
             )
+            .addComponents(
+            new ButtonBuilder()
+                .setCustomId("skip")
+                //.setLabel(`${button.skip.label}`)
+                .setEmoji(`${button.skip.emoji}`)
+                .setStyle(ButtonStyle[button.skip.style])
+            );
 
         const nwp = await msg.edit({ content: " ", embeds: [embeded], components: [row] });
 

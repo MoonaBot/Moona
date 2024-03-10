@@ -1,7 +1,7 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonBuilder } = require("discord.js");
 const { readdirSync } = require("fs");
 
-const registerCategory = require("../../commands/config.json");
+const registerCategory = require("../../commands/config.js");
 
 module.exports = {
     name: ["help"],
@@ -108,7 +108,7 @@ async function createButtonInteface(interaction, message, first) {
     const embed = new EmbedBuilder()
         .setColor(i.client.config.color)
         .setTitle(`${ctg.emoji} ${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
-        .setDescription(
+        .setDescription(ctg.description+"\n\n"+
         commands.map(cmd => `\`${defaultPrefix}${cmd.name.at(-1)}\` : ${cmd.description}.`).join("\n")
         )
         .setFooter({ text: `Available (${commands.size} Commands)` });

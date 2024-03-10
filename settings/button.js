@@ -31,27 +31,27 @@ module.exports = {
         shuffle: {
             label: "Shuffle",
             emoji: "🔀",
-            style: "Primary"
+            style: "Secondary"
         },
         voldown: {
             label: "Vol -",
             emoji: "🔉",
-            style: "Success"
+            style: "Primary"
         },
         clear: {
             label: "Clear",
             emoji: "🗑",
-            style: "Secondary"
+            style: "Danger"
         },
         volup: {
             label: "Vol +",
             emoji: "🔊",
-            style: "Success"
+            style: "Primary"
         },
         queue: {
             label: "Queue",
             emoji: "📋",
-            style: "Primary"
+            style: "Secondary"
         },
     },
 

@@ -27,7 +27,7 @@ const delay =  require("node:timers/promises").setTimeout;
 
     readdirSync(folder)
         .filter(i => {
-            return !i.endsWith(".json");
+            return !i.endsWith(".js");
         })
         .forEach((directory) => {
             const files = readdirSync(`${folder}/${directory}`);

@@ -49,17 +49,17 @@ module.exports = async (client, player, track, payload) => {
       const row = new  ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
-            .setCustomId("pause")
-            //.setLabel(`${button.pause.label}`)
-            .setEmoji(`${button.pause.emoji}`)
-            .setStyle(ButtonStyle[button.pause.style])
-        )
-        .addComponents(
-          new ButtonBuilder()
             .setCustomId("replay")
             //.setLabel(`${button.replay.label}`)
             .setEmoji(`${button.replay.emoji}`)
             .setStyle(ButtonStyle[button.replay.style])
+        )
+        .addComponents(
+          new ButtonBuilder()
+            .setCustomId("pause")
+            //.setLabel(`${button.pause.label}`)
+            .setEmoji(`${button.pause.emoji}`)
+            .setStyle(ButtonStyle[button.pause.style])
         )
         .addComponents(
           new ButtonBuilder()
@@ -70,33 +70,33 @@ module.exports = async (client, player, track, payload) => {
         )
         .addComponents(
           new ButtonBuilder()
-            .setCustomId("skip")
-            //.setLabel(`${button.skip.label}`)
-            .setEmoji(`${button.skip.emoji}`)
-            .setStyle(ButtonStyle[button.skip.style])
-        )
-        .addComponents(
-          new ButtonBuilder()
             .setCustomId("loop")
             //.setLabel(`${button.loop.label}`)
             .setEmoji(`${button.loop.emoji}`)
             .setStyle(ButtonStyle[button.loop.style])
         )
-      
-      const row2 = new  ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
-            .setCustomId("shuffle")
-            //.setLabel(`${button.shuffle.label}`)
-            .setEmoji(`${button.shuffle.emoji}`)
-            .setStyle(ButtonStyle[button.shuffle.style])
-        )
+            .setCustomId("skip")
+            //.setLabel(`${button.skip.label}`)
+            .setEmoji(`${button.skip.emoji}`)
+            .setStyle(ButtonStyle[button.skip.style])
+        );
+      
+      const row2 = new  ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
             .setCustomId("voldown")
             //.setLabel(`${button.voldown.label}`)
             .setEmoji(`${button.voldown.emoji}`)
             .setStyle(ButtonStyle[button.voldown.style])
+        )
+        .addComponents(
+          new ButtonBuilder()
+            .setCustomId("shuffle")
+            //.setLabel(`${button.shuffle.label}`)
+            .setEmoji(`${button.shuffle.emoji}`)
+            .setStyle(ButtonStyle[button.shuffle.style])
         )
         .addComponents(
           new ButtonBuilder()
@@ -107,18 +107,18 @@ module.exports = async (client, player, track, payload) => {
         )
         .addComponents(
           new ButtonBuilder()
-            .setCustomId("volup")
-            //.setLabel(`${button.volup.label}`)
-            .setEmoji(`${button.volup.emoji}`)
-            .setStyle(ButtonStyle[button.volup.style])
-        )
-        .addComponents(
-          new ButtonBuilder()
             .setCustomId("queue")
             //.setLabel(`${button.queue.label}`)
             .setEmoji(`${button.queue.emoji}`)
             .setStyle(ButtonStyle[button.queue.style])
         )
+        .addComponents(
+          new ButtonBuilder()
+            .setCustomId("volup")
+            //.setLabel(`${button.volup.label}`)
+            .setEmoji(`${button.volup.emoji}`)
+            .setStyle(ButtonStyle[button.volup.style])
+        );
    
     const nplaying = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row, row2] });
 
