@@ -98,7 +98,7 @@ module.exports = {
 
             return interaction.editReply({ files: [attachment] });
 
-        } else if (choice === "guild" || !choice) {
+        } else if (choice === "server" || !choice) {
             const database = await Chart.findOne({ guildId: interaction.guild.id });
             // object
             if (!database) {

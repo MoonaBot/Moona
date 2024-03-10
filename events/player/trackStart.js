@@ -27,7 +27,7 @@ module.exports = async (client, player, track, payload) => {
       .setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
       .setDescription(`**[${track.title}](${track.uri})**`)
       .setColor(client.color)
-      .addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
+      /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "volume_title")}`, value: `${player.volume}%`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "queue_title")}`, value: `${player.queue.length}`, inline: true })
@@ -36,7 +36,7 @@ module.exports = async (client, player, track, payload) => {
       .addFields({ name: `${client.i18n.get(language, "player", "current_duration_title", {
         current_duration: formatduration(track.duration, true),
       })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })
-      .setTimestamp();
+      .setTimestamp();*/
 
       if (track.thumbnail) {
         embeded.setThumbnail(`https://img.youtube.com/vi/${track.identifier}/maxresdefault.jpg`);
@@ -50,35 +50,35 @@ module.exports = async (client, player, track, payload) => {
         .addComponents(
           new ButtonBuilder()
             .setCustomId("pause")
-            .setLabel(`${button.pause.label}`)
+            //.setLabel(`${button.pause.label}`)
             .setEmoji(`${button.pause.emoji}`)
             .setStyle(ButtonStyle[button.pause.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("replay")
-            .setLabel(`${button.replay.label}`)
+            //.setLabel(`${button.replay.label}`)
             .setEmoji(`${button.replay.emoji}`)
             .setStyle(ButtonStyle[button.replay.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("stop")
-            .setLabel(`${button.stop.label}`)
+            //.setLabel(`${button.stop.label}`)
             .setEmoji(`${button.stop.emoji}`)
             .setStyle(ButtonStyle[button.stop.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("skip")
-            .setLabel(`${button.skip.label}`)
+            //.setLabel(`${button.skip.label}`)
             .setEmoji(`${button.skip.emoji}`)
             .setStyle(ButtonStyle[button.skip.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("loop")
-            .setLabel(`${button.loop.label}`)
+            //.setLabel(`${button.loop.label}`)
             .setEmoji(`${button.loop.emoji}`)
             .setStyle(ButtonStyle[button.loop.style])
         )
@@ -87,35 +87,35 @@ module.exports = async (client, player, track, payload) => {
         .addComponents(
           new ButtonBuilder()
             .setCustomId("shuffle")
-            .setLabel(`${button.shuffle.label}`)
+            //.setLabel(`${button.shuffle.label}`)
             .setEmoji(`${button.shuffle.emoji}`)
             .setStyle(ButtonStyle[button.shuffle.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("voldown")
-            .setLabel(`${button.voldown.label}`)
+            //.setLabel(`${button.voldown.label}`)
             .setEmoji(`${button.voldown.emoji}`)
             .setStyle(ButtonStyle[button.voldown.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("clear")
-            .setLabel(`${button.clear.label}`)
+            //.setLabel(`${button.clear.label}`)
             .setEmoji(`${button.clear.emoji}`)
             .setStyle(ButtonStyle[button.clear.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("volup")
-            .setLabel(`${button.volup.label}`)
+            //.setLabel(`${button.volup.label}`)
             .setEmoji(`${button.volup.emoji}`)
             .setStyle(ButtonStyle[button.volup.style])
         )
         .addComponents(
           new ButtonBuilder()
             .setCustomId("queue")
-            .setLabel(`${button.queue.label}`)
+            //.setLabel(`${button.queue.label}`)
             .setEmoji(`${button.queue.emoji}`)
             .setStyle(ButtonStyle[button.queue.style])
         )

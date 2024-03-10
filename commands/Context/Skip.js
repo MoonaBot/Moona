@@ -1,7 +1,7 @@
 const { EmbedBuilder, ApplicationCommandType } = require('discord.js');
 
 module.exports = { 
-    name: ["Context | Skip"],
+    name: ["Music Skip"],
     type: ApplicationCommandType.Message,
     category: "Context",
     permissions: {

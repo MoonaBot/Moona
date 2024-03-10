@@ -4,7 +4,7 @@ const GLang = require('../../settings/models/Language.js');
 module.exports = {
     name: ["language"],
     description: "Change the language for the server",
-    category: "Utility",
+    category: "Setting",
     options: [
         {
             name: "set",

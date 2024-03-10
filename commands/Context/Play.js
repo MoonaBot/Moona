@@ -2,7 +2,7 @@ const { EmbedBuilder, ApplicationCommandType } = require('discord.js');
 const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = { 
-    name: ["Context | Play"],
+    name: ["Play This"],
     type: ApplicationCommandType.Message,
     category: "Context",
     permissions: {

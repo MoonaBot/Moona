@@ -1,3 +1,5 @@
+const { ActivityType, ChannelType } = require("discord.js");
+
 const { green, white } = require('chalk');
 const Premium = require('../../settings/models/Premium.js');
 
@@ -11,21 +13,21 @@ module.exports = async (client) => {
       client.premiums.set(user.Id, user);
     }
 
-    let guilds = client.guilds.cache.size;
-    let members = client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
-    let channels = client.channels.cache.size;
+    const guilds = client.guilds.cache.size;
+    const members = client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
+    const channels = client.channels.cache.filter(ch => ch.type === ChannelType.GuildStageVoice && ch.type === ChannelType.GuildVoice).size;
 
-    const activities = [
-        `/premium setup | ${guilds} servers`,
-        `/play <input> | ${members} users`,
-        `/filter doubletime | ${channels} channels`,
-    ]
+    const activity = [
+        { name: `/help | ${guilds} Servers`, type: ActivityType.Playing },
+        { name: `/play | ${members} Users`, type: ActivityType.Listening },
+        { name: `/filter | ${channels} Voice Channels`, type: ActivityType.Watching },
+    ];
 
     setInterval(() => {
         client.user.setPresence({ 
-            activities: [{ name: `${activities[Math.floor(Math.random() * activities.length)]}`, type: 2 }], 
+            activities: activity[Math.floor(Math.random() * activity.length)], 
             status: 'online', 
         });
-    }, 15000)
+    }, 60000*5);
 
 };

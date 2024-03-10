@@ -13,7 +13,7 @@ module.exports = {
         },
         stop: {
             label: "Stop",
-            emoji: "✖",
+            emoji: "⏹️",
             style: "Danger"
         },
         skip: {
@@ -68,7 +68,7 @@ module.exports = {
         },
         stop: {
             label: "Stop",
-            emoji: "✖",
+            emoji: "⏹️",
             style: "Danger"
         },
         skip: {
@@ -150,7 +150,7 @@ module.exports = {
         },
         stop: {
             label: "Stop",
-            emoji: "✖",
+            emoji: "⏹️",
             style: "Danger"
         },
         skip: {
@@ -178,7 +178,7 @@ module.exports = {
         },
         stop: {
             label: "Stop",
-            emoji: "✖",
+            emoji: "⏹️",
             style: "Secondary"
         },
         skip: {

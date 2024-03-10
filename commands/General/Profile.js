@@ -11,7 +11,7 @@ Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 module.exports = {
     name: ["profile"],
     description: "View user profile stats",
-    category: "Utility",
+    category: "General",
     permissions: {
         channel: [],
         bot: [],

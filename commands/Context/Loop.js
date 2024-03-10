@@ -1,7 +1,7 @@
 const { EmbedBuilder, ApplicationCommandType } = require('discord.js');
 
 module.exports = {
-    name: ["Context | Loop"],
+    name: ["Music Loop"],
     type: ApplicationCommandType.Message,
     category: "Context",
     permissions: {
