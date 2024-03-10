@@ -52,16 +52,16 @@ module.exports = {
 
         const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.substring(0, 15)+'...' : interaction.user.globalName;
 
-        ctx.fillStyle = '#000001';
+        /*ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
-        ctx.fillRect(250, 20, 300 + ctx.measureText(username).width, 70);
-        ctx.globalAlpha = 1;
+        ctx.fillRect(250, 60, 100 + ctx.measureText(plan).width, 60);
+        ctx.globalAlpha = 1;*/
 
         ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(username, 250, 70);
+        ctx.fillText(username, 250, 70+70);
 
-        let listen = "";
+        /*let listen = "";
 
         if (profile.listenTime === 0) {
             listen = "No Listen Time";
@@ -86,19 +86,19 @@ module.exports = {
 
         ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`${plan}`, 250, 110);
+        ctx.fillText(plan, 250.5, 110);
 
-        /*ctx.font = '30px Rubik';
+        ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Songs Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x`, 250, 150);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);*/
+        ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`Total Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x (${listen})`, 250, 230);
+        ctx.fillText(`• Total Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x (${listen})`, 250, 230);*/
 
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
@@ -111,6 +111,7 @@ module.exports = {
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
+
         // desc
         top10.map((d, i) => {
             // font exceeds canvas height
