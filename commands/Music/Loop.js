@@ -8,7 +8,7 @@ module.exports = {
         {
             name: "current",
             description: "Looping the current song",
-            type: ApplicationCommandOptionType.Subcommand
+            type: ApplicationCommandOptionType.Subcommand,
         },
         {
             name: "queue",
