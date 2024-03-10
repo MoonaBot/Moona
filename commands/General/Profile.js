@@ -31,12 +31,12 @@ module.exports = {
     },
     run: async (interaction, client, user, language) => {
         await interaction.deferReply({ ephemeral: false });
-        let user = interaction.options.getUser("user");
+        let target = interaction.options.getUser("user");
 
         if (!user) user = interaction.user;
-        const info = await Premium.findOne({ Id: user.id });
+        const info = await Premium.findOne({ Id: target.id });
         const timeLeft = moment.duration(info.premium.expiresAt - Date.now()).format("d [days], h [hours], m [minutes]");
-        const profile = await Profile.findOne({ userId: user.id });
+        const profile = await Profile.findOne({ userId: target.id });
         const listenTime = moment.duration(profile.listenTime).format("d[d] h[h] m[m]");
 
         const canvas = Canvas.createCanvas(1000, 625);
@@ -57,7 +57,7 @@ module.exports = {
         ctx.fillRect(20, 20, 215, 215);
         ctx.globalAlpha = 1;
 
-        const username = user.globalName.length > 18 ? user.globalName.substring(0, 15)+'...' : user.globalName;
+        const username = target.globalName.length > 18 ? target.globalName.substring(0, 15)+'...' : target.globalName;
 
         /*ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
@@ -140,7 +140,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();*/
 
-        const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
+        const avatar = await Canvas.loadImage(target.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
         ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
