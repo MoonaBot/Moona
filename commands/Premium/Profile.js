@@ -52,6 +52,11 @@ module.exports = {
 
         const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.substring(0, 15)+'...' : interaction.user.globalName;
 
+        ctx.fillStyle = '#000001';
+        ctx.globalAlpha = 0.5;
+        ctx.fillRect(60, 20, ctx.measureText(username.length).length+10, 50);
+        ctx.globalAlpha = 1;
+
         ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(username, 250, 70);

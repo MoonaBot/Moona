@@ -61,6 +61,12 @@ module.exports = {
             ctx.fillRect(20, 250, 955, 350);
             ctx.globalAlpha = 1;
 
+            // draw black blur avatar
+            ctx.fillStyle = '#000001';
+            ctx.globalAlpha = 0.5;
+            ctx.fillRect(20, 20, 215, 215);
+            ctx.globalAlpha = 1;
+
             ctx.font = 'bold 35px Rubik';
             ctx.fillStyle = '#ffffff';
             ctx.fillText('TOP 5 CHARTS | GLOBAL', 250, 140);
@@ -82,17 +88,17 @@ module.exports = {
                 }
             });
 
-            ctx.beginPath();
+            /*ctx.beginPath();
             ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
             // stoke style bold
             ctx.lineWidth = 10;
             ctx.strokeStyle = '#000001';
             ctx.stroke();
             ctx.closePath();
-            ctx.clip();
+            ctx.clip();*/
 
             const avatar = await Canvas.loadImage(client.user.displayAvatarURL({ format: 'png' }));
-            ctx.drawImage(avatar, 25, 25, 200, 200);
+            ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
             const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
 
@@ -120,9 +126,15 @@ module.exports = {
             ctx.fillRect(20, 250, 955, 350);
             ctx.globalAlpha = 1;
 
+            // draw black blur avatar
+            ctx.fillStyle = '#000001';
+            ctx.globalAlpha = 0.5;
+            ctx.fillRect(20, 20, 215, 215);
+            ctx.globalAlpha = 1;
+
             ctx.font = 'bold 35px Rubik';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`TOP 5 CHARTS | ${interaction.guild.name.length > 20 ? interaction.guild.name.subStr(0, 17)+"..." : interaction.guild.name}`, 250, 140);
+            ctx.fillText(`TOP 5 CHARTS | ${interaction.guild.name.length > 20 ? interaction.guild.name.substring(0, 17)+"..." : interaction.guild.name}`, 250, 140);
 
             ctx.font = '30px Rubik';
             ctx.fillStyle = '#ffffff';
@@ -137,17 +149,17 @@ module.exports = {
                 }
             });
 
-            ctx.beginPath();
+            /*ctx.beginPath();
             ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
             // stoke style bold
             ctx.lineWidth = 10;
             ctx.strokeStyle = '#000001';
             ctx.stroke();
             ctx.closePath();
-            ctx.clip();
+            ctx.clip();*/
 
             const avatar = await Canvas.loadImage(interaction.guild.iconURL({ format: 'png' }) || "https://media.discordapp.net/attachments/1010784573061349496/1070283756100911184/question.png");
-            ctx.drawImage(avatar, 25, 25, 200, 200);
+            ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
             const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
 
