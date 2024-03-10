@@ -1,25 +1,21 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
-    name: ["music", "loop"],
-    description: "Loops the current song!",
+    name: ["loop"],
+    description: "Select the loop mode you want, default is",
     category: "Music",
     options: [
         {
-            name: "mode",
-            description: "What mode do you want to loop?",
-            type: ApplicationCommandOptionType.String,
-            required: true,
-            choices: [
-                {
-                    name: "Current 🔂",
-                    value: "current"
-                },
-                {
-                    name: "Queue 🔁",
-                    value: "queue"
-                }
-            ]
+            name: "current",
+            description: "Looping the current song",
+            type: ApplicationCommandOptionType.Subcommand,
+            required:true
+        },
+        {
+            name: "queue",
+            description: "Looping all songs in the queue",
+            type: ApplicationCommandOptionType.Subcommand,
+            required: true
         }
     ],
     permissions: {
@@ -37,7 +33,7 @@ module.exports = {
     run: async (interaction, client, user, language, player) => {
         await interaction.deferReply({ ephemeral: false });
 
-        const choice = interaction.options.getString("mode");
+        const choice = interaction.options.getSubcommand();
  
         if(choice === "current") {
             if (player.trackRepeat === false) {

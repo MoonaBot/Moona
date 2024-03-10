@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["music", "resume"],
-    description: "Resume the music!",
+    name: ["resume"],
+    description: "Resume music that has been paused",
     category: "Music",
     permissions: {
         channel: [],

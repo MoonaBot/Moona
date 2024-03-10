@@ -4,9 +4,9 @@ require("moment-duration-format");
 const prettyBytes = require("pretty-bytes");
 
 module.exports = {
-    name: ["utility", "lavalink"], // The name of the command
+    name: ["lavalink"], // The name of the command
     description: "Display the Lavalink stats", // The description of the command (for help text)
-    category: "Utility",
+    category: "Developer",
     permissions: {
         channel: [],
         bot: [],
@@ -15,7 +15,7 @@ module.exports = {
     settings: {
         isPremium: false,
         isPlayer: false,
-        isOwner: false,
+        isOwner: true,
         inVoice: false,
         sameVoice: false,
     },

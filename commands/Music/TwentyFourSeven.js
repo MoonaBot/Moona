@@ -1,7 +1,7 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    name: ["music", "247"],
+    name: ["247"],
     description: "24/7 in voice channel",
     category: "Music",
     permissions: {

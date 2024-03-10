@@ -5,7 +5,7 @@ const Setup = require("../../settings/models/Setup.js");
 
 module.exports = {
     name: ["nowplaying"], // I move search to main issues subcmd (max 25)
-    description: "Display the song currently playing.",
+    description: "Display the song currently playing",
     category: "Music",
     permissions: {
         channel: [],

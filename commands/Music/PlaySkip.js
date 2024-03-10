@@ -2,13 +2,13 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
-    name: ["music", "playskip"],
-    description: "Play and skip to a song!",
+    name: ["playskip"],
+    description: "Play and skip to new song",
     category: "Music",
     options: [
         {
             name: "song",
-            description: "The input of the song",
+            description: "Input of the song",
             type: ApplicationCommandOptionType.String,
             required: true,
             autocomplete: true

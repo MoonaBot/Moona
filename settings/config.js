@@ -7,7 +7,7 @@ module.exports = {
     OWNER_ID: process.env.OWNER_ID || "561170896480501790", //your owner discord id example: "515490955801919488"
 
     NP_REALTIME: process.env.NP_REALTIME || "false", // "true" = realtime, "false" = not realtime :3 // WARNING: on set to "true" = laggy and bot will ratelimit if you have a lot of servers
-    LEAVE_TIMEOUT: parseInt(process.env.LEAVE_TIMEOUT || "120000"), // leave timeout default "120000" = 2 minutes // 1000 = 1 seconds
+    LEAVE_TIMEOUT: parseInt(process.env.LEAVE_TIMEOUT || "180000"), // leave timeout default "180000" = 3 minutes // 1000 = 1 seconds
 
     LANGUAGE: {
       defaultLocale: process.env.LANGUAGE || "en", // "en" = default language

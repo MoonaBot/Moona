@@ -2,13 +2,13 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ApplicationC
 const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
-    name: ["music", "searchskip"],
-    description: "Search and skip to a song!",
+    name: ["searchskip"],
+    description: "Search and skip to a song",
     category: "Music",
     options: [
         {
             name: "song",
-            description: "The input of the song",
+            description: "The song you want to play",
             type: ApplicationCommandOptionType.String,
             required: true,
         }

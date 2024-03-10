@@ -3,12 +3,12 @@ const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
     name: ["search"], // I move search to main issues subcmd (max 25)
-    description: "Search for a song!",
+    description: "Search for available songs from the source",
     category: "Music",
     options: [
         {
             name: "song",
-            description: "The input of the song",
+            description: "The song you want to play",
             type: ApplicationCommandOptionType.String,
             required: true,
         }

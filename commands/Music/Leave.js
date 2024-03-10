@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["music", "leave"],
-    description: "Disconnect the bot from your voice channel",
+    name: ["leave"],
+    description: "Disconnect the bot from voice channel",
     category: "Music",
     permissions: {
         channel: [],

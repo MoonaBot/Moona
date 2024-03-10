@@ -1,8 +1,8 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    name: ["music", "join"],
-    description: "Summon the bot to your voice channel.",
+    name: ["join"],
+    description: "Summon the bot to your voice channel",
     category: "Music",
     permissions: {
         channel: ["Speak", "Connect"],

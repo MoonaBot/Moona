@@ -1,9 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["utility", "shutdown"],
-    description: "Shuts down the client!",
-    category: "Utility",
+    name: ["shutdown"],
+    description: "Shuts down the client",
+    category: "Developer",
     permissions: {
         channel: [],
         bot: [],

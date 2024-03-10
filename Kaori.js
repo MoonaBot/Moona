@@ -5,14 +5,14 @@ const { I18n } = require("@hammerhq/localization");
 class MainClient extends Client {
 	 constructor() {
         super({
-            shards: "auto",
+            //shards: "auto",
             allowedMentions: { parse: ["users", "roles"] },
             intents: [
                 GatewayIntentBits.Guilds,
-                GatewayIntentBits.GuildMembers,
+                //GatewayIntentBits.GuildMembers,
                 GatewayIntentBits.GuildMessages,
                 GatewayIntentBits.GuildVoiceStates,
-                GatewayIntentBits.MessageContent,
+                //GatewayIntentBits.MessageContent,
             ]
         });
         this.on("error", console.log);
@@ -47,7 +47,7 @@ class MainClient extends Client {
     ["loadCommand", "loadEvent", "loadDatabase", "loadPlayer"].forEach(x => require(`./handlers/${x}`)(client));
 
 	}
-		connect() {
+	connect() {
         return super.login(this.token);
     };
 };

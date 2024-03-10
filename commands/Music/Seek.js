@@ -2,13 +2,13 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const formatDuration = require('../../structures/FormatDuration.js');
 
 module.exports = {
-    name: ["music", "seek"],
-    description: "Seek timestamp in the song!",
+    name: ["seek"],
+    description: "Seek the current song",
     category: "Music",
     options: [
         {
             name: "seconds",
-            description: "The number of seconds to seek the timestamp by.",
+            description: "The number of seconds to seek a song by duration",
             type: ApplicationCommandOptionType.Integer,
             required: true,
         }

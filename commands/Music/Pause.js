@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["music", "pause"],
-    description: "Pause the music!",
+    name: ["pause"],
+    description: "Pause the currently playing song",
     category: "Music",
     permissions: {
         channel: [],

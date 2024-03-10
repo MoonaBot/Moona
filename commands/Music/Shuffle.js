@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["music", "shuffle"],
-    description: "Shuffle song in queue!",
+    name: ["shuffle"],
+    description: "Shuffle song from queue",
     category: "Music",
     permissions: {
         channel: [],

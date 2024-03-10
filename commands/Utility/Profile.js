@@ -10,8 +10,8 @@ Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 
 module.exports = {
     name: ["profile"],
-    description: "View your premium profile!",
-    category: "Premium",
+    description: "View user profile stats",
+    category: "Utility",
     permissions: {
         channel: [],
         bot: [],
@@ -107,7 +107,7 @@ module.exports = {
 
         ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`Top 5 Songs`, 50, 290);
+        ctx.fillText(`TOP 5 SONGS`, 50, 290);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
@@ -116,7 +116,7 @@ module.exports = {
         top10.map((d, i) => {
             // font exceeds canvas height
             if (ctx.measureText(d.track_title).width > 700) {
-                const title = d.track_title.substring(0, 50);
+                const title = d.track_title.substring(0, 52);
                 ctx.fillText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
             } else {
                 ctx.fillText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
@@ -136,7 +136,7 @@ module.exports = {
         const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
         ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
-        const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
+        const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
 
         return interaction.editReply({ files: [attachment] });
     }

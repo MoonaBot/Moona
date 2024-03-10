@@ -2,7 +2,7 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
-    name: ["music", "insert"],
+    name: ["insert"],
     description: "Force insert the song in top of queue",
     category: "Music",
     options: [

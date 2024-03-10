@@ -3,7 +3,7 @@ const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
     name: ["play"], // I move play to main issues subcmd (max 25)
-    description: "Plays a song of your choice",
+    description: "Play music in your voice channel",
     category: "Music",
     options: [
         {

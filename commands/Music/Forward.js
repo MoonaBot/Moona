@@ -4,8 +4,8 @@ const formatDuration = require('../../structures/FormatDuration.js');
 const forward = 10;
 
 module.exports = {
-    name: ["music", "forward"],
-    description: "forward the currently playing song.",
+    name: ["forward"],
+    description: "Forward the currently playing song",
     category: "Music",
     options: [
         {

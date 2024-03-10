@@ -9,25 +9,21 @@ Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 
 module.exports = {
     name: ["chart"], // The name of the command
-    description: "Display Top 5 songs of the (global/guild)", // The description of the command (for help text)
+    description: "Display Top 5 Songs of the (global/server)", // The description of the command (for help text)
     category: "Music",
     options: [
         {
-            name: 'mode',
-            description: 'The type of chart you want to see',
+            name: 'global',
+            description: 'Top 5 Songs of the global',
+            type: ApplicationCommandOptionType.Subcommand,
             required: true,
-            type: ApplicationCommandOptionType.String,
-            choices: [
-                {
-                    name: 'Global 🌐',
-                    value: 'global',
-                },
-                {
-                    name: 'Guild 💾',
-                    value: 'guild',
-                },
-            ],
         },
+        {
+            name: 'server',
+            description: 'Top 5 Songs on this server',
+            type: ApplicationCommandOptionType.Subcommand,
+            required: true,
+        }
     ],
     permissions: {
         channel: [],
@@ -44,7 +40,7 @@ module.exports = {
     run: async (interaction, client, user, language) => {
         await interaction.deferReply({ ephemeral: false});
 
-        const choice = interaction.options.getString('mode');
+        const choice = interaction.options.getSubcommand();
 
         const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
@@ -52,7 +48,7 @@ module.exports = {
         const placer = await Canvas.loadImage("./assets/images/chart.png");
         ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
 
-        if (choice === 'global') {
+        if (choice = "global") {
             const database = await GChart.find({}).sort({ track_count: -1 }).limit(5);
 
             // draw black blur background
@@ -69,7 +65,7 @@ module.exports = {
 
             ctx.font = 'bold 35px Rubik';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText('TOP 5 CHARTS | GLOBAL', 250, 140);
+            ctx.fillText('TOP 5 SONGS | Global', 250, 140);
 
             ctx.font = '30px Rubik';
             ctx.fillStyle = '#ffffff';
@@ -100,17 +96,17 @@ module.exports = {
             const avatar = await Canvas.loadImage(client.user.displayAvatarURL({ forceStatic:true, size: 1024, format: 'png' }));
             ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
-            const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
+            const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'global-chart.png' });
 
             return interaction.editReply({ files: [attachment] });
 
-        } else if (choice === 'guild') {
+        } else if (choice = "guild") {
             const database = await Chart.findOne({ guildId: interaction.guild.id });
             // object
             if (!database) {
                 const embed = new EmbedBuilder()
-                    .setAuthor({ name: 'Top 5 Charts | Guild', iconURL: interaction.guild.iconURL() })
-                    .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
+                    .setAuthor({ name: 'TOP 5 SONGS | Guild', iconURL: interaction.guild.iconURL() })
+                    .setThumbnail(interaction.guild.iconURL({ forceStatic: true }))
                     .setColor(client.color)
                     .setDescription('No data found')
                 return interaction.editReply({ embeds: [embed] });
@@ -134,7 +130,7 @@ module.exports = {
 
             ctx.font = 'bold 35px Rubik';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`TOP 5 CHARTS | ${interaction.guild.name.length > 20 ? interaction.guild.name.substring(0, 17)+"..." : interaction.guild.name}`, 250, 140);
+            ctx.fillText(`TOP 5 SONGS | ${interaction.guild.name.length > 20 ? interaction.guild.name.substring(0, 17)+"..." : interaction.guild.name}`, 250, 140);
 
             ctx.font = '30px Rubik';
             ctx.fillStyle = '#ffffff';
@@ -158,10 +154,10 @@ module.exports = {
             ctx.closePath();
             ctx.clip();*/
 
-            const avatar = await Canvas.loadImage(interaction.guild.iconURL({ format: 'png' }) || "https://media.discordapp.net/attachments/1010784573061349496/1070283756100911184/question.png");
+            const avatar = await Canvas.loadImage(interaction.guild.iconURL({ forceStatic: true, size: 1024, format: 'png' }) || "https://media.discordapp.net/attachments/1010784573061349496/1070283756100911184/question.png");
             ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
-            const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'chart.png' });
+            const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'server-chart.png' });
 
             return interaction.editReply({ files: [attachment] });
 

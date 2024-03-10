@@ -1,8 +1,8 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
-    name: ["music", "move"],
-    description: "Change a songs position in a queue.",
+    name: ["move"],
+    description: "Change a songs position in a queue",
     category: "Music",
     options: [
         {

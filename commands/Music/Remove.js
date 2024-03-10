@@ -2,8 +2,8 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const { convertTime } = require("../../structures/ConvertTime.js");
 
 module.exports = {
-    name: ["music", "remove"],
-    description: "Remove song from queue!",
+    name: ["remove"],
+    description: "Remove song from queue",
     category: "Music",
     options: [
         {

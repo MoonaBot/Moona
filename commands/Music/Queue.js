@@ -4,12 +4,12 @@ const { SlashPage } = require('../../structures/PageQueue.js');
 
 module.exports = {
     name: ["queue"], // I move play to main issues subcmd (max 25)
-    description: "Show the queue of songs.",
+    description: "Display a song queue list",
     category: "Music",
     options: [
         {
             name: "page",
-            description: "Page number to show.",
+            description: "Page number to show",
             type: ApplicationCommandOptionType.Integer,
             required: false,
         }

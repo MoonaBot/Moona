@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: ["music", "autoplay"],
-    description: "Autoplay music (Random play songs)",
+    name: ["autoplay"],
+    description: "Setup autoplay music (random song)",
     category: "Music",
     permissions: {
         channel: [],

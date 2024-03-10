@@ -3,8 +3,8 @@ const Useable = require("../../settings/models/CommandStats.js");
 
 module.exports = {
     name: ["commandstats"], // The name of the command
-    description: "Display Top 10 commands used!", 
-    category: "Utility",
+    description: "Display Top 10 commands used", 
+    category: "Developer",
     permissions: {
         channel: [],
         bot: [],
@@ -13,7 +13,7 @@ module.exports = {
     settings: {
         isPremium: false,
         isPlayer: false,
-        isOwner: false,
+        isOwner: true,
         inVoice: false,
         sameVoice: false,
     },
