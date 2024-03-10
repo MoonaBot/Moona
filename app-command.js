@@ -166,7 +166,7 @@ const delay =  require("node:timers/promises").setTimeout;
     case "global": {
       console.info(`Deploy mode: global`);
 
-      await rest.put(Routes.applicationCommands(client.id), { body: command });
+      await rest.put(Routes.applicationCommands(client.id), { body: commands });
 
       console.info(`Shared commands can take up to 1 hour to arrive. If you want it to come immediately, you can throw your bot from your server and get it back.`);
       break;
