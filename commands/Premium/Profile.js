@@ -54,7 +54,7 @@ module.exports = {
 
         ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
-        ctx.fillRect(250, 20, /*ctx.measureText(username.length).length +*/ 250, 50);
+        ctx.fillRect(250, 20, ctx.measureText(username.length).length + 250, 70);
         ctx.globalAlpha = 1;
 
         ctx.font = 'bold 55px Rubik';
@@ -76,7 +76,7 @@ module.exports = {
             plan = toOppositeCase(info.premium.plan);
             expire = "Unlimited";
         } else {
-            plan = toOppositeCase(info.premium.plan || "Free");
+            plan = toOppositeCase(info.premium.plan || "FREE");
             if (info.premium.expiresAt < Date.now()) {
                 expire = "Never Expired";
             } else {
@@ -86,7 +86,7 @@ module.exports = {
 
         ctx.font = 'bold 30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`${plan} (${expire})`, 250, 110);
+        ctx.fillText(`${plan}`, 250, 110);
 
         /*ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
