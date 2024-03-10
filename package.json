@@ -1,7 +1,7 @@
 {
   "name": "kaori",
   "version": "3.0.0",
-  "description": "The advanced music bot you need, ready to accompany your relaxing life.",
+  "description": "The advanced Discord Bot you need, ready to accompany your relaxing life. ~Enjoyyy...",
   "main": "index.js",
   "dependencies": {
     "@hammerhq/localization": "^0.1.5",
