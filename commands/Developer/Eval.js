@@ -1,6 +1,8 @@
-const djs, { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const { inspect } = require("node:util");
 
-const util, { inspect } = require("node:util");
+const djs = require("discord.js");
+const util = require("node:util");
 
 module.exports = {
     name: ["eval"],
