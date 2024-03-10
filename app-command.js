@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } = require('discord.js');
+const { ApplicationCommandType, ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } = require('discord.js');
 const { readdirSync } = require("node:fs");
 const path = require('path');
 
@@ -46,7 +46,7 @@ const delay =  require("node:timers/promises").setTimeout;
       switch (current.name.length) {
         case 1: {
           all.push({
-            type: current.type,
+            type: current.type || ApplicationCommandType.ChatInput,
             name: current.name[0],
             description: current.description,
             defaultPermission: current.defaultPermission,
