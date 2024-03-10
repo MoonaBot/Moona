@@ -54,7 +54,7 @@ module.exports = {
 
         ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
-        ctx.fillRect(250, 20, ctx.measureText(username).length + 250, 70);
+        ctx.fillRect(250, 20, 200 + ctx.measureText(username).width, 70);
         ctx.globalAlpha = 1;
 
         ctx.font = 'bold 55px Rubik';
