@@ -34,6 +34,10 @@ module.exports = {
         let target = interaction.options.getUser("user");
 
         if (!user) user = interaction.user;
+        if (user.bot) {
+            interaction.channel.send("Bot don't have profile stats... So, i will replace to your profile as default.").then(msg => setTimeout(() => msg.delete(), 7000));
+            user = interaction.user;
+        }
         const info = await Premium.findOne({ Id: target.id });
         const timeLeft = moment.duration(info.premium.expiresAt - Date.now()).format("d [days], h [hours], m [minutes]");
         const profile = await Profile.findOne({ userId: target.id });

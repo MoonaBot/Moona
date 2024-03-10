@@ -28,10 +28,8 @@ module.exports = {
     run: async(interaction, client, user, language) => {
     const waitnow = await Date.now();
     await interaction.deferReply('Sedang diproses...');
-
-    const { color } = interaction.client.config;
     const embed = new EmbedBuilder()
-        .setColor(color)
+        .setColor(client.color)
         .setAuthor({ name: `Information Stats`, iconURL: iStatus[interaction.client.presence.status] })
         .setDescription(bot.description)
         .setThumbnail(interaction.client.user.displayAvatarURL({ forceStatic: true, size: 1024 }))
