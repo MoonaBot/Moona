@@ -31,7 +31,7 @@ module.exports = {
             rate_limit_per_user: 3, 
         }).then(async (channel) => {
 
-        const attachment = new AttachmentBuilder("./settings/images/banner.png", { name: "setup.png" });
+        const attachment = new AttachmentBuilder("./assets/images/banner.png", { name: "setup.png" });
 
         const queueMsg = `${client.i18n.get(language, "setup", "setup_queuemsg")}`;
 

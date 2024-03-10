@@ -49,7 +49,7 @@ module.exports = {
         const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
 
-        const placer = await Canvas.loadImage("./settings/images/chart.png");
+        const placer = await Canvas.loadImage("./assets/images/chart.png");
         ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
 
         if (choice === 'global') {
