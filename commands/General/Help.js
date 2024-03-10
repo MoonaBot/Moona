@@ -1,7 +1,7 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonBuilder } = require("discord.js");
 const { readdirSync } = require("fs");
 
-const registerCategory = require("../../config.json");
+const registerCategory = require("../../commands/config.json");
 
 module.exports = {
     name: ["help"],
