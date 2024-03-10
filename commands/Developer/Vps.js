@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 const os = require('node:os');
 
 module.exports = {
-    name: ["vps"], // The name of the command
+    name: ["stats", "vps"], // The name of the command
     description: "Display the VPS stats", // The description of the command (for help text)
     category: "Developer",
     permissions: {
@@ -29,8 +29,8 @@ module.exports = {
         const mins = Math.floor((totalSeconds / 60) % 60);
 
         const embed = new EmbedBuilder()
-            .setAuthor({ name: 'Virtual Private Server (VPS)', iconURL: interaction.guild.iconURL({ dynamic: true }) })
-            .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+            .setAuthor({ name: 'Virtual Private Server (VPS)', iconURL: interaction.guild.iconURL({ forceStatic: true }) })
+            .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
             .setColor(client.color)
             .addFields(
                 { name: 'Host', value: `${os.type()} ${os.release()} (${os.arch()})` },

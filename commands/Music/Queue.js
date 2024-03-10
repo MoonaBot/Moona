@@ -50,7 +50,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: `${client.i18n.get(language, "music", "queue_author", {
                     guild: interaction.guild.name,
-                })}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
+                })}`, iconURL: interaction.guild.iconURL({ forceStatic: true }) })
                 .setColor(client.color)
                 .setDescription(`${client.i18n.get(language, "music", "queue_description", {
                     title: subText(song.title, 70),
@@ -69,7 +69,7 @@ module.exports = {
                 if (song.thumbnail) {
                     embed.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
                 } else {
-                    embed.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }));
+                    embed.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
                 }
 
             pages.push(embed);

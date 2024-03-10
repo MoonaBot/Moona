@@ -57,7 +57,7 @@ module.exports = {
                     total_duration: TotalDuration
                 })}`, value: `\`\`\`${Emoji} ${'─'.repeat(Part) + '🎶' + '─'.repeat(30 - Part)}\`\`\``, inline: false })*/
             } else {
-                embeded.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }));
+                embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
                 /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `Not Support`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `Not Support`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `Not Support`, inline: true })

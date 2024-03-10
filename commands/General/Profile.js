@@ -1,4 +1,4 @@
-const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { ApplicationCommandOptionType, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const moment = require('moment');
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
@@ -17,6 +17,11 @@ module.exports = {
         bot: [],
         user: []
     },
+    options: [{
+        name: "user",
+        description: "Select the user whose profile you want to view",
+        type: ApplicationCommandOptionType.User
+    }],
     settings: {
         isPremium: false,
         isPlayer: false,
@@ -26,10 +31,12 @@ module.exports = {
     },
     run: async (interaction, client, user, language) => {
         await interaction.deferReply({ ephemeral: false });
-        
-        const info = await Premium.findOne({ Id: interaction.user.id });
+        let user = interaction.options.getUser("user");
+
+        if (!user) user = interaction.user;
+        const info = await Premium.findOne({ Id: user.id });
         const timeLeft = moment.duration(info.premium.expiresAt - Date.now()).format("d [days], h [hours], m [minutes]");
-        const profile = await Profile.findOne({ userId: interaction.user.id });
+        const profile = await Profile.findOne({ userId: user.id });
         const listenTime = moment.duration(profile.listenTime).format("d[d] h[h] m[m]");
 
         const canvas = Canvas.createCanvas(1000, 625);
@@ -50,7 +57,7 @@ module.exports = {
         ctx.fillRect(20, 20, 215, 215);
         ctx.globalAlpha = 1;
 
-        const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.substring(0, 15)+'...' : interaction.user.globalName;
+        const username = user.globalName.length > 18 ? user.globalName.substring(0, 15)+'...' : user.globalName;
 
         /*ctx.fillStyle = '#000001';
         ctx.globalAlpha = 0.5;
@@ -133,7 +140,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();*/
 
-        const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
+        const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
         ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });

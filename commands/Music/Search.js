@@ -108,7 +108,7 @@ module.exports = {
                         })}`)
                         .join("\n");
                     const playing = new EmbedBuilder()
-                        .setAuthor({ name: `${client.i18n.get(language, "music", "search_title")}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
+                        .setAuthor({ name: `${client.i18n.get(language, "music", "search_title")}`, iconURL: interaction.guild.iconURL({ forceStatic: true }) })
                         .setColor(client.color)
                         .setDescription(results)
                         .setFooter({ text: `${client.i18n.get(language, "music", "search_footer")}` })

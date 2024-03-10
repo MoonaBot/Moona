@@ -2,8 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const Useable = require("../../settings/models/CommandStats.js");
 
 module.exports = {
-    name: ["commandstats"], // The name of the command
-    description: "Display Top 10 commands used", 
+    name: ["stats","command"], // The name of the command
+    description: "Display Top 10 commands used stats", 
     category: "Developer",
     permissions: {
         channel: [],

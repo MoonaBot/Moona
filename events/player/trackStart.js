@@ -25,7 +25,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       .setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`**[${subText(track.title,70)}](${track.uri})**`)
+      .setDescription(`[${subText(track.title,70)}](${track.uri}) ${formatduration(track.duration)} [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -35,13 +35,13 @@ module.exports = async (client, player, track, payload) => {
       .addFields({ name: `${client.i18n.get(language, "player", "total_duration_title")}`, value: `${formatduration(player.queue.duration)}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "current_duration_title", {
         current_duration: formatduration(track.duration, true),
-      })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })
-      .setTimestamp();*/
+      })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })*/
+      .setTimestamp();
 
       if (track.thumbnail) {
         embeded.setThumbnail(`https://img.youtube.com/vi/${track.identifier}/maxresdefault.jpg`);
       } else {
-        embeded.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }));
+        embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
     
       const button = client.button.trackStart;
@@ -271,7 +271,7 @@ module.exports = async (client, player, track, payload) => {
           const embed = new EmbedBuilder()
             .setAuthor({ name: `${client.i18n.get(language, "player", "queue_author", {
               guild: message.guild.name,
-            })}`, iconURL: message.guild.iconURL({ dynamic: true }) })
+            })}`, iconURL: message.guild.iconURL({ forceStatic: true }) })
             .setColor(client.color)
             .setDescription(`${client.i18n.get(language, "player", "queue_description", {
               track: song.title,
@@ -290,7 +290,7 @@ module.exports = async (client, player, track, payload) => {
           if (song.thumbnail) {
             embed.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
           } else {
-              embed.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }));
+              embed.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
           }
     
           pages.push(embed);

@@ -4,7 +4,7 @@ require("moment-duration-format");
 const prettyBytes = require("pretty-bytes");
 
 module.exports = {
-    name: ["lavalink"], // The name of the command
+    name: ["stats","lavalink"], // The name of the command
     description: "Display the Lavalink stats", // The description of the command (for help text)
     category: "Developer",
     permissions: {
@@ -26,8 +26,8 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(client.color)
-            .setAuthor({ name: `LavaLink`, iconURL: interaction.guild.iconURL({ dynamic: true })})
-            .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+            .setAuthor({ name: `LavaLink`, iconURL: interaction.guild.iconURL({ forceStatic: true })})
+            .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
             .setTimestamp()
 
         client.manager.nodes.forEach((node) => {

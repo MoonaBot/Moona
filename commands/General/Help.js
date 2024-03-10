@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonBuilder } = require("discord.js");
+const { ApplicationCommandOptionType, EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonBuilder } = require("discord.js");
 const { readdirSync } = require("fs");
 
 const registerCategory = require("../../commands/config.js");
@@ -12,6 +12,11 @@ module.exports = {
         bot: [],
         user: []
     },
+    options: [{
+        name: "commands",
+        description: "Enter the name of a specific commands",
+        type: ApplicationCommandOptionType.String
+    }],
     settings: {
         isPremium: false,
         isPlayer: false,
@@ -21,7 +26,7 @@ module.exports = {
     },
     run: async (interaction, client, user, language) => {
     const defaultPrefix = "/";
-    const query = interaction.options.value[0];
+    const query = interaction.options.getString("commands");
     const embed = new EmbedBuilder()
        .setColor(client.color)
        .setTitle("Commands List")
