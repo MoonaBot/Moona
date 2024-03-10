@@ -30,7 +30,7 @@ module.exports = {
         const info = await Premium.findOne({ Id: interaction.user.id });
         const timeLeft = moment.duration(info.premium.expiresAt - Date.now()).format("d [days], h [hours], m [minutes]");
         const profile = await Profile.findOne({ userId: interaction.user.id });
-        const listenTime = moment.duration(profile.listenTime).format("d [days], h [hours], m [minutes]");
+        const listenTime = moment.duration(profile.listenTime).format("d[d] h[h] m[m]");
 
         const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');
@@ -50,7 +50,7 @@ module.exports = {
         ctx.fillRect(20, 20, 215, 215);
         ctx.globalAlpha = 1;
 
-        const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.subString(0, 15)+'...' : interaction.user.globalName;
+        const username = interaction.user.globalName.length > 18 ? interaction.user.globalName.substring(0, 15)+'...' : interaction.user.globalName;
 
         ctx.font = 'bold 55px Rubik';
         ctx.fillStyle = '#ffffff';
@@ -69,7 +69,7 @@ module.exports = {
 
         if (info.premium.plan === "lifetime") {
             plan = toOppositeCase(info.premium.plan);
-            expire = "Never";
+            expire = "Unlimited";
         } else {
             plan = toOppositeCase(info.premium.plan || "Free");
             if (info.premium.expiresAt < Date.now()) {
@@ -83,17 +83,17 @@ module.exports = {
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`${plan} (${expire})`, 250, 110);
 
-        ctx.font = '30px Rubik';
+        /*ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Songs Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x`, 250, 150);
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);
+        ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);*/
 
         ctx.font = '30px Rubik';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`• Listen Time: ${listen}`, 250, 230);
+        ctx.fillText(`Total Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x (${listen})`, 250, 230);
 
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
