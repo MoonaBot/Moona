@@ -103,7 +103,7 @@ async function createButtonInteface(interaction, message, first) {
         return;
     }
 
-    const commands = readdirSync(`./commands/{${i.customId}`);
+    const commands = readdirSync(`./commands/${i.customId}`);
     const ctg = registerCategory[i.customId];
 
     const embed = new EmbedBuilder()
