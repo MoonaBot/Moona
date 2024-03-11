@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
 
-const delay = require("node:promises/timers").setTimeout;
+const delay = require("node:timers/promises").setTimeout;
 
 module.exports = async (client, player) => {
 	const channel = client.channels.cache.get(player.textChannel);
