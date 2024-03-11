@@ -73,7 +73,7 @@ const delay =  require("node:timers/promises").setTimeout;
               ]
             });
           } else {
-            if (baseItem.isSubGroup) { baseItem.options.push({
+            if (baseItem.options[0].type === ApplicationCommandOptionType.Subcommand) { baseItem.options.push({
               type: ApplicationCommandOptionType.SubcommandGroup,
               description: current.description,
               name: current.name[1],
