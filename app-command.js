@@ -65,7 +65,7 @@ const delay =  require("node:timers/promises").setTimeout;
               defaultPermission: current.defaultPermission,
               options: [
                 {
-                  type: current.options ? 1 : (current.options[0].type === 2 ? 2 : 1),
+                  type: !current.options ? 1 : (current.options[0].type === 2 ? 2 : 1),
                   description: current.description,
                   name: current.name[1],
                   options: current.options
