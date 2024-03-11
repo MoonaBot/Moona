@@ -61,25 +61,18 @@ const delay =  require("node:timers/promises").setTimeout;
             all.push({
               type: current.type,
               name: current.name[0],
-              description: `${current.name[0]} commands.`,
+              description: `${current.name[0]} commands`,
               defaultPermission: current.defaultPermission,
               options: [
                 {
-                  type: ApplicationCommandOptionType.Subcommand,
+                  type: current.options ? 1 : (current.options[0].type === 2 ? 2 : 1),
                   description: current.description,
                   name: current.name[1],
                   options: current.options
                 }
               ]
             });
-          } else if (current.options[0].type === ApplicationCommandOptionType.Subcommand) {
-              baseItem.options.push({
-              type: ApplicationCommandOptionType.SubcommandGroup,
-              description: current.description,
-              name: current.name[1],
-              options: current.options
-            })
-            } else {
+          } else {
                 baseItem.options.push({
               type: ApplicationCommandOptionType.Subcommand,
               description: current.description,
@@ -97,7 +90,7 @@ const delay =  require("node:timers/promises").setTimeout;
             all.push({
               type: current.type,
               name: current.name[0],
-              description: `${current.name[0]} commands.`,
+              description: `${current.name[0]} commands`,
               defaultPermission: current.defaultPermission,
               options: [
                 {
