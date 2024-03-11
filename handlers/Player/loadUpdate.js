@@ -8,7 +8,13 @@ module.exports = async (client) => {
         const oldMessage = client.messageUpdate;
         if (!oldMessage) return (client.messageUpdate = message);
         const msg = await oldMessage.channel.messages.fetch({ id: oldMessage.id, force: true, cache: false });
-        if (msg) msg.delete().catch(console.info);
+        if (msg) {
+            try {
+                msg.delete();
+            }catch(e) {
+                console.info(e);
+            }
+        }
         return (client.messageUpdate = message);
     }
 

@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: ["previous"],
-    description: "Play the previous song in the queue",
+    description: "Play the previous played song",
     category: "Music",
     permissions: {
         channel: [],
