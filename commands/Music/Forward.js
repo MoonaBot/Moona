@@ -5,11 +5,11 @@ const forward = 10;
 
 module.exports = {
     name: ["forward"],
-    description: "Forward the currently playing song",
+    description: "Fast forward the currently playing song",
     category: "Music",
     options: [
         {
-            name: "seconds",
+            name: "time",
             description: "How many seconds to forward?",
             type: ApplicationCommandOptionType.Integer,
             required: false

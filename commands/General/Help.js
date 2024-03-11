@@ -110,7 +110,7 @@ async function createButtonInteface(interaction, message, first) {
         .setColor(interaction.client.color)
         .setTitle(`${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
         .setDescription(ctg.description+"\n\n"+
-        commands.map(name => `\`${name.split(".")[0].toLowerCase()}\` : ${require(process.cwd()+"/commands/"+name).description}.`).join("\n")
+        commands.map(name => `\`${name.split(".")[0].toLowerCase()}\` : ${require(process.cwd()+"/commands/"+i.customId+"/"+name).description}.`).join("\n")
         )
         .setFooter({ text: `Available (${commands.size} Commands)` });
 
