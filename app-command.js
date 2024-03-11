@@ -72,8 +72,8 @@ const delay =  require("node:timers/promises").setTimeout;
                 }
               ]
             });
-          } else {
-            if (current.options[0].type === ApplicationCommandOptionType.Subcommand) { baseItem.options.push({
+          } else if (current.options[0].type === ApplicationCommandOptionType.Subcommand) {
+              baseItem.options.push({
               type: ApplicationCommandOptionType.SubcommandGroup,
               description: current.description,
               name: current.name[1],
@@ -86,7 +86,6 @@ const delay =  require("node:timers/promises").setTimeout;
               name: current.name[1],
               options: current.options
             })
-            }
           }
           break;
         }
