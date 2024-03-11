@@ -73,12 +73,20 @@ const delay =  require("node:timers/promises").setTimeout;
               ]
             });
           } else {
-            baseItem.options.push({
+            if (baseItem.isSubGroup) { baseItem.options.push({
+              type: ApplicationCommandOptionType.SubcommandGroup,
+              description: current.description,
+              name: current.name[1],
+              options: current.options
+            })
+            } else {
+                baseItem.options.push({
               type: ApplicationCommandOptionType.Subcommand,
               description: current.description,
               name: current.name[1],
               options: current.options
             })
+            }
           }
           break;
         }

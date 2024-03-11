@@ -31,6 +31,7 @@ module.exports = {
             }],
         }
     ],
+    isSubGroup: true,
     permissions: {
         channel: [],
         bot: [],
