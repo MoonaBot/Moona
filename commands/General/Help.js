@@ -40,7 +40,7 @@ module.exports = {
         categories.forEach(category => {
         const commandList = interaction.client.commands
             .filter(cmd => cmd.category === category)
-            .map(cmd => `\`${cmd.name.at(-1)}\``);
+            .map(cmd => `\`${cmd.name.at(-0)}\``);
         const ctg = registerCategory[category];
         category = `${ctg.name} [${client.commands.filter(cmd => cmd.category === category).size}]`;
 
@@ -100,7 +100,6 @@ async function createButtonInteface(interaction, message, first) {
     collector.on("collect", async i => {
     await i.deferUpdate();
     buttons = buttons.map(button => button.setDisabled(false));
-    console.info(i.customId);
 
     if (i.customId === "back") {
         await i.editReply({ embeds: [first.embed], components: [first.action] });
@@ -114,7 +113,7 @@ async function createButtonInteface(interaction, message, first) {
         .setColor(interaction.client.color)
         .setTitle(`${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
         .setDescription(ctg.description+"\n\n"+
-        commands.map(cmd => `\`${defaultPrefix}${cmd.name.at(-1)}\` : ${cmd.description}.`).join("\n")
+        commands.map(cmd => `\`${defaultPrefix}${cmd.name.map(c=>c).join(" ")}\` : ${cmd.description}.`).join("\n")
         )
         .setFooter({ text: `Available (${commands.size} Commands)` });
 

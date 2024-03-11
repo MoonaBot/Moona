@@ -2,6 +2,8 @@ const { EmbedBuilder } = require("discord.js");
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
 
+const delay = require("node:promises/timers").setTimeout;
+
 module.exports = async (client, player) => {
 	const channel = client.channels.cache.get(player.textChannel);
 	if (!channel) return;
@@ -26,5 +28,6 @@ module.exports = async (client, player) => {
 		.setDescription(`${client.i18n.get(language, "player", "queue_end_desc")}`);
 
 	await channel.send({ embeds: [embed] });
+	await delay(client.config.LEAVE_TIMEOUT);
 	return player.destroy();
 }

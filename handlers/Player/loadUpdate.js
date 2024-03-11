@@ -4,6 +4,19 @@ const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
   
 module.exports = async (client) => {
+    client.updateMessage = async function(message) {
+        const database = await Setup.findOne({ guild: message.guildId });
+        const channel = await client.channels.cache.get(database.channel);
+        if (!channel) return;
+
+        const oldMessage = channel.messages.fetch(database.playmsg);
+        if (oldMessage) oldMessage.delete().catch(console.info);
+
+        if (message) {
+            database.playmsg = message.id;
+            await database.save();
+        }
+    }
 
     client.UpdateQueueMsg = async function (player) {
         const database = await Setup.findOne({ guild: player.guild });

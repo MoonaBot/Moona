@@ -6,7 +6,7 @@ module.exports = {
     category: "Music",
     options: [
         {
-            name: "amount",
+            name: "set",
             description: "The amount of volume to set the bot sound between (1 - 100)",
             type: ApplicationCommandOptionType.Integer,
             min_value: 1,

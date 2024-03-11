@@ -15,8 +15,8 @@ class MainClient extends Client {
                 //GatewayIntentBits.MessageContent,
             ]
         });
-        this.on("error", console.log);
-        this.on("warn", console.log);
+        this.on("error", console.info);
+        this.on("warn", console.info);
 
     this.config = require("./settings/config.js");
     this.button = require("./settings/button.js");
@@ -26,8 +26,8 @@ class MainClient extends Client {
     this.i18n = new I18n(this.config.LANGUAGE);
     if(!this.token) this.token = this.config.TOKEN;
 
-    process.on('unhandledRejection', error => console.log(error));
-    process.on('uncaughtException', error => console.log(error));
+    process.on('unhandledRejection', error => console.info(error));
+    process.on('uncaughtException', error => console.info(error));
 
     const client = this;
 

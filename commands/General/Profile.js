@@ -5,7 +5,7 @@ const Profile = require("../../settings/models/Profile.js");
 const Canvas  = require("@napi-rs/canvas");
 
 const path = require("node:path");
-const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
+const fontsPath = path.resolve("assets/fonts/Rubik.ttf");
 Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 
 module.exports = {

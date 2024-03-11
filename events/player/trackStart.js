@@ -25,7 +25,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.uri}) ${formatduration(track.duration)} [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.uri}) \`${formatduration(track.duration)}\` [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -121,6 +121,7 @@ module.exports = async (client, player, track, payload) => {
         );
    
     const nplaying = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row] });
+    client.updateMessage(nplaying);
 
     const filter = (message) => {
       if(message.guild.members.me.voice.channel && message.guild.members.me.voice.channelId === message.member.voice.channelId) return true;
