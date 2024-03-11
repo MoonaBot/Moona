@@ -10,7 +10,7 @@ lang_error: "Something went wrong please try again later."
 restart_msg: "`🤖` | *Client is:* `Shutting down`"
 
 ##### Help command #####
-help_desc: "Here is the list of commands!\nFor more info on a specific command, use `%{prefix}help {command}`\nNeed more help? Come join our [server](%{Support Server})"
+help_desc: "Here is the list of commands!\nFor more info on a specific command, use `%{prefix}help {command}`\nNeed more help? Come join our [Support Server](%{serverLink})"
 help_category_desc: "Select the %{category} to see all commands."
 help_category: "%{category}"
 help_timeout: "```Help Menu timed out try using %{prefix}help again.```"

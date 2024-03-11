@@ -10,7 +10,7 @@ Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
 module.exports = {
     name: ["chart"], // The name of the command
     description: "Display Top 5 Songs of the (global/server)", // The description of the command (for help text)
-    category: "Music",
+    category: "General",
     options: [
         {
             name: 'global',

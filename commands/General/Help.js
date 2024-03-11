@@ -25,12 +25,11 @@ module.exports = {
         sameVoice: false,
     },
     run: async (interaction, client, user, language) => {
-    const defaultPrefix = "/";
     const query = interaction.options.getString("commands");
     const embed = new EmbedBuilder()
        .setColor(client.color)
        .setAuthor({ name: "Commands List", iconURL: interaction.user.displayAvatarURL({ forceStatic:true }) })
-       .setDescription(`${client.i18n.get(language, "utilities", "help_desc", { prefix: "/", server: 'https://discord.com' })}`)
+       .setDescription(`${client.i18n.get(language, "utilities", "help_desc", { prefix: "/", serverLink: 'https://discord.com' })}`)
     const buttons = [];
 
     if (!query) {
@@ -38,9 +37,8 @@ module.exports = {
         embed.setFooter({ text: `Use the buttons below for specific commands information` });
 
         categories.forEach(category => {
-        const commandList = interaction.client.commands
-            .filter(cmd => cmd.category === category)
-            .map(cmd => `\`${cmd.name.at(-0)}\``);
+        const commandList = 
+            readdirSync(`./commands/${category}`).map(name => `\`${name.split(".")[0].toLowerCase()}\``);
         const ctg = registerCategory[category];
         category = `${ctg.name} [${client.commands.filter(cmd => cmd.category === category).size}]`;
 
@@ -81,7 +79,6 @@ module.exports = {
 };
 
 async function createButtonInteface(interaction, message, first) {
-    const defaultPrefix = "/";
     const timeout = 1000 * 60 * 5;
     const filter = i => i.isButton() && i.user && i.message.author.id == interaction.client.user.id;
     const collector = await message.createMessageComponentCollector({ 
@@ -106,14 +103,14 @@ async function createButtonInteface(interaction, message, first) {
         return;
     }
 
-    const commands = i.client.commands.filter(cmd => cmd.category === i.customId);
+    const commands = readdirSync(`./commands/{${i.customId}`);
     const ctg = registerCategory[i.customId];
 
     const embed = new EmbedBuilder()
         .setColor(interaction.client.color)
         .setTitle(`${ctg.name} [${interaction.client.commands.filter(c=>c.category === i.customId).size}]`)
         .setDescription(ctg.description+"\n\n"+
-        commands.map(cmd => `\`${defaultPrefix}${cmd.name.map(c=>c).join(" ")}\` : ${cmd.description}.`).join("\n")
+        commands.map(name => `\`${name.split(".")[0].toLowerCase()}\` : ${require(process.cwd()+"/commands/"+name).description}.`).join("\n")
         )
         .setFooter({ text: `Available (${commands.size} Commands)` });
 
