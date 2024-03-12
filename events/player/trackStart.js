@@ -132,17 +132,17 @@ module.exports = async (client, player, track, payload) => {
    
     const musicard = await Dynamic({
         thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#070707",
+        backgroundColor: client.color,
         progress: 0,
-        progressColor: client.color,
-        progressBarColor: client.color,
+        progressColor: "#FFFFFF",
+        progressBarColor: "#57F287",
         name: songs.name,
-        nameColor: client.color,
+        nameColor: "#FF0000",
         author: songs.artist.name,
-        authorColor: client.color
+        authorColor: "#FFFFFF"
     });
     const startPlay = await channel.send({ embeds: [embeded], components: [row, row2], files: [{ attachment: musicard, name: "music-card.png" }]});
-    await client.updateMessage(startPlay);
+    await client.updateMessage(player, startPlay, "startPlay");
 
     const filter = (message) => {
       if(message.guild.members.me.voice.channel && message.guild.members.me.voice.channelId === message.member.voice.channelId) return true;

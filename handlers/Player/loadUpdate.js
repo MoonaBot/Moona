@@ -4,15 +4,16 @@ const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
   
 module.exports = async (client) => {
-    client.updateMessage = async function(message) {
-        const oldMessage = client.messageUpdate;
+    client.updateMessage = async function(player, message, _="default") {
+        if (!player[player.guild]) player[player.guild] = {};
+        const oldMessage = player[player.guild][_];
         if (oldMessage) {
             const targetMessage = oldMessage.channel.messages.cache.get(oldMessage.id);
             if (targetMessage) {
                 await targetMessage.delete();
             }
         }
-        return (client.messageUpdate = message);
+        return (player[player.guild][_] = message);
     }
 
     client.UpdateQueueMsg = async function (player) {
