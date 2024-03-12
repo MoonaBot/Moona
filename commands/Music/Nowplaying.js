@@ -152,7 +152,7 @@ module.exports = {
                 interaction.reply({ content: `${client.i18n.get(language, "music", "np_invoice")}`, ephemeral: true });
             }
         };
-        const collector = msg.createMessageComponentCollector({ filter, time: song.duration });
+        const collector = msg.createMessageComponentCollector({ filter, time: song.duration - player.position });
         
         collector.on('collect', async (interaction) => {
             const id = interaction.customId;
@@ -236,10 +236,11 @@ module.exports = {
         });
 
         collector.on('end', async (collected, reason) => {
-            if(reason === "time") {
-                if (nwp) await nwp.edit({ components: [] });
-                await client.clearInterval(client.interval);
+            const nowPlayMessage = interaction.channel.messages.cache.get(nwp.id);
+            if (nwp && nowPlayMessage) {
+                await nowPlayMessage.edit({ components: [] });
             }
+                await client.clearInterval(client.interval);
         });
     }
 }

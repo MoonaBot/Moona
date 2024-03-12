@@ -1,9 +1,9 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const formatduration = require('../../utils/FormatDuration.js');
+const formatDuration = require('../../utils/FormatDuration.js');
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
 
-const { Dynamic } = require("musicard");
+const { Classic } = require("musicard");
     
 module.exports = async (client, player, track, payload) => {
     if(!player) return;
@@ -25,6 +25,25 @@ module.exports = async (client, player, track, payload) => {
 	const { language } = guildModel;
 	const songs = await client.ytm.getSong(track.identifier);
   
+    const progressBar = {
+        current: formatDuration(player.position),
+        target: formatDuration(track.duration),
+        percent: Math.floor(player.position / track.duration * 100),
+    };
+    const musicard = await Classic({
+        thumbnailImage: songs.thumbnails[1].url,
+        backgroundColor: client.color,
+        progress: progressBar.percent,
+        progressColor: "#FFFFFF",
+        progressBarColor: "#000001",
+        name: songs.name,
+        nameColor: "#FF0000",
+        author: songs.artist.name,
+        authorColor: "FFFFFF",
+        startTime: progressBar.current,
+        endTime: progressBar.target,
+        timeColor: "#FFFFFF"
+    });
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
       .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(songs.name,70)}](${track.uri}) [${track.requester}]`)
@@ -33,10 +52,10 @@ module.exports = async (client, player, track, payload) => {
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "volume_title")}`, value: `${player.volume}%`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "queue_title")}`, value: `${player.queue.length}`, inline: true })
-      .addFields({ name: `${client.i18n.get(language, "player", "duration_title")}`, value: `${formatduration(track.duration, true)}`, inline: true })
-      .addFields({ name: `${client.i18n.get(language, "player", "total_duration_title")}`, value: `${formatduration(player.queue.duration)}`, inline: true })
+      .addFields({ name: `${client.i18n.get(language, "player", "duration_title")}`, value: `${formatDuration(track.duration, true)}`, inline: true })
+      .addFields({ name: `${client.i18n.get(language, "player", "total_duration_title")}`, value: `${formatDuration(player.queue.duration)}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "current_duration_title", {
-        current_duration: formatduration(track.duration, true),
+        current_duration: formatDuration(track.duration, true),
       })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })*/
       .setImage("attachment://music-card.png")
       .setTimestamp();
@@ -130,7 +149,7 @@ module.exports = async (client, player, track, payload) => {
             .setStyle(ButtonStyle[button.volup.style])
         );*/
    
-    const musicard = await Dynamic({
+    /*const musicard = await Dynamic({
         thumbnailImage: songs.thumbnails[1].url,
         backgroundColor: client.color,
         progress: 0,
@@ -140,7 +159,7 @@ module.exports = async (client, player, track, payload) => {
         nameColor: "#FF0000",
         author: songs.artist.name,
         authorColor: "#FFFFFF"
-    });
+    });*/
     const startPlay = await channel.send({ embeds: [embeded], components: [row, row2], files: [{ attachment: musicard, name: "music-card.png" }]});
     await client.updateMessage(player, startPlay, "startPlay");
 
@@ -151,7 +170,7 @@ module.exports = async (client, player, track, payload) => {
       }
     };
     const collector = startPlay.createMessageComponentCollector({ filter, time: track.duration });
-    player.collector = collector;
+    player[player.guild].collector = collector;
 
     collector.on('collect', async (message) => {
       const id = message.customId;
@@ -274,7 +293,7 @@ module.exports = async (client, player, track, payload) => {
           collector.stop();
         }
         const song = player.queue.current;
-        const qduration = `${formatduration(player.queue.duration)}`;
+        const qduration = `${formatDuration(player.queue.duration)}`;
         
         let pagesNum = Math.ceil(player.queue.length / 10);
         if(pagesNum === 0) pagesNum = 1;
@@ -283,7 +302,7 @@ module.exports = async (client, player, track, payload) => {
         for (let i = 0; i < player.queue.length; i++) {
           const song = player.queue[i];
           songStrings.push(
-            `**${i + 1}.** [${song.title}](${song.uri}) \`[${formatduration(song.duration)}]\` • ${song.requester}
+            `**${i + 1}.** [${song.title}](${song.uri}) \`[${formatDuration(song.duration)}]\` • ${song.requester}
             `);
         }
 
@@ -299,7 +318,7 @@ module.exports = async (client, player, track, payload) => {
             .setDescription(`${client.i18n.get(language, "player", "queue_description", {
               track: song.title,
               track_url: song.uri,
-              duration: formatduration(song.duration),
+              duration: formatDuration(song.duration),
               requester: song.requester,
               list_song: str == '' ? '  Nothing' : '\n' + str,
             })}`)
@@ -332,10 +351,10 @@ module.exports = async (client, player, track, payload) => {
         message.reply({ embeds: [embed], ephemeral: true });
       } else if(id === "get-lyrics") {
           if(!player) collector.stop();
-          await message.deferReply();
+          await message.deferReply({ ephemeral: true });
 
           let lyrics = await client.ytm.getLyrics(songs.videoId);
-          if (!lyrics[0]) return message.followUp({ content: `🙁 | Lyrics for this song is not available.`, ephemeral: true });
+          if (!lyrics[0]) return message.followUp({ content: `🙁 | Lyrics for this song is not available.` });
 
           lyrics = lyrics.map(ly => ly).join("\n");
 
@@ -346,7 +365,7 @@ module.exports = async (client, player, track, payload) => {
             .setThumbnail(songs.thumbnails[1].url)
             .setDescription(lyrics.length > 4096 ? lyrics.substring(0, 4096-3)+"...": lyrics)
             .setFooter ({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) });
-            message.followUp({ embeds: [embed], ephemeral: true });
+            message.followUp({ embeds: [embed] });
       }
     });
 
