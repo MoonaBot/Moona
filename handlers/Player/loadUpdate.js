@@ -10,7 +10,6 @@ module.exports = async (client) => {
             const targetMessage = oldMessage.channel.messages.cache.get(oldMessage.id);
             if (targetMessage) {
                 await targetMessage.delete();
-                oldMessage.channel.messages.cache.set(oldMessage.id, null);
             }
         }
         return (client.messageUpdate = message);

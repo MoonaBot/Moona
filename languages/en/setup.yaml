@@ -4,7 +4,7 @@ setup_msg: "*`Music setup execution was successfull in`* %{channel}"
 setup_enable: "*`Already have a song request channel, cant use this command.`*"
 
 ##### Setup Handler #####
-setup_queuemsg: "**__Queue list:__**\nJoin a voice channel and queue songs by name or url in here."
+setup_queuemsg: "*Queue List:*\nJoin a voice channel and queue songs by name or url in here."
 
 setup_playembed_author: "No song playing currently."
 setup_nowplay: "Now Playing..."
@@ -15,11 +15,11 @@ setup_playembed_footer: "Prefix is: %{prefix}"
 
 ##### Setup Update Handler #####
 
-setup_author: "Started playing..."
+setup_author: "Start Playing..."
 setup_author_icon: "https://cdn.discordapp.com/emojis/741605543046807626.gif"
-setup_desc: "[%{title}](%{url}) `[%{duration}]` • %{request}"
-setup_footer: "%{songs} • Song's in Queue | Volume • %{volume}% | %{duration} • Total Duration"
+setup_desc: "[%{title}](%{url}) [%{request}]"
+setup_footer: "%{songs} Song in Queue | Volume (%{volume}%) | %{duration}"
 
-setup_content: "**__Queue list:__**"
-setup_content_queue: "*`%{index} • %{title} • [%{duration}]`* • %{request}"
+setup_content: "*Queue List:*"
+setup_content_queue: "(%{index}.) %{title} [%{request}]"
 setup_content_empty: "Join a voice channel and queue songs by name or url in here."

@@ -52,7 +52,7 @@ np_download: "Download:"
 np_current_duration: "Current Duration: `[%{current_duration} / %{total_duration}]`"
 
 # Need in voice to use button
-np_invoice: "You need to be in a same (voice channel)!"
+np_invoice: "You need to be in a (voice channel)!"
 
 # Message Button
 np_switch_pause: "Paused"
@@ -83,9 +83,9 @@ play_speak: "I don't have permission to speak in your voice channel."
 play_arg: "Please provide a song name or link to search!"
 play_startwith: "Please use link to play music!"
 
-play_track: "Queued [%{title}](%{url}) %{duration} [%{request}]"
-play_playlist: "Queued [%{title}](%{url}) %{duration} (%{songs} tracks) [%{request}]"
-play_result: "Queued [%{title}](%{url}) %{duration} [%{request}]"
+play_track: "Queued [%{title}](%{url}) [%{request}]"
+play_playlist: "Queued [%{title}](%{url}) (%{songs} songs) [%{request}]"
+play_result: "Queued [%{title}](%{url}) [%{request}]"
 
 play_fail: "Error loading track failed"
 play_match: "Error song not matches"
@@ -96,8 +96,8 @@ previous_notfound: "No previous song/s found."
 previous_msg: "`⏮` | *Song has been:* `Previous`"
 
 ### Queue command!
-queue_author: "Queue - %{guild}"
-queue_description: "*Currently Playing*\n*[%{title}](%{url}) %{duration} [%{request}]*\n\n*Queue list*:%{rest}"
+queue_author: "%{guild} | Queue"
+queue_description: "*Now Playing*\n*[%{title}](%{url}) %{duration} [%{request}]*\n\n*Queue List*: %{rest}"
 queue_footer: "Page %{page}/%{pages} | %{queue_lang} Song | %{duration}"
 queue_notnumber: "Page must be a number."
 queue_page_notfound: "There are only %{page} pages available."
@@ -116,29 +116,29 @@ resume_msg: "`⏯` | *Song has been:* `%{resume}`"
 rewind_loading: "Loading please wait..."
 rewind_msg: "`⏮` | *Rewind to:* `%{duration}`"
 rewind_beyond: "Cannot rewind beyond the song's duration."
-rewind_invalid: "Invalid argument, must be a number.\nCorrect Usage: `%{prefix}rewind <seconds>`"
+rewind_invalid: "Invalid argument, must be a number.\nCorrect Usage: `%{prefix}rewind <time>`"
 
 ### Search command!
 search_loading: "Loading please wait..."
-search_invoice: "You need to be in a voice channel to use command."
-search_join: "I don't have permission to join your voice channel."
-search_speak: "I don't have permission to speak in your voice channel."
-search_arg: "Please provide a song name or link to search."
+search_invoice: "You need to be in a (voice channel) to use this command!"
+search_join: "I don't have permission to join your (voice channel)!"
+search_speak: "I don't have permission to speak in your (voice channel)!"
+search_arg: "Please provide a song name or link to search!"
 
 search_title: "Song Selection..."
-search_select: "**(%{num}.) [%{title}](%{url})** `%{duration}` Author: `%{author}`"
+search_select: "(%{num}.) [%{title}](%{url}) [%{author}]"
 search_footer: "Please select a song in 30 seconds."
 search_no_response: "No response."
 
-search_result: "Queued [%{title}](%{url}) %{duration} [%{request}]"
-search_playlist: "Queued [%{title}](%{url}) %{duration} (%{songs} tracks) [%{request}]"
+search_result: "Queued [%{title}](%{url}) [%{request}]"
+search_playlist: "Queued [%{title}](%{url}) (%{songs} songs) [%{request}]"
 
 search_fail: "Error loading track failed"
 search_match: "Error song not matches"
 
 ### Seek command!
 seek_loading: "Loading please wait..."
-seek_invalid: "Invalid number. Please provide a number in seconds.\nCorrect Usage: `%{prefix}seek <seconds>`"
+seek_invalid: "Invalid number. Please provide a number in seconds.\nCorrect Usage: `%{prefix}seek <time>`"
 seek_beyond: "Cannot seek beyond length of song."
 seek_msg: "`⏭` | *Seeked to:* `%{duration}`"
 
@@ -167,7 +167,7 @@ volume_msg: "`🔊` | *Change volume to:* `%{volume}%`"
 playskip_loading: "Loading please wait..."
 
 playskip_track: "*Skipped [%{title}](%{url}) [%{request}]*"
-playskip_playlist: "*Skipped [%{title}](%{url}) (%{songs} tracks) [%{request}]*"
+playskip_playlist: "*Skipped [%{title}](%{url}) (%{songs} songs) [%{request}]*"
 playskip_result: "*Skipped [%{title}](%{url}) [%{request}]*"
 
 playskip_fail: "Error loading track failed"
@@ -177,7 +177,7 @@ playskip_match: "Error song not matches"
 playtop_loading: "Loading please wait..."
 
 playtop_track: "*Shifted [%{title}](%{url}) [%{request}]*"
-playtop_playlist: "*Shifted [%{title}](%{url}) (%{songs} tracks) [%{request}]*"
+playtop_playlist: "*Shifted [%{title}](%{url}) (%{songs} songs) [%{request}]*"
 playtop_result: "*Shifted [%{title}](%{url}) [%{request}]*"
 
 playtop_fail: "Error! loading track failed."
@@ -203,12 +203,12 @@ move_desc: "*Moved [%{name}](%{url}) to (%{pos})*"
 searchskip_loading: "Loading please wait..."
 
 searchskip_title: "Song Selection..."
-searchskip_select: "(%{num}.) [%{title}](%{url}) %{duration} [%{author}]"
+searchskip_select: "(%{num}.) [%{title}](%{url}) [%{author}]"
 searchskip_footer: "Please select a song in 30 seconds."
 searchskip_no_response: "No response."
 
 searchskip_result: "*Skipped [%{title}](%{url}) [%{request}]*"
-searchskip_playlist: "*Skipped [%{title}](%{url}) (%{songs} tracks) [%{request}]*"
+searchskip_playlist: "*Skipped [%{title}](%{url}) (%{songs} songs) [%{request}]*"
 
 searchskip_fail: "Error loading track failed"
 searchskip_match: "Error song not matches"
@@ -222,7 +222,7 @@ searchtop_footer: "Please select a song in 30 seconds."
 searchtop_no_response: "No response."
 
 searchtop_result: "*Shifted [%{title}](%{url}) [%{request}]*"
-searchtop_playlist: "*Shifted [%{title}](%{url}) (%{songs} tracks) [%{request}]*"
+searchtop_playlist: "*Shifted [%{title}](%{url}) (%{songs} songs) [%{request}]*"
 
 searchtop_fail: "Error loading track failed"
 searchtop_match: "Error song not matches"

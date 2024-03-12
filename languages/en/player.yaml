@@ -12,7 +12,7 @@ total_duration_title: "Total Duration:"
 current_duration_title: "Current Duration: `[0:00 / %{current_duration}]`"
 
 # Need in voice to use button!
-join_voice: "You need to be in a same (voice channel) to use this button."
+join_voice: "You need to be in a (voice channel) to use this button!"
 
 # Message Button
 switch_pause: Paused
@@ -34,9 +34,9 @@ voldown_msg: "`🔈` | *Change volume to:* `%{volume}%`"
 
 replay_msg: "`⏮` | *Song has been:* `Replayed`"
 
-queue_author: "Queue - %{guild}"
-queue_description: "*Currently Playing*\n*[%{track}](%{track_url})* `[%{duration}]` • %{requester}\n\n*Rest of queue*:%{list_song}"
-queue_footer: "Page • %{page}/%{pages} | %{queue_lang} • Song | %{total_duration} • Total duration"
+queue_author: "%{guild} | Queue"
+queue_description: "*Now Playing*\n*[%{track}](%{track_url}) [%{requester}]*\n\n*Queue List*: %{list_song}"
+queue_footer: "Page %{page}/%{pages} | %{queue_lang} Song | %{total_duration}"
 
 clear_msg: "`📛` | *Queue has been:* `Cleared`"
 
@@ -57,8 +57,8 @@ stuck_desc: "`❌` | *Song has stuck:* `Auto-Skipped`"
 
 # On player get discoconnect
 dis_title: "Disconnected"
-dis_desc: "*I've been disconnected from <#%{voice}>*"
+dis_desc: "`ℹ️` | Disconnected from <`%{voice}`"
 
 # On player get move! = (detroy player)
 leave_title: "Moved"
-leave_desc: "*I have been moved from <#%{voice}>*"
+leave_desc: "`ℹ️` | Moved from `%{oldVoice}` to `%{newVoice}"
