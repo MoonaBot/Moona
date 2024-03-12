@@ -1,5 +1,4 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const lyricsfinder = require('lyrics-finder');
 
 module.exports = {
     name: ["lyrics"],
@@ -28,31 +27,38 @@ module.exports = {
     run: async (interaction, client, user, language, player) => {
         await interaction.deferReply({ ephemeral: false });
 
-        let value = interaction.options.getString("result");
-        let CurrentSong = player.queue.current;
-        if (!value && CurrentSong) value = CurrentSong.title;
+        const CurrentSong = player.queue.current;
 
+        let value = interaction.options.getString("result");
+        let songs = null;
+        if (!value && CurrentSong) {
+            value = CurrentSong.title;
+            songs = await client.ytm.getSong(CurrentSong.identifier);
+        } else {
+            songs = (await client.ytm.searchSongs(value))[0];
+        }
         let lyrics = null;
 
         try {
-            lyrics = await lyricsfinder(value, "");
+            lyrics = await client.ytm.getLyrics(songs.videoId);
             if (!lyrics) return interaction.editReply(`${client.i18n.get(language, "music", "lyrics_notfound")}`);
         } catch (err) {
             console.log(err);
             return interaction.editReply(`${client.i18n.get(language, "music", "lyrics_notfound")}`);
         }
 
+        lyrics = lyrics.map(text => text).join("\n");
+
         const embed = new EmbedBuilder()
             .setColor(client.color)
-            .setTitle(`${client.i18n.get(language, "music", "lyrics_title", {
-                song: value
-            })}`)
-            .setDescription(`${lyrics}`)
-            .setFooter({ text: `Requested by ${interaction.user.username}`})
-            .setTimestamp();
+            .setTitle(`${songs.name} by ${songs.artist.name}`)
+            .setThumbnail(songs.thumbnails[1].url)//(`${client.i18n.get(language, "music", "lyrics_title", { song: value })}`)
+            .setDescription(lyrics)
+            .setFooter({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) })
+            //.setTimestamp();
 
         if (lyrics.length > 4096) {
-            embed.data.description(`${client.i18n.get(language, "music", "lyrics_toolong")}`);
+            embed.setDescription(lyrics.substring(0, 4096-3)+"...");
         }
 
         return interaction.editReply({ embeds: [embed] });
