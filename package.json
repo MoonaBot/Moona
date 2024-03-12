@@ -10,7 +10,7 @@
     "discord.js": "^14.14.1",
     "erela.js": "github:Adivise/better-erela.js",
     "mongoose": "^8.2.1",
-    "musicard": "github:Kaori-Bot/musicard",
+    "musicard": "github:Kaori-Bot/musicard-edit",
     "node-cron": "^3.0.0",
     "pretty-bytes": "^5.6.0",
     "voucher-code-generator": "^1.1.1",
