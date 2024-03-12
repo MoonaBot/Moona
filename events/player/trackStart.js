@@ -25,7 +25,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(songs.name,70)}](${track.uri}) - ${songs.artist.name} [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(songs.name,70)}](${track.uri}) [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -85,6 +85,13 @@ module.exports = async (client, player, track, payload) => {
       
       const row2 = new  ActionRowBuilder()
         .addComponents(
+        new ButtonBuilder()
+            .setCustomId("get-lyrics")
+            .setLabel("LYRICS")
+            .setStyle("Secondary")
+            
+        )
+        /*.addComponents(
           new ButtonBuilder()
             .setCustomId("voldown")
             //.setLabel(`${button.voldown.label}`)
@@ -118,9 +125,9 @@ module.exports = async (client, player, track, payload) => {
             //.setLabel(`${button.volup.label}`)
             .setEmoji(`${button.volup.emoji}`)
             .setStyle(ButtonStyle[button.volup.style])
-        );
+        );*/
    
-    const startPlay = await channel.send({ embeds: [embeded], components: [row] });
+    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2] });
     await client.updateMessage(startPlay);
 
     const filter = (message) => {
@@ -309,6 +316,22 @@ module.exports = async (client, player, track, payload) => {
             .setColor(client.color);
 
         message.reply({ embeds: [embed], ephemeral: true });
+      } else if(id === "get-lyrics") {
+          if(!player) collector.stop();
+
+          let lyrics = await client.ytm.getLyrics(songs.videoId);
+          if (!lyrics[0]) return message.followUp({ content: `🙁 | Lyrics for this song is not available.`, ephemeral: true });
+
+          lyrics = lyrics.map(ly => ly).join("\n");
+
+          const embed = new EmbedBuilder()
+            .setColor(client.color)
+            .setAuthor({ name: songs.artist.name })
+            .setTitle(songs.name)
+            .setThumbnail(songs.thumbnails[1].url)
+            .setDescription(lyrics.length > 4096 ? lyrics.substring(0, 4096-3)+"...": lyrics)
+            .setFooter ({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) });
+            message.followUp({ embeds: [embed], ephemeral: true });
       }
     });
 

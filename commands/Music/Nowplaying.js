@@ -37,7 +37,7 @@ module.exports = {
         const embeded = new EmbedBuilder()
             //.setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
             .setColor(client.color)
-            .setDescription(`${player.playing ? client.i18n.get(language, "music", "np_title") : client.i18n.get(language, "music", "np_title_pause")} [${subText(song.title, 70)}](${song.uri}) - ${songs.artist.name} [${song.requester}]`)
+            .setDescription(`${player.playing ? client.i18n.get(language, "music", "np_title") : client.i18n.get(language, "music", "np_title_pause")} [${subText(song.title, 70)}](${song.uri}) [${song.requester}]`)
             /*.addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_request")}`, value: `${song.requester}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/
