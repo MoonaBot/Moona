@@ -41,7 +41,7 @@ module.exports = {
 
         try {
             lyrics = await client.ytm.getLyrics(songs.videoId);
-            if (!lyrics[0]) return interaction.editReply(`${client.i18n.get(language, "music", "lyrics_notfound")}`);
+            if (!lyrics) return interaction.editReply(`${client.i18n.get(language, "music", "lyrics_notfound")}`);
         } catch (err) {
             console.log(err);
             return interaction.editReply(`${client.i18n.get(language, "music", "lyrics_notfound")}`);

@@ -354,7 +354,7 @@ module.exports = async (client, player, track, payload) => {
           await message.deferReply({ ephemeral: true });
 
           let lyrics = await client.ytm.getLyrics(songs.videoId);
-          if (!lyrics[0]) return message.followUp({ content: `🙁 | Lyrics for this song is not available.` });
+          if (!lyrics) return message.followUp({ content: `🙁 | Lyrics for this song is not available.` });
 
           lyrics = lyrics.map(ly => ly).join("\n");
 
