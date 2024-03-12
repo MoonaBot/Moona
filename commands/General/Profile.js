@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType, EmbedBuilder, AttachmentBuilder } = require('discord.js');
-const CT = require("../../utils/../../utils/ConvertTime.js");
+const CT = require("../../utils/ConvertTime.js");
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
 const Canvas  = require("@napi-rs/canvas");
