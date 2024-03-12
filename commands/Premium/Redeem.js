@@ -1,5 +1,4 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const moment = require('moment');
 const Premium = require("../../settings/models/Premium.js");
 const Redeem = require("../../settings/models/Redeem.js");
 
@@ -43,7 +42,7 @@ module.exports = {
   
         const premium = await Redeem.findOne({ code: input.toUpperCase() });
         if (premium) {
-            const expires = moment(premium.expiresAt).format('do/MMMM/YYYY (HH:mm:ss)')
+            const expires = "<t:"+verifyTimestamp(premium.expiresAt)+":R>";
   
             member.isPremium = true
             member.premium.redeemedBy.push(interaction.user)

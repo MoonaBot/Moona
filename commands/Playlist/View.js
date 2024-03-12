@@ -1,7 +1,6 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const { SlashPlaylist } = require('../../utils/PageQueue.js');
 const Playlist = require("../../settings/models/Playlist.js");
-const humanizeDuration = require('humanize-duration');
 
 module.exports = {
     name: ["playlist", "view"],
@@ -40,13 +39,13 @@ module.exports = {
         const tracks = [];
         for(let i = 0; i < playlists.length; i++) {
             const playlist = playlists[i];
-            const created = humanizeDuration(Date.now() - playlists[i].created, { largest: 1 })
+            const created = Date.now() - playlists[i].created;
             tracks.push(
                 `${client.i18n.get(language, "playlist", "view_embed_playlist", {
                     num: i + 1,
                     name: playlist.name,
                     tracks: playlist.tracks.length,
-                    create: created
+                    create: `<t:${created}:R>`
                 })}
                 `);
         }

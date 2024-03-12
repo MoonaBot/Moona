@@ -6,7 +6,7 @@ module.exports = {
     description: "Running shell command",
     options: [{
         name: "command",
-        description: "$ {command}",
+        description: "?",
         type: ApplicationCommandOptionType.String,
         required: true,
     }],

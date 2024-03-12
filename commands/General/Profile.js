@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType, EmbedBuilder, AttachmentBuilder } = require('discord.js');
-const moment = require('moment');
+const CT = require("../../utils/../../utils/ConvertTime.js");
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
 const Canvas  = require("@napi-rs/canvas");
@@ -39,9 +39,9 @@ module.exports = {
             target = interaction.user;
         }
         const info = await Premium.findOne({ Id: target.id });
-        const timeLeft = moment.duration(info.premium.expiresAt - Date.now()).format("d [days], h [hours], m [minutes]");
+        const timeLeft = CT.format(info.premium.expiresAt - Date.now());
         const profile = await Profile.findOne({ userId: target.id });
-        const listenTime = moment.duration(profile.listenTime).format("d[d] h[h] m[m]");
+        const listenTime = CT.format(profile.listenTime);
 
         const canvas = Canvas.createCanvas(1000, 625);
 		const ctx = canvas.getContext('2d');

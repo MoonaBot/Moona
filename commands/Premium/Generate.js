@@ -1,5 +1,4 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const moment = require('moment');
 const voucher_codes = require('voucher-code-generator');
 const Redeem = require("../../settings/models/Redeem.js");
 
@@ -79,12 +78,12 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(client.color)
-            .setAuthor({ name: `${client.i18n.get(language, "premium", "gen_author")}`, iconURL: client.user.avatarURL() }) //${lang.description.replace("{codes_length}", codes.length).replace("{codes}", codes.join('\n')).replace("{plan}", plan).replace("{expires}", moment(time).format('dddd, MMMM Do YYYY'))}
+            .setAuthor({ name: `${client.i18n.get(language, "premium", "gen_author")}`, iconURL: client.user.displayAvatarURL() })
             .setDescription(`${client.i18n.get(language, "premium", "gen_desc", {
                 codes_length: codes.length,
                 codes: codes.join('\n'),
                 plan: plan,
-                expires: moment(time).format('dddd, MMMM Do YYYY')
+                expires: `<t:${verifyTimestamp(time)}:R>`
             })}`)
             .setTimestamp()
             .setFooter({ text: `${client.i18n.get(language, "premium", "gen_footer", {

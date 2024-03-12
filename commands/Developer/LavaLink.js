@@ -1,6 +1,4 @@
 const { EmbedBuilder } = require('discord.js');
-const moment = require("moment");
-require("moment-duration-format");
 const prettyBytes = require("pretty-bytes");
 
 module.exports = {
@@ -36,7 +34,7 @@ module.exports = {
                 embed.addFields({ name: "Connected", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })
                 embed.addFields({ name: "Player", value: `${node.stats.players}` })
                 embed.addFields({ name: "Used Players", value: `${node.stats.playingPlayers}` })
-                embed.addFields({ name: "Uptime", value: `${moment.duration(node.stats.uptime).format("d [days], h [hours], m [minutes], s [seconds]")}` })
+                embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>` })
                 embed.addFields({ name: "Cores", value: `${node.stats.cpu.cores + " Core(s)"}` })
                 embed.addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)}/${prettyBytes(node.stats.memory.reservable)}` })
                 embed.addFields({ name: "System Load", value: `${(Math.round(node.stats.cpu.systemLoad * 100) / 100).toFixed(2)}%` })
