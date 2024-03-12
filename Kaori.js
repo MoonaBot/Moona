@@ -46,7 +46,7 @@ class MainClient extends Client {
     ["commands", "premiums"].forEach(x => client[x] = new Collection());
     require("node:fs")
         .readdirSync('./handlers')
-        .filter(_ => !_.endsWith(".js"))
+        .filter(_ => _.endsWith(".js"))
         .forEach(x => require(`./handlers/${x}`)(client));
 
 	}
