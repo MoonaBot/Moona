@@ -38,17 +38,17 @@ module.exports = {
 
         const musicard = await ClassicPro({
         thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#5865F2",
+        backgroundColor: "#2c2f33",
         progress: Part,
         progressColor: "#FFFFFF",
         progressBarColor: "#000001",
         name: songs.name,
-        nameColor: "#FF0000",
+        nameColor: "#FFFFFF",
         author: songs.artist.name,
         authorColor: "#FFFFFF",
         startTime: CurrentDuration,
         endTime: TotalDuration,
-        timeColor: "#FF7A00"
+        timeColor: "#FFFFFF"
     }); 
         
         const embeded = new EmbedBuilder()
@@ -238,7 +238,7 @@ module.exports = {
         collector.on('end', async (collected, reason) => {
             const nowPlayMessage = interaction.channel.messages.cache.get(nwp.id);
             if (nwp && nowPlayMessage) {
-                await nowPlayMessage.edit({ components: [] });
+                await nowPlayMessage.delete();
             }
                 await client.clearInterval(client.interval);
         });
