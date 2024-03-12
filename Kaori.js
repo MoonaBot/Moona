@@ -2,6 +2,9 @@ const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const { Manager } = require("erela.js");
 const { I18n } = require("@hammerhq/localization");
 
+process.on('unhandledRejection', error => console.info(error));
+process.on('uncaughtException', error => console.info(error));
+
 class MainClient extends Client {
 	 constructor() {
         super({
@@ -25,9 +28,6 @@ class MainClient extends Client {
     this.color = this.config.EMBED_COLOR;
     this.i18n = new I18n(this.config.LANGUAGE);
     if(!this.token) this.token = this.config.TOKEN;
-
-    process.on('unhandledRejection', error => console.info(error));
-    process.on('uncaughtException', error => console.info(error));
 
     const client = this;
 
