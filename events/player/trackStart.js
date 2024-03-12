@@ -32,7 +32,7 @@ module.exports = async (client, player, track, payload) => {
     };
     const musicard = await Classic({
         thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#2c2f33",
+        backgroundColor: "#23272a",
         progress: progressBar.percent,
         progressColor: "#FFFFFF",
         progressBarColor: "#000001",

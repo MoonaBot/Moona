@@ -38,7 +38,7 @@ module.exports = {
 
         const musicard = await ClassicPro({
         thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#2c2f33",
+        backgroundColor: "#23272a",
         progress: Part,
         progressColor: "#FFFFFF",
         progressBarColor: "#000001",
@@ -180,7 +180,7 @@ module.exports = {
             interaction.reply({ embeds: [embed], ephemeral: true });
             } else if(id === "replay") {
             if(!player) {
-                collector.stop();
+                return collector.stop();
             }
 
             await player.seek(0);
@@ -192,7 +192,7 @@ module.exports = {
             interaction.reply({ embeds: [embed], ephemeral: true });
             } else if(id === "stop") {
             if(!player) {
-                collector.stop();
+                return collector.stop();
             }
         
             await player.stop();
@@ -203,12 +203,10 @@ module.exports = {
                 .setColor(client.color);
 
             await client.clearInterval(client.interval);
-            if (nwp) await nwp.edit({ components: [] })
             interaction.reply({ embeds: [embed], ephemeral: true });
+            collector.stop();
             } else if (id === "skip") {
-            if(!player) {
-                collector.stop();
-            }
+                if (!player) return collector.stop();
             await player.stop();
         
             const embed = new EmbedBuilder()
@@ -216,11 +214,11 @@ module.exports = {
                 .setColor(client.color);
 
             await client.clearInterval(client.interval);
-            if (nwp) await nwp.edit({ components: [] });
             interaction.reply({ embeds: [embed], ephemeral: true });
+            collector.stop();
             } else if(id === "loop") {
             if(!player) {
-                collector.stop();
+                return collector.stop();
             }
             await player.setTrackRepeat(!player.trackRepeat);
             const uni = player.trackRepeat ? `${client.i18n.get(language, "music", "np_switch_enable")}` : `${client.i18n.get(language, "music", "np_switch_disable")}`;
