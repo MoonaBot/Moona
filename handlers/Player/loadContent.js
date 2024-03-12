@@ -164,7 +164,7 @@ client.on("messageCreate", async (message) => {
         if (database.channel != message.channel.id) return; 
 
         try {
-            const msg = await channel_find.messages.fetch(database.playmsg, { cache: true, force: true });
+            const msg = await channel_find.messages.cache.get(database.playmsg);
             if (!msg) return;
         } catch (e) {
             return;

@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const { convertTime } = require("../../structures/ConvertTime.js");
+const { convertTime } = require("../../utils/ConvertTime.js");
 
 module.exports = {
     name: ["play"], // I move play to main issues subcmd (max 25)

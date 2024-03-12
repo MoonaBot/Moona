@@ -1,6 +1,6 @@
 @echo off
 
-title NanoSpace+
+title Kaori+
 
 :StartBot
 

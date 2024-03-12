@@ -1,6 +1,6 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const formatDuration = require('../../structures/FormatDuration.js');
-const { SlashPage } = require('../../structures/PageQueue.js');
+const formatDuration = require('../../utils/FormatDuration.js');
+const { SlashPage } = require('../../utils/PageQueue.js');
 
 module.exports = {
     name: ["queue"], // I move play to main issues subcmd (max 25)

@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const formatDuration = require('../../structures/FormatDuration.js');
+const formatDuration = require('../../utils/FormatDuration.js');
 const ytsr = require("youtube-sr").default;
 const Setup = require("../../settings/models/Setup.js");
 

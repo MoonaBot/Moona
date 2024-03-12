@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const { convertTime } = require("../../structures/ConvertTime.js");
+const { convertTime } = require("../../utils/ConvertTime.js");
 
 module.exports = {
     name: ["remove"],

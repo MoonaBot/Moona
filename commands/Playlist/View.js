@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const { SlashPlaylist } = require('../../structures/PageQueue.js');
+const { SlashPlaylist } = require('../../utils/PageQueue.js');
 const Playlist = require("../../settings/models/Playlist.js");
 const humanizeDuration = require('humanize-duration');
 

@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ApplicationCommandOptionType } = require('discord.js');
-const { convertTime } = require("../../structures/ConvertTime.js");
+const { convertTime } = require("../../utils/ConvertTime.js");
 
 module.exports = {
     name: ["search"], // I move search to main issues subcmd (max 25)

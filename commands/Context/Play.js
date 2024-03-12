@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandType } = require('discord.js');
-const { convertTime } = require("../../structures/ConvertTime.js");
+const { convertTime } = require("../../utils/ConvertTime.js");
 
 module.exports = { 
     name: ["Play This"],
@@ -20,7 +20,7 @@ module.exports = {
     run: async (interaction, client, user, language) => {
         await interaction.deferReply({ ephemeral: false });
 
-        const value = (interaction.channel.messages.cache.get(interaction.targetId).content ?? await interaction.channel.messages.fetch(interaction.targetId));
+        const value = (interaction.channel.messages.cache.get(interaction.targetId).content ?? interaction.channel.messages.cache.get(interaction.targetId));
         if (!value.startsWith('https')) return interaction.editReply(`${client.i18n.get(language, "music", "play_startwith")}`);
         
         const player = await client.manager.create({

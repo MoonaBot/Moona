@@ -35,7 +35,7 @@ module.exports = {
 
         if (!target) target = interaction.user;
         if (target.bot) {
-            interaction.channel.send("Bot don't have profile stats... So, i will replace to your profile as default.").then(msg => setTimeout(() => msg.delete(), 7000));
+            interaction.channel.send("This bot don't have profile stats... So, i will replace to your profile as default.").then(msg => setTimeout(() => msg.delete(), 7000));
             target = interaction.user;
         }
         const info = await Premium.findOne({ Id: target.id });

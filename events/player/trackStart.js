@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const formatduration = require('../../structures/FormatDuration.js');
+const formatduration = require('../../utils/FormatDuration.js');
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
     
@@ -120,8 +120,8 @@ module.exports = async (client, player, track, payload) => {
             .setStyle(ButtonStyle[button.volup.style])
         );
    
-    const nplaying = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row] });
-    client.updateMessage(nplaying);
+    const startPlay = await client.channels.cache.get(player.textChannel).send({ embeds: [embeded], components: [row] });
+    client.updateMessage(startPlay);
 
     const filter = (message) => {
       if(message.guild.members.me.voice.channel && message.guild.members.me.voice.channelId === message.member.voice.channelId) return true;
@@ -129,7 +129,7 @@ module.exports = async (client, player, track, payload) => {
         message.reply({ content: `${client.i18n.get(language, "player", "join_voice")}`, ephemeral: true });
       }
     };
-    const collector = nplaying.createMessageComponentCollector({ filter, time: track.duration });
+    const collector = startPlay.createMessageComponentCollector({ filter, time: track.duration });
 
     collector.on('collect', async (message) => {
       const id = message.customId;
@@ -159,7 +159,7 @@ module.exports = async (client, player, track, payload) => {
                 .setDescription(`${client.i18n.get(language, "music", "skip_msg")}`)
                 .setColor(client.color);
     
-            await nplaying.edit({ embeds: [embeded], components: [] });
+            await startPlay.edit({ embeds: [embeded], components: [] });
             message.reply({ embeds: [embed], ephemeral: true });
         } else {
             await player.stop();
@@ -168,7 +168,7 @@ module.exports = async (client, player, track, payload) => {
                 .setDescription(`${client.i18n.get(language, "music", "skip_msg")}`)
                 .setColor(client.color);
     
-            await nplaying.edit({ embeds: [embeded], components: [] });
+            await startPlay.edit({ embeds: [embeded], components: [] });
             message.reply({ embeds: [embed], ephemeral: true });
         }
       } else if(id === "stop") {
@@ -183,7 +183,7 @@ module.exports = async (client, player, track, payload) => {
             .setDescription(`${client.i18n.get(language, "player", "stop_msg")}`)
             .setColor(client.color);
         
-        await nplaying.edit({ embeds: [embeded], components: [] });
+        await startPlay.edit({ embeds: [embeded], components: [] });
         message.reply({ embeds: [embed], ephemeral: true });
       } else if(id === "shuffle") {
         if(!player) {
@@ -312,8 +312,10 @@ module.exports = async (client, player, track, payload) => {
     });
 
     collector.on('end', async (collected, reason) => {
+      const startPlayMessage = client.channels.cache.get(player.textChannel).messages.cache.get(startPlay.id);
       if(reason === "time") {
-        nplaying.edit({ embeds: [embeded], components: [] })
+        if (startPlayMessage) { startPlayMessage.edit({ embeds: [embeded], components: [] });
+        }
       }
     });
 }

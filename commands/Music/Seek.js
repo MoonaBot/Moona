@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const formatDuration = require('../../structures/FormatDuration.js');
+const formatDuration = require('../../utils/FormatDuration.js');
 
 module.exports = {
     name: ["seek"],

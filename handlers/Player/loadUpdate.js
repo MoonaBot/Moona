@@ -1,18 +1,15 @@
 const { EmbedBuilder } = require("discord.js");
-const formatDuration = require("../../structures/FormatDuration.js");
+const formatDuration = require("../../utils/FormatDuration.js");
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
   
 module.exports = async (client) => {
     client.updateMessage = async function(message) {
         const oldMessage = client.messageUpdate;
-        if (!oldMessage) return (client.messageUpdate = message);
-        const msg = await oldMessage.channel.messages.fetch({ id: oldMessage.id, force: true, cache: false });
-        if (msg) {
-            try {
-                msg.delete();
-            }catch(e) {
-                console.info(e);
+        if (oldMessage) {
+            const targetMessage = await oldMessage.channel.messages.cache.get(oldMessage.id);
+            if (targetMessage) {
+                targetMessage.delete();
             }
         }
         return (client.messageUpdate = message);
@@ -25,7 +22,7 @@ module.exports = async (client) => {
         const channel = await client.channels.cache.get(database.channel);
         if (!channel) return;
 
-        const msg = await channel.messages.fetch(database.playmsg, { cache: false, force: true });
+        const msg = channel.messages.cache(database.playmsg);
         if (!msg) return;
     
         const guildModel = await GLang.findOne({ guild: player.guild });
@@ -83,7 +80,7 @@ module.exports = async (client) => {
         const channel = await client.channels.cache.get(database.channel);
         if (!channel) return;
 
-        const msg = await channel.messages.fetch(database.playmsg, { cache: true, force: true });
+        const msg = channel.messages.cache.get(database.playmsg);
         if (!msg) return;
     
         const guildModel = await GLang.findOne({ guild: player.guild });
