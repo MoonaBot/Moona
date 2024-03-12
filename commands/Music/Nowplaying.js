@@ -28,6 +28,7 @@ module.exports = {
         const msg = await interaction.editReply(`${client.i18n.get(language, "music", "np_loading")}`);
 
         const song = player.queue.current;
+        const songs = await client.ytm.getSong(song.identifier);
         const CurrentDuration = formatDuration(player.position);
         const TotalDuration = formatDuration(song.duration);
         const Part = Math.floor(player.position / song.duration * 30);
@@ -36,7 +37,7 @@ module.exports = {
         const embeded = new EmbedBuilder()
             //.setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
             .setColor(client.color)
-            .setDescription(`${player.playing ? client.i18n.get(language, "music", "np_title") : client.i18n.get(language, "music", "np_title_pause")} [${subText(song.title, 70)}](${song.uri}) [${song.requester}]`)
+            .setDescription(`${player.playing ? client.i18n.get(language, "music", "np_title") : client.i18n.get(language, "music", "np_title_pause")} [${subText(song.title, 70)}](${song.uri}) - ${songs.artist.name} [${song.requester}]`)
             /*.addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_request")}`, value: `${song.requester}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/
@@ -47,7 +48,7 @@ module.exports = {
                 const views = songInfo.views;
                 const uploadat = songInfo.uploadedAt;*/
                 
-                embeded.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
+                embeded.setThumbnail(songs.thumbnails[1].url);
                 /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `${uploadat}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `**[Click Here](https://www.y2mate.com/youtube/${song.identifier})**`, inline: true })

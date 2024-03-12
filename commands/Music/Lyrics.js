@@ -29,7 +29,7 @@ module.exports = {
 
         const CurrentSong = player.queue.current;
 
-        let value = interaction.options.getString("result");
+        let value = interaction.options.getString("search");
         let songs = null;
         if (!value && CurrentSong) {
             value = CurrentSong.title;
@@ -51,7 +51,8 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(client.color)
-            .setTitle(`${songs.name} by ${songs.artist.name}`)
+            .setAuthor({ name: songs.artist.name })
+            .setTitle(songs.name)
             .setThumbnail(songs.thumbnails[1].url)//(`${client.i18n.get(language, "music", "lyrics_title", { song: value })}`)
             .setDescription(lyrics)
             .setFooter({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) })

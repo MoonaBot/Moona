@@ -19,13 +19,13 @@ module.exports = async (client, player, track, payload) => {
 
     const db = await Setup.findOne({ guild: channel.guild.id });
     if (db.enable) return;
-
-		const guildModel = await GLang.findOne({ guild: channel.guild.id });
-		const { language } = guildModel;
+    const guildModel = await GLang.findOne({ guild: channel.guild.id });
+	const { language } = guildModel;
+	const songs = await client.ytm.getSong(track.identifier);
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.uri}) [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(songs.name,70)}](${track.uri}) - ${songs.artist.name} [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -39,7 +39,7 @@ module.exports = async (client, player, track, payload) => {
       .setTimestamp();
 
       if (track.thumbnail) {
-        embeded.setThumbnail(`https://img.youtube.com/vi/${track.identifier}/maxresdefault.jpg`);
+        embeded.setThumbnail(songs.thumbnails[1].url);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
@@ -130,6 +130,7 @@ module.exports = async (client, player, track, payload) => {
       }
     };
     const collector = startPlay.createMessageComponentCollector({ filter, time: track.duration });
+    player.collector = collector;
 
     collector.on('collect', async (message) => {
       const id = message.customId;
