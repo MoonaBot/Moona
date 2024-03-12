@@ -1,6 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const formatDuration = require('../../utils/FormatDuration.js');
-const ytsr = require("youtube-sr").default;
 const Setup = require("../../settings/models/Setup.js");
 
 module.exports = {
@@ -44,9 +43,9 @@ module.exports = {
             .setTimestamp();
 
             if (song.thumbnail) {
-                const songInfo = await ytsr.searchOne(song.uri);
+                /*const songInfo = (await client.ytm.getSongs(song.identifier));
                 const views = songInfo.views;
-                const uploadat = songInfo.uploadedAt;
+                const uploadat = songInfo.uploadedAt;*/
                 
                 embeded.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
                 /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })

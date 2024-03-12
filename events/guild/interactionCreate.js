@@ -3,7 +3,6 @@ const GLang = require("../../settings/models/Language.js");
 const Playlist = require("../../settings/models/Playlist.js");
 const chalk = require('chalk');
 const { SEARCH_DEFAULT } = require("../../settings/config.js")
-const yt = require("youtube-sr").default;
 const { REGEX } = require("../../settings/regex.js");
 
 module.exports = async(client, interaction) => {
@@ -46,8 +45,8 @@ module.exports = async(client, interaction) => {
           if(interaction.commandName == "play") {
             checkRegex()
 							let choice = []
-							await yt.search(url || Random, { safeSearch: true, limit: 10 }).then(result => {
-								result.forEach(x => { choice.push({ name: x.title, value: x.url }) })
+							await client.ytm.searchSongs(url || Random).then(result => {
+								result.forEach(x => { choice.push({ name: `${x.name} by ${x.artist.name}`, value: `https://www.youtube.com/watch?v=${x.videoId}` }) })
 							});
 							return await interaction.respond(choice).catch(() => { });
           } else if (interaction.options.getSubcommand() == "playskip") {
