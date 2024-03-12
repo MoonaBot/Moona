@@ -2,6 +2,8 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("
 const formatduration = require('../../utils/FormatDuration.js');
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
+
+const { Dynamic } = require("musicard");
     
 module.exports = async (client, player, track, payload) => {
     if(!player) return;
@@ -36,10 +38,11 @@ module.exports = async (client, player, track, payload) => {
       .addFields({ name: `${client.i18n.get(language, "player", "current_duration_title", {
         current_duration: formatduration(track.duration, true),
       })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })*/
+      .setImage("attachment://music-card.png")
       .setTimestamp();
 
       if (track.thumbnail) {
-        embeded.setThumbnail(songs.thumbnails[1].url);
+        //embeded.setThumbnail(songs.thumbnails[1].url);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
@@ -127,7 +130,18 @@ module.exports = async (client, player, track, payload) => {
             .setStyle(ButtonStyle[button.volup.style])
         );*/
    
-    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2] });
+    const musicard = await Dynamic({
+        thumbnailImage: songs.thumbnails[1].url,
+        backgroundColor: "#070707",
+        progress: 0,
+        progressColor: client.color,
+        progressBarColor: client.color,
+        name: songs.name,
+        nameColor: client.color,
+        author: songs.artist.name,
+        authorColor: client.color
+    });
+    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2], files: [{ attachment: musicard, name: "music-card.png" }]});
     await client.updateMessage(startPlay);
 
     const filter = (message) => {
@@ -318,6 +332,7 @@ module.exports = async (client, player, track, payload) => {
         message.reply({ embeds: [embed], ephemeral: true });
       } else if(id === "get-lyrics") {
           if(!player) collector.stop();
+          await message.deferReply();
 
           let lyrics = await client.ytm.getLyrics(songs.videoId);
           if (!lyrics[0]) return message.followUp({ content: `🙁 | Lyrics for this song is not available.`, ephemeral: true });
