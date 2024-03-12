@@ -1,4 +1,4 @@
-const YouTubeMusic = require("ytmusic-api");
+const YouTubeMusic = require("ytmusic-api").default;
 const ytm = new YouTubeMusic();
 
 const { white, green } = require("chalk");
