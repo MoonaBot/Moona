@@ -135,14 +135,14 @@ module.exports = {
         });
 
         ///
-        /*ctx.beginPath();
-        ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+        ctx.beginPath();
+        ctx.arc(20, 20, 100, 0, Math.PI * 2, true);
         // stoke style bold
         ctx.lineWidth = 10;
         ctx.strokeStyle = '#000001';
         ctx.stroke();
         ctx.closePath();
-        ctx.clip();*/
+        ctx.clip();
 
         const avatar = await Canvas.loadImage(target.displayAvatarURL({ format: 'png', size: 1024, forceStatic: true }));
         ctx.drawImage(avatar, 30, 30, 195.5, 195.5);

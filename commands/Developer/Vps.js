@@ -36,8 +36,8 @@ module.exports = {
                 { name: 'Host', value: `${os.type()} ${os.release()} (${os.arch()})` },
                 { name: 'CPU', value: `${os.cpus()[0].model}` },
                 { name: 'Uptime', value: `${days} days, ${hours} hours, ${mins} minutes, and ${realTotalSecs} seconds` },
-                { name: 'RAM', value: `${(os.totalmem() / 1024 / 1024 / 1024).toFixed(2)} GB` },
-                { name: 'Memory Usage', value: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB` },
+                { name: 'RAM', value: `${prettyBytes(os.totalmem())}` },
+                { name: 'Memory Usage', value: `${prettyBytes(process.memoryUsage().heapUsed)}}` },
                 { name: 'CPU Load', value: `${(os.loadavg()[0]).toFixed(2)}%` },
                 { name: 'CPU Cores', value: `${os.cpus().length}` },
             )
