@@ -136,7 +136,7 @@ module.exports = {
 
         ///
         ctx.beginPath();
-        ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+        ctx.arc(130, 130, 175.5, 0, Math.PI * 2, true);
         // stoke style bold
         /*ctx.lineWidth = 10;
         ctx.strokeStyle = '#000001';
