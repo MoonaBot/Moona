@@ -26,7 +26,6 @@ module.exports = {
             .setColor(client.color)
             .setAuthor({ name: `LavaLink`, iconURL: interaction.guild.iconURL({ forceStatic: true })})
             .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
-            .setFooter({ text: `v${node.version}`})
             .setTimestamp()
 
         client.manager.nodes.forEach((node) => {
@@ -40,6 +39,7 @@ module.exports = {
                 embed.addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)} / ${prettyBytes(node.stats.memory.reservable)}` })
                 embed.addFields({ name: "System Load", value: `${(Math.round(node.stats.cpu.systemLoad * 100) / 100).toFixed(2)}%` })
                 embed.addFields({ name: "Lavalink Load", value: `${(Math.round(node.stats.cpu.lavalinkLoad * 100) / 100).toFixed(2)}%` })
+                embed.setFooter({ text: "v"+node.version });
             } catch (e) {
                 console.log(e);
             }
