@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const os = require('node:os');
+const prettyBytes = require("pretty-bytes");
 
 module.exports = {
     name: ["stats", "vps"], // The name of the command
