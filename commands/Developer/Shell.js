@@ -32,7 +32,7 @@ module.exports = {
 
     try {
         const _execute = execSync(command);
-        embed.setTitle(`$ ${command}`)
+        embed.setTitle(`$ __${command}__`)
         embed.setDescription(`\`\`\`shell\n${_execute}\`\`\``);
 
         interaction.editReply({ embeds: [embed] });
@@ -41,7 +41,7 @@ module.exports = {
         embed.setColor("Red");
         embed.setDescription(`Cannot running shell commands: \`$ ${command}\`, cause \`${error.message}\`.`);
 
-        interaction.reply({ embeds: [embed], ephemeral: true });
+        interaction.editReply({ embeds: [embed], ephemeral: true });
     }
     }
 }
