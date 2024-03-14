@@ -2,11 +2,9 @@ const { ApplicationCommandOptionType, EmbedBuilder, AttachmentBuilder } = requir
 const CT = require("../../utils/ConvertTime.js");
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
-const Canvas  = require("@napi-rs/canvas");
 
-const path = require("node:path");
-const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
-Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik-Regular");
+const { Canvas, loadImage } = require("canvas-contructor/napi-rs");
+const { request } = require('undici');
 
 module.exports = {
     name: ["profile"],
@@ -43,34 +41,35 @@ module.exports = {
         const profile = await Profile.findOne({ userId: target.id });
         const listenTime = CT.format(profile.listenTime);
 
-        const canvas = Canvas.createCanvas(1000, 625);
-		const ctx = canvas.getContext('2d');
-
-        const placer = await Canvas.loadImage("./assets/images/chart.png");
-        ctx.drawImage(placer, 5, 5, canvas.width, canvas.height);
-
-        // draw black blur background
-        ctx.fillStyle = '#000001';
-        ctx.globalAlpha = 0.5;
-        ctx.fillRect(20, 250, 955, 350);
-        ctx.globalAlpha = 1;
+        const background = await loadImage("./assets/images/chart.png")
+            ;
+        const radius = { tr: 20, tl: 20, br: 20, bl: 20 };
+            
+        const canvas = new Canvas(1000, 625);
+        canvas.printImage(background, 0, 0, canvas.width, canvas.height);
+        
+        // draw black blur rectangular background
+        canvas.setColor('black')
+        .setGlobalAlpha(0.5)
+        .printRoundedRectangle(20, 250, 955, 350, radius)
+        .setGlobalAlpha(1);
 
         // draw black blur avatar
-        ctx.fillStyle = '#000001';
-        ctx.globalAlpha = 0.5;
-        ctx.fillRect(20, 20, 215, 215);
-        ctx.globalAlpha = 1;
+        canvas.setColor('black')
+        .setGlobalAlpha(0.5)
+        .printRoundedRectangle(20, 20, 215, 215, radius)
+        .setGlobalAlpha(1);
 
         const username = target.globalName ? (target.globalName.length > 18 ? target.globalName.substring(0, 15)+'...' : target.globalName) : (target.username.length > 18 ? target.username.substring(0, 15)+'...' : target.username);
 
-        /*ctx.fillStyle = '#000001';
-        ctx.globalAlpha = 0.5;
-        ctx.fillRect(250, 60, 100 + ctx.measureText(plan).width, 60);
-        ctx.globalAlpha = 1;*/
+        /*canvas.setColor('black')
+        .setGlobalAlpha(0.5)
+        .printRoundedRectangle(250, 60, 100 + ctx.measureText(plan).width, 60, radius)
+        .setGlobalAlpha(1);*/
 
-        ctx.font = 'bold 55px Rubik-Regular';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(username, 250, 70+70);
+        canvas.setColor('white')
+        .setTextFont('55px Rubik-ExtraBold')
+        .printText(username, 250, 70+70);
 
         /*let listen = "";
 
@@ -114,38 +113,29 @@ module.exports = {
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
         // 10 
-        const top10 = sorted.slice(0, 5);
+        const top10 = sorted.slice(0, 5)[0] ? sorted(0, 5) : ["No Data", "No Data", "No Data", "No Data", "No Data"];
 
-        ctx.font = 'bold 30px Rubik-Regular';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(`TOP 5 SONGS`, 50, 290);
+        canvas.setColor('white')
+        .setTextFont('30px Rubik-Bold')
+        .printText(`TOP SONGS`, 50, 290);
 
-        ctx.font = '30px Rubik-Regular';
-        ctx.fillStyle = '#ffffff';
+        canvas.setColor('white')
+        .setTextFont('30px Rubik')
 
         // desc
         top10.map((d, i) => {
             // font exceeds canvas height
-            if (ctx.measureText(d.track_title).width > 700) {
+            if (canvas.measureText(d.track_title).width > 700) {
                 const title = d.track_title.substring(0, 52);
-                ctx.fillText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
+                canvas.printText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
             } else {
-                ctx.fillText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
+                canvas.printText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
             }
         });
 
-        ///
-        ctx.beginPath();
-        ctx.arc(130, 130, 125.5, 0, Math.PI * 2, true);
-        // stoke style bold
-        /*ctx.lineWidth = 10;
-        ctx.strokeStyle = '#000001';
-        ctx.stroke();*/
-        ctx.closePath();
-        ctx.clip();
-
-        const avatar = await Canvas.loadImage(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
-        ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
+        const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
+        const avatar = await loadImage(await body.arrayBuffer());
+        canvas.printRoundedImage(avatar, 30, 30, 195.5, 195.5, radius);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
 

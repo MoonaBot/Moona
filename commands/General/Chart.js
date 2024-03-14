@@ -3,10 +3,6 @@ const Chart = require("../../settings/models/GuildChart.js");
 const GChart = require("../../settings/models/GlobalChart.js");
 const Canvas = require("@napi-rs/canvas");
 
-const path = require("node:path");
-const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
-Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik-Regular");
-
 module.exports = {
     name: ["chart"], // The name of the command
     description: "Display Top 5 Songs of the (global/server)", // The description of the command (for help text)
