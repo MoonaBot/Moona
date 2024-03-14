@@ -39,7 +39,7 @@ module.exports = {
     }
     catch(error) {
         embed.setColor("Red");
-        embed.setDescription(`Cannot running shell commands: \`$ ${command}\`, cause \`${error.message}\`.`);
+        embed.setDescription(`Cannot running shell commands: $ ${command}\n\`${error.message}\``);
 
         interaction.editReply({ embeds: [embed], ephemeral: true });
     }
