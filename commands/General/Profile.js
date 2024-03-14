@@ -71,7 +71,7 @@ module.exports = {
             canvas.setColor('white')
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70+30);
-            canvas.setColor('#9Z9Z9Z')
+            canvas.setColor('silver')
                 .setTextFont('35px Rubik')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
