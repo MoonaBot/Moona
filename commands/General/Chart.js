@@ -91,7 +91,7 @@ module.exports = {
             ctx.closePath();
             ctx.clip();*/
 
-            const avatar = await Canvas.loadImage(client.user.displayAvatarURL({ forceStatic:true, size: 1024, format: 'png' }));
+            const avatar = await Canvas.loadImage(client.user.displayAvatarURL({ forceStatic:true, size: 1024, extension: 'png' }));
             ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
             const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'global-chart.png' });
@@ -152,7 +152,7 @@ module.exports = {
             ctx.closePath();
             ctx.clip();*/
 
-            const avatar = await Canvas.loadImage(interaction.guild.iconURL({ forceStatic: true, size: 1024, format: 'png' }) || "https://media.discordapp.net/attachments/1010784573061349496/1070283756100911184/question.png");
+            const avatar = await Canvas.loadImage(interaction.guild.iconURL({ forceStatic: true, size: 1024, extension: 'png' }) || "https://media.discordapp.net/attachments/1010784573061349496/1070283756100911184/question.png");
             ctx.drawImage(avatar, 30, 30, 195.5, 195.5);
 
             const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'server-chart.png' });
