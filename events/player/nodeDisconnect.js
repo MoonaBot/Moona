@@ -1,3 +1,3 @@
 module.exports = async (client, node, error) => {
-	console.info('[WARN]', `Node ${node.options.identifier} Disconnected!`)
+	console.info('[WARN]', `Lavalink Node ${node.options.identifier} Disconnected!`)
 }

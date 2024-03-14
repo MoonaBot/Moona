@@ -1,3 +1,3 @@
 module.exports = async (client, node, error) => {
-	console.log('[INFO]', `Node ${node.options.identifier} Created!`)
+	console.log('[INFO]', `Lavalink Node ${node.options.identifier} Created!`)
 }
