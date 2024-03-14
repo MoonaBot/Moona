@@ -45,8 +45,8 @@ module.exports = {
             ;
         const radius = { tr: 20, tl: 20, br: 20, bl: 20 };
             
-        const canvas = new Canvas(1000, 625)
-            .printRoundedImage(background, 0, 0, canvas.width, canvas.height, { tr: 10, tl: 10, br: 10, bl: 10 });
+        const canvas = new Canvas(1000, 625);
+        canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, { tr: 10, tl: 10, br: 10, bl: 10 });
         
         // draw black blur rectangular background
         canvas.setColor('black')
