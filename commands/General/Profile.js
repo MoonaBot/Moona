@@ -113,7 +113,7 @@ module.exports = {
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
         // 10 
-        const top10 = sorted.slice(0, 5)[0] ? sorted(0, 5) : ["No Data", "No Data", "No Data", "No Data", "No Data"];
+        const top10 = sorted.slice(0, 5)[0] ? sorted.slice(0, 5) : ["No Data", "No Data", "No Data", "No Data", "No Data"];
 
         canvas.setColor('white')
         .setTextFont('30px Rubik-Bold')

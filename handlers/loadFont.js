@@ -1,4 +1,6 @@
-const { readdirSync, resolve } = require("node:fs");
+const { readdirSync } = require("node:fs");
+const { resolve } = require("node:path");
+
 const { GlobalFonts } = require("@napi-rs/canvas");
 
 module.exports = async (client) => {
