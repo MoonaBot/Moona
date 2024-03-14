@@ -137,7 +137,7 @@ module.exports = {
         const avatar = await loadImage(await body.arrayBuffer());
         canvas.printRoundedImage(avatar, 30, 30, 195.5, 195.5, radius);
 
-        const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
+        const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
         return interaction.editReply({ files: [attachment] });
     }
