@@ -3,7 +3,7 @@ const CT = require("../../utils/ConvertTime.js");
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
 
-const { Canvas, loadImage } = require("canvas-contructor/napi-rs");
+const { Canvas, loadImage } = require("canvas-constructor/napi-rs");
 const { request } = require('undici');
 
 module.exports = {
