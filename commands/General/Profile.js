@@ -45,8 +45,8 @@ module.exports = {
             ;
         const radius = { tr: 20, tl: 20, br: 20, bl: 20 };
             
-        const canvas = new Canvas(1000, 625);
-        canvas.printImage(background, 0, 0, canvas.width, canvas.height);
+        const canvas = new Canvas(1000, 625)
+            .printRoundedImage(background, 0, 0, canvas.width, canvas.height, { tr: 10, tl: 10, br: 10, bl: 10 });
         
         // draw black blur rectangular background
         canvas.setColor('black')
@@ -60,16 +60,25 @@ module.exports = {
         .printRoundedRectangle(20, 20, 215, 215, radius)
         .setGlobalAlpha(1);
 
-        const username = target.globalName ? (target.globalName.length > 18 ? target.globalName.substring(0, 15)+'...' : target.globalName) : (target.username.length > 18 ? target.username.substring(0, 15)+'...' : target.username);
+        const username = target.globalName ? (target.globalName.length > 18 ? subText(target.globalName, 15) : target.globalName) : (target.username.length > 18 ? subText(target.username, 15) : target.username);
 
         /*canvas.setColor('black')
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(250, 60, 100 + ctx.measureText(plan).width, 60, radius)
         .setGlobalAlpha(1);*/
 
-        canvas.setColor('white')
-        .setTextFont('55px Rubik-ExtraBold')
-        .printText(username, 250, 70+70);
+        if (target?.globalName) {
+            canvas.setColor('white')
+                .setTextFont('55px Rubik-Bold')
+                .printText(username, 250, 70+40);
+            canvas.setColor('gray')
+                .setTextFont('30px Rubik')
+                .printText('@'+subText(target.username, 18), 250, 70+70);
+        } else {
+            canvas.setColor('white')
+                .setTextFont('55px Rubik-Bold')
+                .printText(username, 250, 70 + 70);
+        }
 
         /*let listen = "";
 
@@ -126,8 +135,11 @@ module.exports = {
         top10.map((d, i) => {
             // font exceeds canvas height
             if (canvas.measureText(d.track_title).width > 700) {
-                const title = d.track_title.substring(0, 52);
-                canvas.printText(`#${i + 1} | ${d.track_count}x • ${title}...`, 50, 340 + (i * 60));
+                let cutLength = 52;
+                if (d.track_title === d.track_title.toUpperCase()) {
+                    cutLength = cutLength - 8;
+                }
+                canvas.printText(`#${i + 1} | ${d.track_count}x • ${subText(d.track_title, cutLength)}`, 50, 340 + (i * 60));
             } else {
                 canvas.printText(`#${i + 1} | ${d.track_count}x • ${d.track_title}`, 50, 340 + (i * 60));
             }
