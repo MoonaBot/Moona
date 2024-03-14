@@ -1,7 +1,6 @@
 const { PermissionsBitField, InteractionType } = require("discord.js");
 const GLang = require("../../settings/models/Language.js");
 const Playlist = require("../../settings/models/Playlist.js");
-const chalk = require('chalk');
 const { SEARCH_DEFAULT } = require("../../settings/config.js")
 const { REGEX } = require("../../settings/regex.js");
 
@@ -124,7 +123,7 @@ module.exports = async(client, interaction) => {
 
       await client.addStats(command.name.at(-1), interaction);
 
-      console.log(chalk.bgRed(`[COMMAND] ${interaction.user.tag} Used ${command.name.at(-1)} in ${interaction.guild.name} (${interaction.guild.id})`));
+      console.log(`[COMMAND]`, `${interaction.user.tag} used ${command.name.at(-1)} in ${interaction.guild.name} (${interaction.guild.id})`);
 
       //check default permission (must need)
       if(!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages)) return interaction.user.dmChannel.send(`${client.i18n.get(language, "interaction", "bot_perms", {

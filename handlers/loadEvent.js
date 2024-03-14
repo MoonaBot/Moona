@@ -1,4 +1,3 @@
-const { white, green } = require("chalk");
 const { readdirSync } = require('fs');
 
 module.exports = async (client) => {

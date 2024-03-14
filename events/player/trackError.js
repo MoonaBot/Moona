@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const { white, red } = require("chalk");
 const GLang = require("../../settings/models/Language.js");
 
 module.exports = async (client, player, track, payload) => {
@@ -25,7 +24,7 @@ module.exports = async (client, player, track, payload) => {
 
     channel.send({ embeds: [embed] });
 
-    console.log(white('[') + red('DEBUG') + white('] ') + red('Track Error in ') + white(player.guild) + red(' Auto-Leaved!'));
+    console.log('[DEBUG]', `Track Error in ${player.guild} Auto-Leaved!`);
     if (!player.voiceChannel) player.destroy();
 
 }

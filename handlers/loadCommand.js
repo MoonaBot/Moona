@@ -1,5 +1,4 @@
 const { readdirSync } = require("node:fs");
-const { green, white } = require('chalk');
 const path = require("path");
 
 module.exports = async (client) => {

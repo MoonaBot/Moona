@@ -1,5 +1,3 @@
-const { white, green } = require("chalk");
-
 module.exports = (client) => {
     require("./Database/loadDatabase.js")(client);
     require("./Database/loadPremium.js")(client);

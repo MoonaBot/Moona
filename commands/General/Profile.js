@@ -5,8 +5,8 @@ const Profile = require("../../settings/models/Profile.js");
 const Canvas  = require("@napi-rs/canvas");
 
 const path = require("node:path");
-const fontsPath = path.resolve("assets/fonts/Rubik.ttf");
-Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
+const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
+Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik-Regular");
 
 module.exports = {
     name: ["profile"],
@@ -68,7 +68,7 @@ module.exports = {
         ctx.fillRect(250, 60, 100 + ctx.measureText(plan).width, 60);
         ctx.globalAlpha = 1;*/
 
-        ctx.font = 'bold 55px Rubik';
+        ctx.font = 'bold 55px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(username, 250, 70+70);
 
@@ -95,19 +95,19 @@ module.exports = {
             }
         }
 
-        ctx.font = 'bold 30px Rubik';
+        ctx.font = 'bold 30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(plan, 250.5, 110);
 
-        ctx.font = '30px Rubik';
+        ctx.font = '30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Songs Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x`, 250, 150);
 
-        ctx.font = '30px Rubik';
+        ctx.font = '30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Commands Used: ${profile.useCount.toLocaleString().replaceAll(",", ".")}x`, 250, 190);
 
-        ctx.font = '30px Rubik';
+        ctx.font = '30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Total Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x (${listen})`, 250, 230);*/
 
@@ -116,11 +116,11 @@ module.exports = {
         // 10 
         const top10 = sorted.slice(0, 5);
 
-        ctx.font = 'bold 30px Rubik';
+        ctx.font = 'bold 30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`TOP 5 SONGS`, 50, 290);
 
-        ctx.font = '30px Rubik';
+        ctx.font = '30px Rubik-Regular';
         ctx.fillStyle = '#ffffff';
 
         // desc

@@ -4,8 +4,8 @@ const GChart = require("../../settings/models/GlobalChart.js");
 const Canvas = require("@napi-rs/canvas");
 
 const path = require("node:path");
-const fontsPath = path.resolve("assets/fonts/Rubik.ttf");
-Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik");
+const fontsPath = path.resolve("assets/fonts/Rubik-Regular.ttf");
+Canvas.GlobalFonts.registerFromPath(fontsPath, "Rubik-Regular");
 
 module.exports = {
     name: ["chart"], // The name of the command
@@ -61,11 +61,11 @@ module.exports = {
             ctx.fillRect(20, 20, 215, 215);
             ctx.globalAlpha = 1;
 
-            ctx.font = 'bold 35px Rubik';
+            ctx.font = 'bold 35px Rubik-Regular';
             ctx.fillStyle = '#ffffff';
             ctx.fillText('TOP 5 SONGS | Global', 250, 140);
 
-            ctx.font = '30px Rubik';
+            ctx.font = '30px Rubik-Regular';
             ctx.fillStyle = '#ffffff';
   
             database.map((d, i) => {
@@ -126,11 +126,11 @@ module.exports = {
             ctx.fillRect(20, 20, 215, 215);
             ctx.globalAlpha = 1;
 
-            ctx.font = 'bold 35px Rubik';
+            ctx.font = 'bold 35px Rubik-Regular';
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`TOP 5 SONGS | ${interaction.guild.name.length > 20 ? interaction.guild.name.substring(0, 17)+"..." : interaction.guild.name}`, 250, 140);
 
-            ctx.font = '30px Rubik';
+            ctx.font = '30px Rubik-Regular';
             ctx.fillStyle = '#ffffff';
             // desc
             top10.map((d, i) => {

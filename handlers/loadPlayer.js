@@ -1,5 +1,3 @@
-const { white, green } = require("chalk");
-
 module.exports = (client) => {
     require("./Player/loadPlayer.js")(client);
     require("./Player/loadContent.js")(client);

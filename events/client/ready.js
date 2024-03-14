@@ -1,12 +1,11 @@
 const { ActivityType, ChannelType } = require("discord.js");
 
-const { green, white } = require('chalk');
 const Premium = require('../../settings/models/Premium.js');
 
 module.exports = async (client) => {
     await client.manager.init(client.user.id);
 
-    console.log(white('[') + green('INFO') + white('] ') + green(`${client.user.tag} (${client.user.id})`) + white(` is Ready!`));
+    console.log('[INFO]', `${client.user.tag} (${client.user.id}) is Ready!`);
 
     const users = await Premium.find();
     for (let user of users) {
