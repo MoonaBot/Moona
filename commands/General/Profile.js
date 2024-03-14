@@ -70,9 +70,9 @@ module.exports = {
         if (target?.globalName) {
             canvas.setColor('white')
                 .setTextFont('55px Rubik-Bold')
-                .printText(username, 250, 70+40);
-            canvas.setColor('gray')
-                .setTextFont('30px Rubik')
+                .printText(username, 250, 70+30);
+            canvas.setColor('#9Z9Z9Z')
+                .setTextFont('35px Rubik')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
             canvas.setColor('white')
@@ -137,7 +137,7 @@ module.exports = {
             if (canvas.measureText(d.track_title).width > 700) {
                 let cutLength = 52;
                 if (d.track_title === d.track_title.toUpperCase()) {
-                    cutLength = cutLength - 8;
+                    cutLength = cutLength - 7;
                 }
                 canvas.printText(`#${i + 1} | (${d.track_count}x) ${subText(d.track_title, cutLength)}`, 50, 340 + (i * 60));
             } else {
