@@ -1,10 +1,14 @@
-const { ApplicationCommandOptionType, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { ApplicationCommandOptionType, AttachmentBuilder, Colors } = require('discord.js');
 const CT = require("../../utils/ConvertTime.js");
 const Premium = require("../../settings/models/Premium.js");
 const Profile = require("../../settings/models/Profile.js");
 
 const { Canvas, loadImage } = require("canvas-constructor/napi-rs");
 const { request } = require('undici');
+
+for (const c of Object.entries(Colors)) {
+    Colors[c[0]] = '#'+c[1].toString(16);
+}
 
 module.exports = {
     name: ["profile"],
@@ -32,10 +36,6 @@ module.exports = {
         let target = interaction.options.getUser("user");
 
         if (!target) target = interaction.user;
-        if (target.bot) {
-            interaction.channel.send("This bot don't have profile stats... So, i will replace to your profile as default.").then(msg => setTimeout(() => msg.delete(), 7000));
-            target = interaction.user;
-        }
         const info = await Premium.findOne({ Id: target.id });
         const timeLeft = CT.format(info.premium.expiresAt - Date.now());
         const profile = await Profile.findOne({ userId: target.id });
@@ -43,21 +43,22 @@ module.exports = {
 
         const background = await loadImage("./assets/images/chart.png")
             ;
-        const radius = { tr: 20, tl: 20, br: 20, bl: 20 };
+        const radius = (x=0) =>
+            ({ tr: x, tl: x, br: x, bl: x });
             
         const canvas = new Canvas(1000, 625);
-        canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, { tr: 10, tl: 10, br: 10, bl: 10 });
+        canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, radius(10));
         
         // draw black blur rectangular background
-        canvas.setColor('black')
+        canvas.setColor(Colors.DarkButNotBlack)
         .setGlobalAlpha(0.5)
-        .printRoundedRectangle(20, 250, 955, 350, radius)
+        .printRoundedRectangle(20, 250, 955, 350, radius(20))
         .setGlobalAlpha(1);
 
         // draw black blur avatar
-        canvas.setColor('black')
+        canvas.setColor(Colors.DarkButNotBlack)
         .setGlobalAlpha(0.5)
-        .printRoundedRectangle(20, 20, 215, 215, radius)
+        .printRoundedRectangle(20, 20, 215, 215, radius(20))
         .setGlobalAlpha(1);
 
         const username = target.globalName ? (target.globalName.length > 18 ? subText(target.globalName, 15) : target.globalName) : (target.username.length > 18 ? subText(target.username, 15) : target.username);
@@ -68,14 +69,14 @@ module.exports = {
         .setGlobalAlpha(1);*/
 
         if (target?.globalName) {
-            canvas.setColor('white')
+            canvas.setColor(Colors.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70+30);
-            canvas.setColor('silver')
+            canvas.setColor(Colors.Greyple)
                 .setTextFont('35px Rubik')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
-            canvas.setColor('white')
+            canvas.setColor(Colors.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70 + 70);
         }
@@ -122,36 +123,45 @@ module.exports = {
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
         // 10 
-        const top10 = sorted.slice(0, 5)[0] ? sorted.slice(0, 5) : ["No Data", "No Data", "No Data", "No Data", "No Data"];
-
-        canvas.setColor('white')
-        .setTextFont('30px Rubik-Bold')
-        .printText(`TOP SONGS`, 40, 290);
+        const top10 = sorted.slice(0, 5)[0] ? sorted.slice(0, 5) : null;
 
         // desc
         var numb = 0;
-        top10.map((d, i) => {
-            const topcolor = ["blue", "pink", "green", "yellow", "red"];
-            // font exceeds canvas height
-            canvas.setColor(topcolor[numb++])
-                .printRoundedRectangle(40, 300 + (i * 60), 50, 50, radius)
-            canvas.setColor("black")
-                .setTextFont("30px Rubik")
-                .printText((i+1).toString(), 55, 340 + (i * 60))
-            if (canvas.measureText(d.track_title).width > 700) {
-                let cutLength = 52;
-                if (d.track_title === d.track_title.toUpperCase()) {
-                    cutLength = cutLength - 7;
+        if (!top10) {
+            canvas.setColor(Colors.LightGrey)
+                .setTextFont('italic 30px PTSansCaption')
+                .printText('Data Not Found', canvas.width / 2 / 2, canvas.height - 200)
+        } else {
+            top10.map((d, i) => {
+                canvas.setColor('white')
+                    .setTextFont('30px Rubik-Bold')
+                    .printText(`TOP SONGS`, 40, 290);
+
+                const topcolor = [
+                    Colors.DarkGold,
+                    Colors.DarkOrange,
+                    Colors.DarkerGrey,
+                    Colors.NotQuiteBlack,
+                    Colors.NotQuiteBlack
+                ];
+                canvas.setColor(topcolor[numb++])
+                    .printRoundedRectangle(40, 300 + (i * 60),50, 50, radius(5))
+                canvas.setColor(Colors.White)
+                    .setTextFont("30px Rubik")
+                    .printText((i+1).toString(), 55, 340 + (i * 60))
+                if (canvas.measureText(d.track_title).width > 700) {
+                    let cutLength = 52;
+                    if (d.track_title === d.track_title.toUpperCase()) {
+                        cutLength = cutLength - 7;
+                    }
+                    canvas.setTextFont('30px Rubik')
+                        .printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 100, 340 + (i * 60));
+                } else {
+                    canvas.setTextFont('30px Rubik')
+                        .printText(`(${d.track_count}x) ${d.track_title}`, 100, 340 + (i * 60));
                 }
-                canvas.setColor('white')
-                    .setTextFont('30px Rubik')
-                    .printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 100, 340 + (i * 60));
-            } else {
-                canvas.setColor('white')
-                    .setTextFont('30px Rubik')
-                    .printText(`(${d.track_count}x) ${d.track_title}`, 100, 340 + (i * 60));
-            }
-        });
+            });
+        };
 
         const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
         const avatar = await loadImage(await body.arrayBuffer());
