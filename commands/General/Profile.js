@@ -181,7 +181,7 @@ module.exports = {
             .setTextFont('20px Rubik-Bold');
 
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - 25, 0, canvas.measureText(credits).width + 10, 35, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.measureText(credits) + 25, 0, canvas.measureText(credits).width + 10, 35, { tr: 0, tl: 0, br: 10, bl: 10 })
 
         canvas.setColor(KColors.White)
             .printText(credits, canvas.width - 40, 25);
