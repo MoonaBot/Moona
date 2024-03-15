@@ -71,7 +71,7 @@ module.exports = {
         // draw user plan
         const userPlan = "BASIC";
         canvas.setColor(KColors.DarkGreen)
-            .printRoundedRectangle(250, 160, canvas.measureText(userPlan).width + 100, 40, radius(5))
+            .printRoundedRectangle(250, 160, canvas.measureText(userPlan).width + 120, 40, radius(5))
             .setColor(KColors.White)
             .setTextFont('30px Rubik-Medium')
             .printText(userPlan, 265, 190);
