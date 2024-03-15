@@ -134,8 +134,8 @@ module.exports = {
             const topcolor = ["blue", "pink", "green", "yellow", "red"];
             // font exceeds canvas height
             canvas.setColor(topcolor[numb++])
-                .printRoundedRectangle(40, 340 + (i * 60), 50, 50, radius)
-            canvas.setColor("white")
+                .printRoundedRectangle(40, 300 + (i * 60), 50, 50, radius)
+            canvas.setColor("black")
                 .setTextFont("30px Rubik")
                 .printText((i+1).toString(), 55, 340 + (i * 60))
             if (canvas.measureText(d.track_title).width > 700) {
