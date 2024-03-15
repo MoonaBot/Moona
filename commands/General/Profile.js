@@ -71,7 +71,7 @@ module.exports = {
         // draw user plan
         const userPlan = "BASIC";
         canvas.setColor(KColors.DarkGreen)
-            .printRoundedRectangle(200, 230, canvas.measureText(userPlan).width + 60, 50, radius(20))
+            .printRoundedRectangle(200, 230, canvas.measureText(userPlan).width + 100, 50, radius(20))
             .setColor(KColors.White)
             .setTextFont('40px Rubik-Medium')
             .printText(userPlan, 250, 230);
@@ -180,11 +180,11 @@ module.exports = {
                     }
                     canvas.setColor(KColors.White)
                         .setTextFont('30px Rubik')
-                        .printText(`${subText(d.track_title, cutLength)}`, (d.track_count > 9 ? 190 : 145), 340 + (i * 60));
+                        .printText(`${subText(d.track_title, cutLength)}`, (Number(d.track_count) > 9 ? 190 : 145), 340 + (i * 60));
                 } else {
                     canvas.setColor(KColors.White)
                         .setTextFont('30px Rubik')
-                        .printText(`${d.track_title}`, (d.track_count > 9 ? 190 : 145), 340 + (i * 60));
+                        .printText(`${d.track_title}`, (Number(d.track_count) > 9 ? 190 : 145), 340 + (i * 60));
                 }
             });
         };
