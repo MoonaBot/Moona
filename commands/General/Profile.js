@@ -181,10 +181,10 @@ module.exports = {
             .setTextFont('20px Rubik-Bold');
 
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 50, 0, canvas.measureText(credits).width + 20, 35, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 45.5, 0, canvas.measureText(credits).width + 20, 35, { tr: 0, tl: 0, br: 10, bl: 10 })
 
         canvas.setColor(KColors.White)
-            .printText(credits, canvas.width - 40, 25);
+            .printText(credits, canvas.width - 35.5, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
