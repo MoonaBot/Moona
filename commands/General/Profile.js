@@ -146,7 +146,7 @@ module.exports = {
                 .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
                 .closePath();
         } else {
-            top10.map((d, i) => {
+            top10.forEach((d, i=0) => {
                 canvas.setColor('white')
                     .setTextFont('30px Rubik-Bold')
                     .printText(`TOP SONGS`, 40, 290);
