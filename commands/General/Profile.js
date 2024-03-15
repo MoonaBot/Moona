@@ -6,9 +6,10 @@ const Profile = require("../../settings/models/Profile.js");
 const { Canvas, loadImage } = require("canvas-constructor/napi-rs");
 const { request } = require('undici');
 
+var Color = {};
 for (const c of Object.entries(Colors)) {
-    Colors[c[0]] = '#'+c[1].toString(16);
-}
+    Color[c[0]] = '#'+c[1].toString(16);
+};
 
 module.exports = {
     name: ["profile"],
@@ -33,9 +34,12 @@ module.exports = {
     },
     run: async (interaction, client, user, language) => {
         await interaction.deferReply({ ephemeral: false });
-        let target = interaction.options.getUser("user");
 
+        let target = interaction.options.getUser("user");
         if (!target) target = interaction.user;
+
+        const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
+
         const info = await Premium.findOne({ Id: target.id });
         const timeLeft = CT.format(info.premium.expiresAt - Date.now());
         const profile = await Profile.findOne({ userId: target.id });
@@ -50,13 +54,13 @@ module.exports = {
         canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, radius(10));
         
         // draw black blur rectangular background
-        canvas.setColor(Colors.DarkButNotBlack)
+        canvas.setColor(Colors.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 250, 955, 350, radius(20))
         .setGlobalAlpha(1);
 
         // draw black blur avatar
-        canvas.setColor(Colors.DarkButNotBlack)
+        canvas.setColor(Colors.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 20, 215, 215, radius(20))
         .setGlobalAlpha(1);
@@ -120,6 +124,9 @@ module.exports = {
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`• Total Played: ${profile.playedCount.toLocaleString().replaceAll(",", ".")}x (${listen})`, 250, 230);*/
 
+        const avatar = await loadImage(await body.arrayBuffer());
+        canvas.printRoundedImage(avatar, 30, 30, 195.5, 195.5, radius(5));
+
         // sort
         const sorted = profile.playedHistory.sort((a, b) => b.track_count - a.track_count);
         // 10 
@@ -129,8 +136,9 @@ module.exports = {
         var numb = 0;
         if (!top10) {
             canvas.setColor(Colors.LightGrey)
+                .setTextAlign('center')
                 .setTextFont('italic 30px PTSansCaption')
-                .printText('Data Not Found', canvas.width / 2 / 2, canvas.height - 200)
+                .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
         } else {
             top10.map((d, i) => {
                 canvas.setColor('white')
@@ -139,10 +147,10 @@ module.exports = {
 
                 const topcolor = [
                     Colors.DarkGold,
-                    Colors.DarkOrange,
                     Colors.DarkerGrey,
-                    Colors.NotQuiteBlack,
-                    Colors.NotQuiteBlack
+                    Colors.DarkOrange,
+                    Colors.DarkButNotBlack,
+                    Colors.DarkButNotBlack
                 ];
                 canvas.setColor(topcolor[numb++])
                     .printRoundedRectangle(40, 300 + (i * 60),50, 50, radius(5))
@@ -162,10 +170,13 @@ module.exports = {
                 }
             });
         };
-
-        const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
-        const avatar = await loadImage(await body.arrayBuffer());
-        canvas.printRoundedImage(avatar, 30, 30, 195.5, 195.5, radius);
+ 
+        const credits = `${client.user.user.name} Card`;
+        canvas.setColor(Colors.Blue)
+            .printRoundedRectangle(canvas.width - 225, 20, 50, 200)
+            .setTextAlign('left')
+            .setTextFont('25px TiltWarp')
+            .printText(credits, canvas.width - 35, 40);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
