@@ -6,9 +6,9 @@ const Profile = require("../../settings/models/Profile.js");
 const { Canvas, loadImage } = require("canvas-constructor/napi-rs");
 const { request } = require('undici');
 
-var Colors_ = {};
+var KColors = {};
 for (const c of Object.entries(Colors)) {
-    Colors_[c[0]] = '#'+c[1].toString(16);
+    KColors[c[0]] = '#'+c[1].toString(16);
 };
 
 module.exports = {
@@ -37,6 +37,9 @@ module.exports = {
 
         let target = interaction.options.getUser("user");
         if (!target) target = interaction.user;
+        if (target && target.bot) {
+            interaction.channel.send('Requests received bot profile, but the bot don\'t have profile. I will continue with your profile...').then(msg => setTimeout(() => msg.delete(), 8000));
+        }
 
         const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
 
@@ -54,13 +57,13 @@ module.exports = {
         canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, radius(10));
         
         // draw black blur rectangular background
-        canvas.setColor(Colors_.NotQuiteBlack)
+        canvas.setColor(KColors.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 250, 955, 350, radius(20))
         .setGlobalAlpha(1);
 
         // draw black blur avatar
-        canvas.setColor(Colors_.NotQuiteBlack)
+        canvas.setColor(KColors.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 20, 215, 215, radius(20))
         .setGlobalAlpha(1);
@@ -73,14 +76,14 @@ module.exports = {
         .setGlobalAlpha(1);*/
 
         if (target?.globalName) {
-            canvas.setColor(Colors_.White)
+            canvas.setColor(KColors.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70+30);
-            canvas.setColor(Colors_.Greyple)
+            canvas.setColor(KColors.Greyple)
                 .setTextFont('35px Rubik')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
-            canvas.setColor(Colors_.White)
+            canvas.setColor(KColors.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70 + 70);
         }
@@ -135,7 +138,7 @@ module.exports = {
         // desc
         var numb = 0;
         if (!top10) {
-            canvas.setColor(Colors_.LightGrey)
+            canvas.setColor(KColors.LightGrey)
                 .setTextAlign('center')
                 .setTextFont('italic 30px PTSansCaption')
                 .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
@@ -146,15 +149,15 @@ module.exports = {
                     .printText(`TOP SONGS`, 40, 290);
 
                 const topcolor = [
-                    Colors_.DarkGold,
-                    Colors_.DarkerGrey,
-                    Colors_.DarkOrange,
-                    Colors_.DarkButNotBlack,
-                    Colors_.DarkButNotBlack
+                    KColors.DarkGold,
+                    KColors.DarkerGrey,
+                    KColors.DarkOrange,
+                    KColors.DarkButNotBlack,
+                    KColors.DarkButNotBlack
                 ];
                 canvas.setColor(topcolor[numb++])
                     .printRoundedRectangle(40, 300 + (i * 60),50, 50, radius(5))
-                canvas.setColor(Colors_.White)
+                canvas.setColor(KColors.White)
                     .setTextFont("30px Rubik")
                     .printText((i+1).toString(), 55, 340 + (i * 60))
                 if (canvas.measureText(d.track_title).width > 700) {
@@ -172,9 +175,10 @@ module.exports = {
         };
  
         const credits = `${client.user.username} Card`;
-        canvas.setColor(Colors_.Blue)
-            .printRoundedRectangle(canvas.width - 225, 20, 50, 200, radius(10))
-            .setTextAlign('left')
+        canvas.setColor(KColors.Blue)
+            .printRoundedRectangle(canvas.width - 220, 20, 200, 50, radius(10))
+            .setColor(KColors.White)
+            .setTextAlign('right')
             .setTextFont('25px TiltWarp')
             .printText(credits, canvas.width - 35, 40);
 
