@@ -36,10 +36,9 @@ module.exports = {
         await interaction.deferReply({ ephemeral: false });
 
         let target = interaction.options.getUser("user");
-        let isBotMsg;
         if (!target) target = interaction.user;
         if (target && target.bot) {
-            isBotMsg = await interaction.followUp('Requests received bot profile, but the bot don\'t have profile. I will continue with your profile...');
+            await interaction.followUp('Bot don\'t have profile! So, I will continue to generating your profile.');
             target = interaction.user;
         };
 
@@ -177,13 +176,13 @@ module.exports = {
             });
         };
  
-        const credits = `KAORI`;
+        const credits = `KAORI BOT`;
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 25, 0, canvas.measureText(credits).width + 20, 45, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width + 10, 0, 25, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
             .setColor(KColors.White)
             .setTextAlign('right')
-            .setTextFont('25px Rubik')
-            .printText(credits, canvas.width - 35, 30);
+            .setTextFont('20px Rubik-Bold')
+            .printText(credits, canvas.width - 30, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
