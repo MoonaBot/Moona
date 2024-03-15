@@ -68,6 +68,14 @@ module.exports = {
         .printRoundedRectangle(20, 20, 215, 215, radius(20))
         .setGlobalAlpha(1);
 
+        // draw user plan
+        const userPlan = "BASIC";
+        canvas.setColor(KColors.DarkGreen)
+            .printRoundedRectangle(200, 230, canvas.measureText(userPlan).width + 20, 50, radius(20))
+            .setColor(KColors.White)
+            .setTextFont('40px Rubik-Medium')
+            .printText(useraPlan, 230, 250);
+
         const username = target.globalName ? (target.globalName.length > 18 ? subText(target.globalName, 15) : target.globalName) : (target.username.length > 18 ? subText(target.username, 15) : target.username);
 
         /*canvas.setColor('black')
@@ -152,7 +160,7 @@ module.exports = {
 
                 const topcolor = [
                     KColors.DarkGold,
-                    KColors.DarkerGrey,
+                    KColors.DarkGrey,
                     KColors.DarkOrange,
                     KColors.DarkButNotBlack,
                     KColors.DarkButNotBlack
@@ -162,16 +170,21 @@ module.exports = {
                 canvas.setColor(KColors.White)
                     .setTextFont("30px Rubik")
                     .printText((i+1).toString(), 55, 340 + (i * 60))
+                canvas.setColor(KColors.LightGrey)
+                    .setTextFont('30px Rubik-Medium')
+                    .printText(`${d.track_count}x`, 100, 340 + (i * 60));
                 if (canvas.measureText(d.track_title).width > 700) {
                     let cutLength = 52;
                     if (d.track_title === d.track_title.toUpperCase()) {
                         cutLength = cutLength - 7;
                     }
-                    canvas.setTextFont('30px Rubik')
-                        .printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 100, 340 + (i * 60));
+                    canvas.setColor(KColors.White)
+                        .setTextFont('30px Rubik')
+                        .printText(`${subText(d.track_title, cutLength)}`, 145, 340 + (i * 60));
                 } else {
-                    canvas.setTextFont('30px Rubik')
-                        .printText(`(${d.track_count}x) ${d.track_title}`, 100, 340 + (i * 60));
+                    canvas.setColor(KColors.White)
+                        .setTextFont('30px Rubik')
+                        .printText(`${d.track_title}`, 145, 340 + (i * 60));
                 }
             });
         };
