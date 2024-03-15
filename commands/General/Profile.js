@@ -139,10 +139,12 @@ module.exports = {
         // desc
         var numb = 0;
         if (!top10) {
-            canvas.setColor(KColors.LightGrey)
+            canvas.beginPath()
+                .setColor(KColors.LightGrey)
                 .setTextAlign('center')
                 .setTextFont('italic 30px PTSansCaption')
                 .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
+                .closePath();
         } else {
             top10.map((d, i) => {
                 canvas.setColor('white')
@@ -177,7 +179,7 @@ module.exports = {
  
         const credits = `KAORI BOT`;
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 15, 0, 125, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 25, 0, 150, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
 
         canvas.setColor(KColors.White)
             .setTextAlign('right')
