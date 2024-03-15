@@ -170,7 +170,7 @@ module.exports = {
                 canvas.setColor(KColors.White)
                     .setTextFont("30px Rubik")
                     .printText((i+1).toString(), 55, 340 + (i * 60))
-                canvas.setColor(KColors.Navy)
+                canvas.setColor(KColors.DarkerGrey)
                     .setTextFont('30px Rubik-Medium')
                     .printText(`${d.track_count}x`, 100, 340 + (i * 60));
                 if (canvas.measureText(d.track_title).width > 700) {
