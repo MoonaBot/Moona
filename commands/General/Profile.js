@@ -71,10 +71,10 @@ module.exports = {
         // draw user plan
         const userPlan = "BASIC";
         canvas.setColor(KColors.DarkGreen)
-            .printRoundedRectangle(200, 230, canvas.measureText(userPlan).width + 100, 50, radius(20))
+            .printRoundedRectangle(250, 180, canvas.measureText(userPlan).width + 150, 60, radius(5))
             .setColor(KColors.White)
             .setTextFont('40px Rubik-Medium')
-            .printText(userPlan, 250, 230);
+            .printText(userPlan, 270, 210);
 
         const username = target.globalName ? (target.globalName.length > 18 ? subText(target.globalName, 15) : target.globalName) : (target.username.length > 18 ? subText(target.username, 15) : target.username);
 
@@ -180,11 +180,11 @@ module.exports = {
                     }
                     canvas.setColor(KColors.White)
                         .setTextFont('30px Rubik')
-                        .printText(`${subText(d.track_title, cutLength)}`, (Number(d.track_count) > 9 ? 190 : 145), 340 + (i * 60));
+                        .printText(`${subText(d.track_title, cutLength)}`, (Number(d.track_count) > 9 ? 155 : 145), 340 + (i * 60));
                 } else {
                     canvas.setColor(KColors.White)
                         .setTextFont('30px Rubik')
-                        .printText(`${d.track_title}`, (Number(d.track_count) > 9 ? 190 : 145), 340 + (i * 60));
+                        .printText(`${d.track_title}`, (Number(d.track_count) > 9 ? 155 : 145), 340 + (i * 60));
                 }
             });
         };
