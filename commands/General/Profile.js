@@ -171,7 +171,7 @@ module.exports = {
             });
         };
  
-        const credits = `${client.user.user.name} Card`;
+        const credits = `${client.user.username} Card`;
         canvas.setColor(Colors_.Blue)
             .printRoundedRectangle(canvas.width - 225, 20, 50, 200, radius(10))
             .setTextAlign('left')
