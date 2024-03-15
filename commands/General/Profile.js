@@ -126,15 +126,16 @@ module.exports = {
 
         canvas.setColor('white')
         .setTextFont('30px Rubik-Bold')
-        .printText(`TOP SONGS`, 45, 290);
+        .printText(`TOP SONGS`, 40, 290);
 
         // desc
+        var numb = 0;
         top10.map((d, i) => {
             const topcolor = ["blue", "pink", "green", "yellow", "red"];
             // font exceeds canvas height
-            canvas.setColor(topcolor[i++])
+            canvas.setColor(topcolor[numb++])
                 .setGlobalAlpha(0.5)
-                .printRoundedRectangle(45, 340 + (i * 60), 40, 40, radius)
+                .printRoundedRectangle(40, 340 + (i * 60), 50, 50, radius)
                 .setGlobalAlpha(1);
             canvas.setColor("white")
                 .setTextFont("30px Rubik")
@@ -144,9 +145,9 @@ module.exports = {
                 if (d.track_title === d.track_title.toUpperCase()) {
                     cutLength = cutLength - 7;
                 }
-                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 95, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 90, 340 + (i * 60));
             } else {
-                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 95, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 90, 340 + (i * 60));
             }
         });
 
