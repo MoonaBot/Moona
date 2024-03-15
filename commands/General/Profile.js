@@ -45,7 +45,6 @@ module.exports = {
         const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
 
         const info = await Premium.findOne({ Id: target.id });
-        const timeLeft = CT.format(info.premium.expiresAt - Date.now());
         const profile = await Profile.findOne({ userId: target.id });
         const listenTime = CT.format(profile.listenTime);
 
@@ -108,7 +107,7 @@ module.exports = {
             if (info.premium.expiresAt < Date.now()) {
                 expire = "Never Expired";
             } else {
-                expire = timeLeft;
+                expire = info.premium.expiresAt;
             }
         }
 
@@ -176,15 +175,16 @@ module.exports = {
                 }
             });
         };
- 
-        const credits = `KAORI BOT`;
-        canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 25, 0, 150, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
 
+        const credits = `KAORI BOT`;
         canvas.setColor(KColors.White)
             .setTextAlign('right')
-            .setTextFont('20px Rubik-Bold')
-            .printText(credits, canvas.width - 35, 25);
+            .setTextFont('20px Rubik-Bold');
+
+        canvas.setColor(KColors.Blurple)
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 5, 0, 150, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
+
+        canvas.printText(credits, canvas.width - 40, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
