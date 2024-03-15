@@ -143,7 +143,6 @@ module.exports = {
                 .setTextAlign('center')
                 .setTextFont('italic 30px PTSansCaption')
                 .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
-                .setTextAlign('start')
         } else {
             top10.map((d, i) => {
                 canvas.setColor('white')
@@ -178,11 +177,12 @@ module.exports = {
  
         const credits = `KAORI BOT`;
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width + 10, 0, 25, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
-            .setColor(KColors.White)
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 15, 0, 115, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
+
+        canvas.setColor(KColors.White)
             .setTextAlign('right')
             .setTextFont('20px Rubik-Bold')
-            .printText(credits, canvas.width - 30, 25);
+            .printText(credits, canvas.width - 35, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
