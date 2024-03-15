@@ -174,14 +174,12 @@ module.exports = {
             });
         };
  
-        const credits = `${client.user.username} Card`;
-        canvas.setColor(KColors.Green)
-            .printRoundedRectangle(canvas.width - 240, 25, canvas.measureText(credits).width + 15, 70, radius(10));
-        canvas.setColor(KColors.Blue)
-            .printRoundedRectangle(canvas.width - 235, 35, canvas.measureText(credits).width - 5, 50, radius(10))
+        const credits = `Kaori Card`;
+        canvas.setColor(KColors.Blurple)
+            .printRoundedRectangle(canvas.width - 240, 0, canvas.measureText(credits).width + 10, 50, { tr: 0, tl: 0, br: 10, bl: 10 })
             .setColor(KColors.White)
-            .setTextFont('25px TiltWarp')
-            .printText(credits, canvas.width - 225, 70);
+            .setTextFont('30px TiltWarp')
+            .printText(credits, canvas.width - 230, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
