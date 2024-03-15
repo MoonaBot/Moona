@@ -6,9 +6,9 @@ const Profile = require("../../settings/models/Profile.js");
 const { Canvas, loadImage } = require("canvas-constructor/napi-rs");
 const { request } = require('undici');
 
-var Color = {};
+var Colors_ = {};
 for (const c of Object.entries(Colors)) {
-    Color[c[0]] = '#'+c[1].toString(16);
+    Colors_[c[0]] = '#'+c[1].toString(16);
 };
 
 module.exports = {
@@ -54,13 +54,13 @@ module.exports = {
         canvas.printRoundedImage(background, 0, 0, canvas.width, canvas.height, radius(10));
         
         // draw black blur rectangular background
-        canvas.setColor(Colors.NotQuiteBlack)
+        canvas.setColor(Colors_.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 250, 955, 350, radius(20))
         .setGlobalAlpha(1);
 
         // draw black blur avatar
-        canvas.setColor(Colors.NotQuiteBlack)
+        canvas.setColor(Colors_.NotQuiteBlack)
         .setGlobalAlpha(0.5)
         .printRoundedRectangle(20, 20, 215, 215, radius(20))
         .setGlobalAlpha(1);
@@ -73,14 +73,14 @@ module.exports = {
         .setGlobalAlpha(1);*/
 
         if (target?.globalName) {
-            canvas.setColor(Colors.White)
+            canvas.setColor(Colors_.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70+30);
-            canvas.setColor(Colors.Greyple)
+            canvas.setColor(Colors_.Greyple)
                 .setTextFont('35px Rubik')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
-            canvas.setColor(Colors.White)
+            canvas.setColor(Colors_.White)
                 .setTextFont('55px Rubik-Bold')
                 .printText(username, 250, 70 + 70);
         }
@@ -135,7 +135,7 @@ module.exports = {
         // desc
         var numb = 0;
         if (!top10) {
-            canvas.setColor(Colors.LightGrey)
+            canvas.setColor(Colors_.LightGrey)
                 .setTextAlign('center')
                 .setTextFont('italic 30px PTSansCaption')
                 .printText('History Not Found!', canvas.width / 2, canvas.height - 200)
@@ -146,15 +146,15 @@ module.exports = {
                     .printText(`TOP SONGS`, 40, 290);
 
                 const topcolor = [
-                    Colors.DarkGold,
-                    Colors.DarkerGrey,
-                    Colors.DarkOrange,
-                    Colors.DarkButNotBlack,
-                    Colors.DarkButNotBlack
+                    Colors_.DarkGold,
+                    Colors_.DarkerGrey,
+                    Colors_.DarkOrange,
+                    Colors_.DarkButNotBlack,
+                    Colors_.DarkButNotBlack
                 ];
                 canvas.setColor(topcolor[numb++])
                     .printRoundedRectangle(40, 300 + (i * 60),50, 50, radius(5))
-                canvas.setColor(Colors.White)
+                canvas.setColor(Colors_.White)
                     .setTextFont("30px Rubik")
                     .printText((i+1).toString(), 55, 340 + (i * 60))
                 if (canvas.measureText(d.track_title).width > 700) {
@@ -172,7 +172,7 @@ module.exports = {
         };
  
         const credits = `${client.user.user.name} Card`;
-        canvas.setColor(Colors.Blue)
+        canvas.setColor(Colors_.Blue)
             .printRoundedRectangle(canvas.width - 225, 20, 50, 200)
             .setTextAlign('left')
             .setTextFont('25px TiltWarp')
