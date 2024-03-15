@@ -176,14 +176,12 @@ module.exports = {
  
         const credits = `${client.user.username} Card`;
         canvas.setColor(KColors.Green)
-        .setGlobalAlpha(0.5)
-        .printRoundedRectangle(canvas.width - 225, 25, canvas.measureText('credits').width + 10, 20, 215, 215, radius(10))
-        .setGlobalAlpha(1);
+            .printRoundedRectangle(canvas.width - 245, 25, canvas.measureText(credits).width + 10, 60, radius(10));
         canvas.setColor(KColors.Blue)
-            .printRoundedRectangle(canvas.width - 235, 35, canvas.measureText(credits).width + 20, 50, radius(10))
+            .printRoundedRectangle(canvas.width - 235, 35, canvas.measureText(credits).width + 5, 50, radius(10))
             .setColor(KColors.White)
             .setTextFont('25px TiltWarp')
-            .printText(credits, canvas.width - 235, 70);
+            .printText(credits, canvas.width - 225, 70);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
