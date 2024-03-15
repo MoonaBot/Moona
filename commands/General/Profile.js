@@ -143,9 +143,9 @@ module.exports = {
                 if (d.track_title === d.track_title.toUpperCase()) {
                     cutLength = cutLength - 7;
                 }
-                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 95.5, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 100, 340 + (i * 60));
             } else {
-                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 95.5, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 100, 340 + (i * 60));
             }
         });
 
