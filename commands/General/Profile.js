@@ -176,9 +176,9 @@ module.exports = {
  
         const credits = `${client.user.username} Card`;
         canvas.setColor(KColors.Green)
-            .printRoundedRectangle(canvas.width - 245, 25, canvas.measureText(credits).width + 10, 60, radius(10));
+            .printRoundedRectangle(canvas.width - 240, 25, canvas.measureText(credits).width + 15, 70, radius(10));
         canvas.setColor(KColors.Blue)
-            .printRoundedRectangle(canvas.width - 235, 35, canvas.measureText(credits).width + 5, 50, radius(10))
+            .printRoundedRectangle(canvas.width - 235, 35, canvas.measureText(credits).width - 5, 50, radius(10))
             .setColor(KColors.White)
             .setTextFont('25px TiltWarp')
             .printText(credits, canvas.width - 225, 70);
