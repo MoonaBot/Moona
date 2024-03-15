@@ -177,14 +177,14 @@ module.exports = {
         };
 
         const credits = `KAORI BOT`;
-        canvas.setColor(KColors.White)
-            .setTextAlign('right')
+        canvas.setTextAlign('right')
             .setTextFont('20px Rubik-Bold');
 
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 5, 0, 150, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 25, 0, 150, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
 
-        canvas.printText(credits, canvas.width - 40, 25);
+        canvas.setColor(KColors.White)
+            .printText(credits, canvas.width - 40, 25);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
