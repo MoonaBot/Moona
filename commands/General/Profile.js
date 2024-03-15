@@ -134,20 +134,18 @@ module.exports = {
             const topcolor = ["blue", "pink", "green", "yellow", "red"];
             // font exceeds canvas height
             canvas.setColor(topcolor[numb++])
-                .setGlobalAlpha(0.5)
                 .printRoundedRectangle(40, 340 + (i * 60), 50, 50, radius)
-                .setGlobalAlpha(1);
             canvas.setColor("white")
                 .setTextFont("30px Rubik")
-                .printText((i+1).toString(), 50, 340 + (i * 60))
+                .printText((i+1).toString(), 55, 340 + (i * 60))
             if (canvas.measureText(d.track_title).width > 700) {
                 let cutLength = 52;
                 if (d.track_title === d.track_title.toUpperCase()) {
                     cutLength = cutLength - 7;
                 }
-                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 90, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 95.5, 340 + (i * 60));
             } else {
-                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 90, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 95.5, 340 + (i * 60));
             }
         });
 
