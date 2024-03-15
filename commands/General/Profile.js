@@ -177,7 +177,7 @@ module.exports = {
  
         const credits = `KAORI BOT`;
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 15, 0, 115, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - canvas.measureText(credits).width - 15, 0, 125, 40, { tr: 0, tl: 0, br: 10, bl: 10 })
 
         canvas.setColor(KColors.White)
             .setTextAlign('right')
