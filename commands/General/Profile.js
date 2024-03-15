@@ -176,10 +176,10 @@ module.exports = {
  
         const credits = `Kaori Card`;
         canvas.setColor(KColors.Blurple)
-            .printRoundedRectangle(canvas.width - 240, 0, canvas.measureText(credits).width + 10, 50, { tr: 0, tl: 0, br: 10, bl: 10 })
+            .printRoundedRectangle(canvas.width - 240, 0, canvas.measureText(credits).width + 25, 45, { tr: 0, tl: 0, br: 10, bl: 10 })
             .setColor(KColors.White)
-            .setTextFont('30px TiltWarp')
-            .printText(credits, canvas.width - 230, 25);
+            .setTextFont('25px TiltWarp')
+            .printText(credits, canvas.width - 230, 30);
 
         const attachment = new AttachmentBuilder(await canvas.png(), { name: 'profile.png' });
 
