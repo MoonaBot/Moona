@@ -71,9 +71,9 @@ module.exports = {
         // draw user plan
         const userPlan = "BASIC";
         canvas.setColor(KColors.DarkGreen)
-            .printRoundedRectangle(250, 170, canvas.measureText(userPlan).width + 150, 50, radius(5))
+            .printRoundedRectangle(250, 180, canvas.measureText(userPlan).width + 150, 40, radius(5))
             .setColor(KColors.White)
-            .setTextFont('35px Rubik-Medium')
+            .setTextFont('30px Rubik-Medium')
             .printText(userPlan, 265, 210);
 
         const username = target.globalName ? (target.globalName.length > 18 ? subText(target.globalName, 15) : target.globalName) : (target.username.length > 18 ? subText(target.username, 15) : target.username);
