@@ -126,22 +126,27 @@ module.exports = {
 
         canvas.setColor('white')
         .setTextFont('30px Rubik-Bold')
-        .printText(`TOP SONGS`, 50, 290);
-
-        canvas.setColor('white')
-        .setTextFont('30px Rubik')
+        .printText(`TOP SONGS`, 45, 290);
 
         // desc
         top10.map((d, i) => {
+            const topcolor = ["blue", "pink", "green", "yellow", "red"];
             // font exceeds canvas height
+            canvas.setColor(topcolor[i++])
+                .setGlobalAlpha(0.5)
+                .printRoundedRectangle(45, 340 + (i * 60), 40, 40, radius)
+                .setGlobalAlpha(1);
+            canvas.setColor("white")
+                .setTextFont("30px Rubik")
+                .printText((i+1).toString(), 50, 340 + (i * 60))
             if (canvas.measureText(d.track_title).width > 700) {
                 let cutLength = 52;
                 if (d.track_title === d.track_title.toUpperCase()) {
                     cutLength = cutLength - 7;
                 }
-                canvas.printText(`#${i + 1} | (${d.track_count}x) ${subText(d.track_title, cutLength)}`, 50, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${subText(d.track_title, cutLength)}`, 95, 340 + (i * 60));
             } else {
-                canvas.printText(`#${i + 1} | (${d.track_count}x) ${d.track_title}`, 50, 340 + (i * 60));
+                canvas.printText(`(${d.track_count}x) ${d.track_title}`, 95, 340 + (i * 60));
             }
         });
 
