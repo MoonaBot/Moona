@@ -53,7 +53,7 @@ module.exports = {
             .setColor(client.color)
             .setAuthor({ name: songs.artist.name })
             .setTitle(songs.name)
-            .setThumbnail(songs.thumbnails[1].url)//(`${client.i18n.get(language, "music", "lyrics_title", { song: value })}`)
+            .setThumbnail(songs.thumbnails[0].url)//(`${client.i18n.get(language, "music", "lyrics_title", { song: value })}`)
             .setDescription(lyrics)
             .setFooter({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) })
             //.setTimestamp();

@@ -2,8 +2,6 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('
 const formatDuration = require('../../utils/FormatDuration.js');
 const Setup = require("../../settings/models/Setup.js");
 
-const { ClassicPro } = require("musicard");
-
 module.exports = {
     name: ["nowplaying"], // I move search to main issues subcmd (max 25)
     description: "Display the song currently playing",
@@ -30,26 +28,11 @@ module.exports = {
         const msg = await interaction.editReply(`${client.i18n.get(language, "music", "np_loading")}`);
 
         const song = player.queue.current;
-        const songs = await client.ytm.getSong(song.identifier);
+        const songs = await client.ytm.getVideo(song.identifier);
         const CurrentDuration = formatDuration(player.position);
         const TotalDuration = formatDuration(song.duration);
         const Part = Math.floor(player.position / song.duration * 100);
         const Emoji = player.playing ? "🔴 |" : "⏸ |";
-
-        const musicard = await ClassicPro({
-        thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#23272a",
-        progress: Part,
-        progressColor: "#FFFFFF",
-        progressBarColor: "#000001",
-        name: songs.name,
-        nameColor: "#FFFFFF",
-        author: songs.artist.name,
-        authorColor: "#FFFFFF",
-        startTime: CurrentDuration,
-        endTime: TotalDuration,
-        timeColor: "#FFFFFF"
-    }); 
         
         const embeded = new EmbedBuilder()
             //.setAuthor({ name: player.playing ? `${client.i18n.get(language, "music", "np_title")}` : `${client.i18n.get(language, "music", "np_title_pause")}`, iconURL: `${client.i18n.get(language, "music", "np_icon")}` })
@@ -58,15 +41,14 @@ module.exports = {
             /*.addFields({ name: `${client.i18n.get(language, "music", "np_author")}`, value: `${song.author}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_request")}`, value: `${song.requester}`, inline: true })
             .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/
-            .setImage("attachment://nowplaying-card.png")
-            .setTimestamp();
+            .setTimestamp(song.startTimestamp);
 
             if (song.thumbnail) {
-                /*const songInfo = (await client.ytm.getSongs(song.identifier));
+                /*const songInfo = (await client.ytm.getVideos(song.identifier));
                 const views = songInfo.views;
                 const uploadat = songInfo.uploadedAt;*/
                 
-                //embeded.setThumbnail(songs.thumbnails[1].url);
+                //embeded.setThumbnail(songs.thumbnails[0].url);
                 /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `${uploadat}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `**[Click Here](https://www.y2mate.com/youtube/${song.identifier})**`, inline: true })
@@ -124,7 +106,7 @@ module.exports = {
                 .setStyle(ButtonStyle[button.skip.style])
             );
 
-        const nwp = await msg.edit({ content: " ", embeds: [embeded], components: [row], files: [{ attachment: musicard, name: "nowplaying-card.png" }] });
+        const nwp = await msg.edit({ content: " ", embeds: [embeded], components: [row] });
         client.updateMessage(player, nwp, "nowPlaying");
 
         if (realtime === 'true') {

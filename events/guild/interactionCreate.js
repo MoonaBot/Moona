@@ -44,7 +44,7 @@ module.exports = async(client, interaction) => {
           if(interaction.commandName == "play") {
             checkRegex()
 							let choice = []
-							await client.ytm.searchSongs(url || Random).then(result => {
+							await client.ytm.searchVideos(url || Random).then(result => {
 								result.forEach(x => { choice.push({ name: `${x.name} by ${x.artist.name}`, value: `https://www.youtube.com/watch?v=${x.videoId}` }) })
 							});
 							return await interaction.respond(choice).catch(() => { });

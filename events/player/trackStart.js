@@ -3,8 +3,6 @@ const formatDuration = require('../../utils/FormatDuration.js');
 const GLang = require("../../settings/models/Language.js");
 const Setup = require("../../settings/models/Setup.js");
 
-const { Classic } = require("musicard");
-    
 module.exports = async (client, player, track, payload) => {
     if(!player) return;
 
@@ -18,6 +16,7 @@ module.exports = async (client, player, track, payload) => {
 
     const channel = client.channels.cache.get(player.textChannel);
     if (!channel) return;
+    track.startTimestamp = Date.now();
 
     const db = await Setup.findOne({ guild: channel.guild.id });
     if (db.enable) return;
@@ -25,28 +24,9 @@ module.exports = async (client, player, track, payload) => {
 	const { language } = guildModel;
 	const songs = await client.ytm.getSong(track.identifier);
   
-    const progressBar = {
-        current: formatDuration(player.position),
-        target: formatDuration(track.duration),
-        percent: Math.floor(player.position / track.duration * 100),
-    };
-    const musicard = await Classic({
-        thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: "#23272a",
-        progress: progressBar.percent,
-        progressColor: "#FFFFFF",
-        progressBarColor: "#000001",
-        name: songs.name,
-        nameColor: "#FFFFFF",
-        author: songs.artist.name,
-        authorColor: "#FFFFFF",
-        startTime: progressBar.current,
-        endTime: progressBar.target,
-        timeColor: "#FFFFFF"
-    });
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(songs.name,70)}](${track.uri}) [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(song.title,70)}](${track.uri}) [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -57,11 +37,10 @@ module.exports = async (client, player, track, payload) => {
       .addFields({ name: `${client.i18n.get(language, "player", "current_duration_title", {
         current_duration: formatDuration(track.duration, true),
       })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })*/
-      .setImage("attachment://music-card.png")
       .setTimestamp();
 
       if (track.thumbnail) {
-        //embeded.setThumbnail(songs.thumbnails[1].url);
+        //embeded.setThumbnail(song.thumbnail);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
@@ -149,18 +128,8 @@ module.exports = async (client, player, track, payload) => {
             .setStyle(ButtonStyle[button.volup.style])
         );*/
    
-    /*const musicard = await Dynamic({
-        thumbnailImage: songs.thumbnails[1].url,
-        backgroundColor: client.color,
-        progress: 0,
-        progressColor: "#FFFFFF",
-        progressBarColor: "#57F287",
-        name: songs.name,
-        nameColor: "#FF0000",
-        author: songs.artist.name,
-        authorColor: "#FFFFFF"
-    });*/
-    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2], files: [{ attachment: musicard, name: "music-card.png" }]});
+
+    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2] });
     await client.updateMessage(player, startPlay, "startPlay");
 
     const filter = (message) => {
@@ -362,7 +331,7 @@ module.exports = async (client, player, track, payload) => {
             .setColor(client.color)
             .setAuthor({ name: songs.artist.name })
             .setTitle(songs.name)
-            .setThumbnail(songs.thumbnails[1].url)
+            .setThumbnail(songs.thumbnails[0].url)
             .setDescription(lyrics.length > 4096 ? lyrics.substring(0, 4096-3)+"...": lyrics)
             .setFooter ({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) });
             message.followUp({ embeds: [embed] });
