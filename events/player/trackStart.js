@@ -26,7 +26,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(song.title,70)}](${track.uri}) [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.uri}) [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -40,7 +40,7 @@ module.exports = async (client, player, track, payload) => {
       .setTimestamp();
 
       if (track.thumbnail) {
-        //embeded.setThumbnail(song.thumbnail);
+        //embeded.setThumbnail(track.thumbnail);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
