@@ -38,14 +38,13 @@ module.exports = {
         if(playlist.private && playlist.owner !== interaction.user.id) return interaction.editReply(`${client.i18n.get(language, "playlist", "import_private")}`);
 
         if(!player) {
-            player = await client.moon.create({
-                guild: interaction.guild.id,
+            player = await client.moon.players.create({
+                guildId: interaction.guild.id,
                 voiceChannel: interaction.member.voice.channel.id,
                 textChannel: interaction.channel.id,
-                selfDeafen: true,
             });
 
-            if (player.state != "CONNECTED") await player.connect();
+            if (!player.connected) await player.connect({ setDeaf: true });
         }
 
         const tracks = [];
@@ -64,20 +63,20 @@ module.exports = {
         interaction.editReply({ embeds: [embed] });
 
         for (let i = 0; i < playlist.tracks.length; i++) {
-            const res = await client.moon.search(playlist.tracks[i].uri, interaction.user);
-            if(res.loadType != "NO_MATCHES") {
-                if(res.loadType == "TRACK_LOADED") {
+            const res = await client.moon.search({ query: playlist.tracks[i].uri, requester: interaction.user });
+            if(res.loadType != "empty") {
+                if(res.loadType == "track") {
                     tracks.push(res.tracks[0]);
                     tracks_length++;
-                } else if(res.loadType == "PLAYLIST_LOADED") {
+                } else if(res.loadType == "playlist") {
                     for (let t = 0; t < res.playlist.tracks.length; t++) {
                         tracks.push(res.playlist.tracks[t]);
                         tracks_length++;
                     }
-                } else if(res.loadType == "SEARCH_RESULT") {
+                } else if(res.loadType == "search") {
                     tracks.push(res.tracks[0]);
                     tracks_length++;
-                } else if(res.loadType == "LOAD_FAILED") {
+                } else if(res.loadType == "loadfailed") {
                     interaction.channel.send(`${client.i18n.get(language, "playlist", "import_fail")}`); 
                     player.destroy(); 
                     return;

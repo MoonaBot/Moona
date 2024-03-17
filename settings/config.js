@@ -20,11 +20,11 @@ module.exports = {
     LimitTrack: parseInt(process.env.LimitTrack || "20"),  //<= dafault is "50" // limit track in playlist
     LimitPlaylist: parseInt(process.env.LimitPlaylist || "10"), //<= default is "10" // limit can create playlist per user
 
-    DefaultSearch: "ytsearch", // default search engine & "ytmsearch" / "ytsearch" / "scsearch" / "spsearch"
+    DefaultSource: "youtube", // default search engine & "ytmsearch" / "ytsearch" / "scsearch" / "spsearch"
     LavalinkNodes: [
       { 
         identifier: "Moona",
-        host: process.env.NODE_HOST || "lavalink3.alfari.id",
+        host: process.env.NODE_HOST || "lavalink4.alfari.id",
         port: parseInt(process.env.NODE_PORT || "443"),
         password: process.env.NODE_PASSWORD || "catfein",
         secure: true

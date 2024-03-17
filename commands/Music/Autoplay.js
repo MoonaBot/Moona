@@ -31,7 +31,7 @@ module.exports = {
         } else {
             const identifier = player.queue.current.identifier;
             const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
-            const res = await player.search(search, interaction.user);
+            const res = await player.search({ query: search, requester: interaction.user });
 
             await player.set("autoplay", true);
             await player.set("requester", interaction.user);

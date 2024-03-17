@@ -21,11 +21,10 @@ module.exports = {
         
         const { channel } = interaction.member.voice;
 
-        const player = client.moon.create({
-            guild: interaction.guild.id,
+        const player = client.moon.players.create({
+            guildId: interaction.guild.id,
             voiceChannel: interaction.member.voice.channel.id,
             textChannel: interaction.channel.id,
-            selfDeafen: true,
         });
 
         await player.connect();

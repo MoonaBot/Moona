@@ -191,27 +191,27 @@ client.on("messageCreate", async (message) => {
         const { channel } = await message.member.voice;
         if (!channel) return message.channel.send(`${client.i18n.get(language, "noplayer", "no_voice")}`);
 
-        const player = await client.moon.create({
-            guild: message.guild.id,
+        const player = await client.moon.players.create({
+            guildId: message.guild.id,
             voiceChannel: message.member.voice.channel.id,
             textChannel: message.channel.id,
             selfDeafen: true,
         });
 
-        if (player.state != "CONNECTED") await player.connect();
-        const res = await client.moon.search(song, message.author);
+        if (!player.connected) await player.connect({ setDeaf: true });
+        const res = await client.moon.search({ query: song, requester: message.author });
 
-        if(res.loadType != "NO_MATCHES") {
-            if(res.loadType == "TRACK_LOADED") {
+        if(res.loadType != "empty") {
+            if(res.loadType == "track") {
                 player.queue.add(res.tracks[0]);
                 if(!player.playing) player.play();
-            } else if(res.loadType == "PLAYLIST_LOADED") {
+            } else if(res.loadType == "playlist") {
                 player.queue.add(res.tracks)
                 if(!player.playing) player.play();
-            } else if(res.loadType == "SEARCH_RESULT") {
+            } else if(res.loadType == "search") {
                 player.queue.add(res.tracks[0]);
                 if(!player.playing) player.play();
-            } else if(res.loadType == "LOAD_FAILED") {
+            } else if(res.loadType == "loadfailed") {
                 message.channel.send(`${client.i18n.get(language, "music", "play_fail")}`).then((msg) => { 
                     setTimeout(() => {
                         msg.delete()

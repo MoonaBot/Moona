@@ -45,10 +45,10 @@ module.exports = {
         const playlist = await Playlist.findOne({ name: PName });
         if(!playlist) return interaction.editReply(`${client.i18n.get(language, "playlist", "import_notfound")}`);
 
-        const res = await client.moon.search(song, interaction.user);
+        const res = await client.moon.search({ queey: song, requester: interaction.user });
 
-        if(res.loadType != "NO_MATCHES") {
-            if(res.loadType == "TRACK_LOADED") {
+        if(res.loadType != "empty") {
+            if(res.loadType == "track") {
                 tracks.push(res.tracks[0]);
 
                 const embed = new EmbedBuilder()
@@ -61,7 +61,7 @@ module.exports = {
                     .setColor(client.color)
 
                 interaction.editReply({ embeds: [embed] });
-            } else if(res.loadType == "PLAYLIST_LOADED") {
+            } else if(res.loadType == "playlist") {
                 for (let i = 0; i < res.tracks.length; i++) {
                     tracks.push(res.tracks[i]);
                 }
@@ -77,7 +77,7 @@ module.exports = {
                     .setColor(client.color)
 
                 interaction.editReply({ embeds: [embed] });
-            } else if(res.loadType == "SEARCH_RESULT") {
+            } else if(res.loadType == "search") {
                 tracks.push(res.tracks[0]);
 
                 const embed = new EmbedBuilder()
@@ -90,7 +90,7 @@ module.exports = {
                     .setColor(client.color)
 
                 interaction.editReply({ embeds: [embed] });
-            } else if (res.loadType == "LOAD_FAILED") { //Error loading playlist.
+            } else if (res.loadType == "loadfailed") { //Error loading playlist.
                 return interaction.editReply(`${client.i18n.get(language, "playlist", "add_fail")}`);
             }
         } else { //The playlist link is invalid.

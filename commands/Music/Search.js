@@ -31,11 +31,10 @@ module.exports = {
         const search = interaction.options.get("song").value;
         const msg = await interaction.editReply(`Searching for \`${search}\`...`);
         
-        const player = client.moon.create({
-            guild: interaction.guild.id,
+        const player = client.moon.players.create({
+            guildId: interaction.guild.id,
             voiceChannel: interaction.member.voice.channel.id,
             textChannel: interaction.channel.id,
-            selfDeafen: true,
         });
 
         const button = client.button.search;
@@ -77,11 +76,11 @@ module.exports = {
                 .setStyle(ButtonStyle[button.five.style])
             )
 
-        if (player.state != "CONNECTED") await player.connect();
-        const res = await client.moon.search(search, interaction.user);
+        if (!player.connected) await player.connect({ setDeaf: true });
+        const res = await client.moon.search({ query: search, requester: interaction.user });
 
-        if(res.loadType != "NO_MATCHES") {
-            if(res.loadType == "TRACK_LOADED") {
+        if(res.loadType != "empty") {
+            if(res.loadType == "track") {
                 await player.queue.add(res.tracks[0]);
 
                 const embed = new EmbedBuilder() //`**Queued • [${res.tracks[0].title}](${res.tracks[0].uri})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
@@ -95,7 +94,7 @@ module.exports = {
 
                 msg.edit({ content: " ", embeds: [embed] });
                 if (!player.playing) player.play();
-                } else if(res.loadType == "SEARCH_RESULT") {
+                } else if(res.loadType == "search") {
                     let index = 1;
                     const results = res.tracks
                         .slice(0, 5) //**(${index++}.) [${video.title}](${video.uri})** \`${convertTime(video.duration)}\` Author: \`${video.author}\`
@@ -123,7 +122,7 @@ module.exports = {
                         if(id === "one") {
                             await player.queue.add(res.tracks[0]);
 
-                            if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
+                            if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
                             const embed = new EmbedBuilder() //**Queued • [${res.tracks[0].title}](${res.tracks[0].uri})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
@@ -138,7 +137,7 @@ module.exports = {
                         } else if(id === "two") {
                             await player.queue.add(res.tracks[1]);
 
-                            if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
+                            if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
                             const embed = new EmbedBuilder() //**Queued • [${res.tracks[1].title}](${res.tracks[1].uri})** \`${convertTime(res.tracks[1].duration, true)}\` • ${res.tracks[1].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
@@ -153,7 +152,7 @@ module.exports = {
                         } else if(id === "three") {
                             await player.queue.add(res.tracks[2]);
 
-                            if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
+                            if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
                             const embed = new EmbedBuilder() //**Queued • [${res.tracks[2].title}](${res.tracks[2].uri})** \`${convertTime(res.tracks[2].duration, true)}\` • ${res.tracks[2].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
@@ -168,7 +167,7 @@ module.exports = {
                         } else if(id === "four") {
                             await player.queue.add(res.tracks[3]);
 
-                            if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
+                            if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
                             const embed = new EmbedBuilder() //**Queued • [${res.tracks[3].title}](${res.tracks[3].uri})** \`${convertTime(res.tracks[3].duration, true)}\` • ${res.tracks[3].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
@@ -183,7 +182,7 @@ module.exports = {
                         } else if(id === "five") {
                             await player.queue.add(res.tracks[4]);
 
-                            if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
+                            if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
                             const embed = new EmbedBuilder() //**Queued • [${res.tracks[4].title}](${res.tracks[4].uri})** \`${convertTime(res.tracks[4].duration, true)}\` • ${res.tracks[4].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
@@ -205,7 +204,7 @@ module.exports = {
                         }
                     });
 
-                } else if(res.loadType == "PLAYLIST_LOADED") {
+                } else if(res.loadType == "playlist") {
                     await player.queue.add(res.tracks);
 
                     const playlist = new EmbedBuilder() //**Queued** • [${res.playlist.name}](${search}) \`${convertTime(res.playlist.duration)}\` (${res.tracks.length} tracks) • ${res.tracks[0].requester}
@@ -220,7 +219,7 @@ module.exports = {
 
                     msg.edit({ content: " ", embeds: [playlist] });
                     if(!player.playing) player.play()
-                } else if(res.loadType == "LOAD_FAILED") {
+                } else if(res.loadType == "loadfailed") {
                     msg.edit(`${client.i18n.get(language, "music", "search_fail")}`);
                     player.destroy();
                 }

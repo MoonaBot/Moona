@@ -30,7 +30,7 @@ module.exports = {
 
         client.moon.nodes.forEach((node) => {
             try {
-                embed.addFields({ name: "Name", value: `${node.options.identifier}` })
+                embed.addFields({ name: "Name", value: `${node.host}` })
                 embed.addFields({ name: "Connected", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })
                 embed.addFields({ name: "Player", value: `${node.stats.players}` })
                 embed.addFields({ name: "Used Players", value: `${node.stats.playingPlayers}` })

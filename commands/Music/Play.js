@@ -33,18 +33,17 @@ module.exports = {
 
                 const value = interaction.options.get("song").value;
 
-                const player = client.moon.create({
-                    guild: interaction.guild.id,
+                const player = client.moon.players.create({
+                    guildId: interaction.guild.id,
                     voiceChannel: interaction.member.voice.channel.id,
                     textChannel: interaction.channel.id,
-                    selfDeafen: true,
                 });
                 
-                if (player.state != "CONNECTED") await player.connect();
-                const res = await client.moon.search(value, interaction.user);
+                if (!player.connected) await player.connect({ setDeaf: true });
+                const res = await client.moon.search({ query: value, requester: interaction.user });
 
-                if(res.loadType != "NO_MATCHES") {
-                    if(res.loadType == "TRACK_LOADED") {
+                if(res.loadType != "empty") {
+                    if(res.loadType == "track") {
                         await player.queue.add(res.tracks[0]);
 
                         const embed = new EmbedBuilder()
@@ -58,7 +57,7 @@ module.exports = {
 
                         interaction.editReply({ content: " ", embeds: [embed] });
                         if(!player.playing) player.play();
-                    } else if(res.loadType == "PLAYLIST_LOADED") {
+                    } else if(res.loadType == "playlist") {
                         await player.queue.add(res.tracks)
 
                         const embed = new EmbedBuilder()
@@ -73,7 +72,7 @@ module.exports = {
 
                         interaction.editReply({ content: " ", embeds: [embed] });
                         if(!player.playing) player.play();
-                    } else if(res.loadType == "SEARCH_RESULT") {
+                    } else if(res.loadType == "search") {
                         await player.queue.add(res.tracks[0]);
 
                         const embed = new EmbedBuilder()
@@ -87,7 +86,7 @@ module.exports = {
 
                         interaction.editReply({ content: " ", embeds: [embed] });
                         if(!player.playing) player.play();
-                    } else if(res.loadType == "LOAD_FAILED") {
+                    } else if(res.loadType == "loadfailed") {
                         interaction.editReply(`${client.i18n.get(language, "music", "play_fail")}`); 
                         player.destroy();
                     }

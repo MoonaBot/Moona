@@ -1,3 +1,3 @@
 module.exports = async (client, node, error) => {
-	console.info('[WARN]', `Lavalink Node ${node.options.identifier} Error!`, error.message);
+	console.info('[WARN]', `Lavalink Node ${node.host} Error!`, error.message);
 }
