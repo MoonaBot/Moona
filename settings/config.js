@@ -22,12 +22,40 @@ module.exports = {
 
     DefaultSource: "youtube", // default search engine & "ytmsearch" / "ytsearch" / "scsearch" / "spsearch"
     LavalinkNodes: [
-      { 
-        identifier: "Moona",
-        host: process.env.NODE_HOST || "pnode1.danbot.host",
-        port: parseInt(process.env.NODE_PORT || "2872"),
-        password: process.env.NODE_PASSWORD || "youshallnotpass",
+       { 
+        identifier: "Moona 1",
+        host: "pnode1.danbot.host",
+        port: 2872,
+        password: "youshallnotpass",
         secure: false
-      } 
+       },
+      { 
+        identifier: "Moona 2",
+        host: "lavalink4.alfari.id",
+        port: 443,
+        password: "catfein",
+        secure: true
+      },
+      { 
+        identifier: "Moona 3",
+        host: "lavalink4-dbh.alfari.id",
+        port: 443,
+        password: "catfein",
+        secure: true
+      },
+      { 
+        identifier: "Moona 3",
+        host: "lavalink4-frankfurt.alfari.id",
+        port: 443,
+        password: "catfein",
+        secure: true
+      },
+      { 
+        identifier: "Moona 4",
+        host: "lava-v3.ajieblogs.eu.org",
+        port: 443,
+        password: "https://dsc.gg/ajidevserver",
+        secure: true
+      },
     ],
 }
