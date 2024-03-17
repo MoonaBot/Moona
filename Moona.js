@@ -35,8 +35,6 @@ class MainClient extends Client {
     this.moon = new MoonlinkManager(
         this.config.LavalinkNodes,
 		{
-		    clientId: client.user.id,
-		    clientName: client.user.username,
 		    plugins: [
 		        new Lyrics()
 		    ],
