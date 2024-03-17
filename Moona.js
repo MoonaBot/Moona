@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const { MoonlinkManager } = require("moonlink.js");
+const { Lyrics } = require("moonlink.js-lyrics");
 const { I18n } = require("@hammerhq/localization");
 
 process.on('unhandledRejection', error => console.info(error));
@@ -34,7 +35,11 @@ class MainClient extends Client {
     this.moon = new MoonlinkManager(
         this.config.LavalinkNodes,
 		{
-		    // options
+		    clientId: client.user.id,
+		    clientName: client.user.username,
+		    plugins: [
+		        new Lyrics()
+		    ],
 		},
 		(guildId, payload) => {
 			const guild = client.guilds.cache.get(guildId);

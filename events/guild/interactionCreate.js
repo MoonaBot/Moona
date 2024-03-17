@@ -134,7 +134,7 @@ module.exports = async(client, interaction) => {
         perms: "EmbedLinks"
       })}`, ephemeral: true }); 
       //check player in guild
-      let player = client.moon.get(interaction.guild.id);
+      let player = client.moon.manager.get(interaction.guild.id);
       if (command.settings.isPlayer && !player) {
         return interaction.reply({ content: `${client.i18n.get(language, "noplayer", "no_player")}`, ephemeral: true });
       }
