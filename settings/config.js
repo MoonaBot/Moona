@@ -24,10 +24,10 @@ module.exports = {
     LavalinkNodes: [
       { 
         identifier: "Moona",
-        host: process.env.NODE_HOST || "lavalink4.alfari.id",
-        port: parseInt(process.env.NODE_PORT || "443"),
-        password: process.env.NODE_PASSWORD || "catfein",
-        secure: true
+        host: process.env.NODE_HOST || "pnode1.danbot.host",
+        port: parseInt(process.env.NODE_PORT || "2872"),
+        password: process.env.NODE_PASSWORD || "youshallnotpass",
+        secure: false
       } 
     ],
 }
