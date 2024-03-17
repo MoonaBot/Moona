@@ -24,14 +24,14 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(client.color)
-            .setAuthor({ name: `LavaLink`, iconURL: interaction.guild.iconURL({ forceStatic: true })})
+            .setTitle('Lavalink Stats')
             .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
             .setTimestamp()
 
         client.moon.nodes.map.forEach((node) => {
             try {
                 embed.addFields({ name: "Name", value: `${node.identifier}` })
-                embed.addFields({ name: "Status", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })
+                embed.addFields({ name: "Status", value: `${node.state === "READY" ? "Connected [🟢]" : "Disconnected [🔴]"}` })
                 embed.addFields({ name: "Player", value: `${node.stats.players}` })
                 embed.addFields({ name: "Used Players", value: `${node.stats.playingPlayers}` })
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>` })
