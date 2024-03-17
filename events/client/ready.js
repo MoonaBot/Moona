@@ -3,7 +3,7 @@ const { ActivityType, ChannelType } = require("discord.js");
 const Premium = require('../../settings/models/Premium.js');
 
 module.exports = async (client) => {
-    await client.manager.init(client.user.id);
+    await client.moon.init(client.user.id);
 
     console.log('[INFO]', `${client.user.tag} (${client.user.id}) is Ready!`);
 

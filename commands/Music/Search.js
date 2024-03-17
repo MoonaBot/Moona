@@ -31,7 +31,7 @@ module.exports = {
         const search = interaction.options.get("song").value;
         const msg = await interaction.editReply(`Searching for \`${search}\`...`);
         
-        const player = client.manager.create({
+        const player = client.moon.create({
             guild: interaction.guild.id,
             voiceChannel: interaction.member.voice.channel.id,
             textChannel: interaction.channel.id,
@@ -78,7 +78,7 @@ module.exports = {
             )
 
         if (player.state != "CONNECTED") await player.connect();
-        const res = await client.manager.search(search, interaction.user);
+        const res = await client.moon.search(search, interaction.user);
 
         if(res.loadType != "NO_MATCHES") {
             if(res.loadType == "TRACK_LOADED") {

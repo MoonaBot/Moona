@@ -1,3 +1,3 @@
 module.exports = (client, data) => {
-    client.manager.updateVoiceState(data);
+    client.moon.updateVoiceState(data);
 };

@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
-const { Manager } = require("erela.js");
+const { MoonlinkManager } = require("erela.js");
 const { I18n } = require("@hammerhq/localization");
 
 process.on('unhandledRejection', error => console.info(error));
@@ -31,17 +31,16 @@ class MainClient extends Client {
 
     const client = this;
 
-    this.manager = new Manager({
-		nodes: this.config.LavalinkNodes,
-		autoPlay: true,
-		forceSearchLinkQueries: true,
-		defaultSearchPlatform: client.config.DefaultSearch,
-		allowedLinksRegexes: Object.values(Manager.regex),
-		send(id, payload) {
-			const guild = client.guilds.cache.get(id);
-			if (guild) guild.shard.send(payload);
+    this.moon = new MoonlinkManager(
+        this.config.LavalinkNodes,
+		{
+		    // options
 		},
-    });
+		(guildId, payload) => {
+			const guild = client.guilds.cache.get(guildId);
+			if (guild) guild.shard.send(JSON.parse(payload));
+		},
+    );
 
     ["commands", "premiums"].forEach(x => client[x] = new Collection());
     require("node:fs")

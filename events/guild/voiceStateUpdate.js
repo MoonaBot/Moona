@@ -2,7 +2,7 @@ const { PermissionsBitField } = require("discord.js");
 const Profile = require("../../settings/models/Profile.js");
 
 module.exports = async (client, oldState, newState) => {
-	const player = client.manager?.players.get(newState.guild.id);
+	const player = client.moon?.players.get(newState.guild.id);
 	if (!player) return;
 
 	if (!newState.guild.members.cache.get(client.user.id).voice.channelId) { 
@@ -19,7 +19,7 @@ module.exports = async (client, oldState, newState) => {
 
 	// add every 1 minute
 	setInterval(async () => {
-		const player = client.manager?.players.get(newState.guild.id);
+		const player = client.moon?.players.get(newState.guild.id);
 		if (!player) return;
 		if (player.playing === false) return;
 

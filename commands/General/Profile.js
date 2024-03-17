@@ -44,9 +44,11 @@ module.exports = {
 
         const { body } = await request(target.displayAvatarURL({ extension: 'png', size: 1024, forceStatic: true }));
 
-        const info = await Premium.findOne({ Id: target.id });
-        const profile = await Profile.findOne({ userId: target.id });
-        const listenTime = CT.format(profile.listenTime);
+        var info = await Premium.findOne({ Id: target.id });
+        var profile = await Profile.findOne({ userId: target.id });
+        if (!info) info = {};
+        if (!profile) profile = {};
+        //const listenTime = CT.format(profile.listenTime);
 
         const background = await loadImage("./assets/images/chart.png")
             ;

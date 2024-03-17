@@ -45,7 +45,7 @@ module.exports = {
         const playlist = await Playlist.findOne({ name: PName });
         if(!playlist) return interaction.editReply(`${client.i18n.get(language, "playlist", "import_notfound")}`);
 
-        const res = await client.manager.search(song, interaction.user);
+        const res = await client.moon.search(song, interaction.user);
 
         if(res.loadType != "NO_MATCHES") {
             if(res.loadType == "TRACK_LOADED") {

@@ -23,7 +23,7 @@ module.exports = {
         const value = (interaction.channel.messages.cache.get(interaction.targetId).content ?? interaction.channel.messages.cache.get(interaction.targetId));
         if (!value.startsWith('https')) return interaction.editReply(`${client.i18n.get(language, "music", "play_startwith")}`);
         
-        const player = await client.manager.create({
+        const player = await client.moon.create({
             guild: interaction.guild.id,
             voiceChannel: interaction.member.voice.channel.id,
             textChannel: interaction.channel.id,
@@ -31,7 +31,7 @@ module.exports = {
         });
         
         if (player.state != "CONNECTED") await player.connect();
-        const res = await client.manager.search(value, interaction.user);
+        const res = await client.moon.search(value, interaction.user);
 
         if(res.loadType != "NO_MATCHES") {
             if(res.loadType == "TRACK_LOADED") {

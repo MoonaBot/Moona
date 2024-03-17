@@ -21,7 +21,7 @@ module.exports = {
         
         const { channel } = interaction.member.voice;
 
-        const player = client.manager.create({
+        const player = client.moon.create({
             guild: interaction.guild.id,
             voiceChannel: interaction.member.voice.channel.id,
             textChannel: interaction.channel.id,

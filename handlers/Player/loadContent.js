@@ -10,7 +10,7 @@ try {
             let voiceMember = interaction.guild.members.cache.get(member.id);
             let channel = voiceMember.voice.channel;
 
-            const player = await client.manager.get(interaction.guild.id);
+            const player = await client.moon.get(interaction.guild.id);
             if (!player) return;
 
             const playChannel = client.channels.cache.get(player.textChannel);
@@ -191,7 +191,7 @@ client.on("messageCreate", async (message) => {
         const { channel } = await message.member.voice;
         if (!channel) return message.channel.send(`${client.i18n.get(language, "noplayer", "no_voice")}`);
 
-        const player = await client.manager.create({
+        const player = await client.moon.create({
             guild: message.guild.id,
             voiceChannel: message.member.voice.channel.id,
             textChannel: message.channel.id,
@@ -199,7 +199,7 @@ client.on("messageCreate", async (message) => {
         });
 
         if (player.state != "CONNECTED") await player.connect();
-        const res = await client.manager.search(song, message.author);
+        const res = await client.moon.search(song, message.author);
 
         if(res.loadType != "NO_MATCHES") {
             if(res.loadType == "TRACK_LOADED") {

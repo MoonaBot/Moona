@@ -28,7 +28,7 @@ module.exports = {
             .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
             .setTimestamp()
 
-        client.manager.nodes.forEach((node) => {
+        client.moon.nodes.forEach((node) => {
             try {
                 embed.addFields({ name: "Name", value: `${node.options.identifier}` })
                 embed.addFields({ name: "Connected", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })

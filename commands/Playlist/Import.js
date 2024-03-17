@@ -38,7 +38,7 @@ module.exports = {
         if(playlist.private && playlist.owner !== interaction.user.id) return interaction.editReply(`${client.i18n.get(language, "playlist", "import_private")}`);
 
         if(!player) {
-            player = await client.manager.create({
+            player = await client.moon.create({
                 guild: interaction.guild.id,
                 voiceChannel: interaction.member.voice.channel.id,
                 textChannel: interaction.channel.id,
@@ -64,7 +64,7 @@ module.exports = {
         interaction.editReply({ embeds: [embed] });
 
         for (let i = 0; i < playlist.tracks.length; i++) {
-            const res = await client.manager.search(playlist.tracks[i].uri, interaction.user);
+            const res = await client.moon.search(playlist.tracks[i].uri, interaction.user);
             if(res.loadType != "NO_MATCHES") {
                 if(res.loadType == "TRACK_LOADED") {
                     tracks.push(res.tracks[0]);
