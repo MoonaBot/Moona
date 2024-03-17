@@ -10,7 +10,7 @@ try {
             let voiceMember = interaction.guild.members.cache.get(member.id);
             let channel = voiceMember.voice.channel;
 
-            const player = await client.moon.manager.get(interaction.guild.id);
+            const player = await client.moon.players.get(interaction.guild.id);
             if (!player) return;
 
             const playChannel = client.channels.cache.get(player.textChannel);
