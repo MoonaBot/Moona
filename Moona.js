@@ -38,6 +38,7 @@ class MainClient extends Client {
 		    plugins: [
 		        new Lyrics()
 		    ],
+		    http2: true,
 		},
 		(guildId, payload) => {
 			const guild = client.guilds.cache.get(guildId);

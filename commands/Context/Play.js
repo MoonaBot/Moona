@@ -30,7 +30,7 @@ module.exports = {
         });
         
         if (!player.connected) await player.connect({ setDeaf: true });
-        const res = await client.moon.search({ query: value, requester: interaction.user, source: client.config.DefaultSource });
+        const res = await client.moon.search({ query: value, requester: interaction.user });
 
         if(res.loadType != "empty") {
             if(res.loadType == "track") {
