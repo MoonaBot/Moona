@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
-const { MoonlinkManager } = require("erela.js");
+const { MoonlinkManager } = require("moonlink.js");
 const { I18n } = require("@hammerhq/localization");
 
 process.on('unhandledRejection', error => console.info(error));
