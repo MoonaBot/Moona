@@ -26,8 +26,8 @@ module.exports = {
         sameVoice: false,
     },
     run: async(interaction, client, user, language) => {
-    const waitnow = await Date.now();
     await interaction.deferReply('Sedang diproses...');
+    const waitnow = await Date.now();
     const embed = new EmbedBuilder()
         .setColor(client.color)
         .setAuthor({ name: `Information Stats`, iconURL: iStatus[interaction.client.presence.status] })

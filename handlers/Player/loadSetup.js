@@ -184,7 +184,7 @@ module.exports = async (client) => {
                 CGuild.playedHistory.push({
                     track_id: track.identifier,
                     track_title: track.title,
-                    track_url: track.uri,
+                    track_url: track.url,
                     track_duration: track.duration,
                     track_count: 1,
                 });
@@ -205,7 +205,7 @@ module.exports = async (client) => {
                 CProfile.playedHistory.push({
                     track_id: track.identifier,
                     track_title: track.title,
-                    track_url: track.uri,
+                    track_url: track.url,
                     track_duration: track.duration,
                     track_count: 1,
                 });
@@ -223,7 +223,7 @@ module.exports = async (client) => {
                 const newTrack = await GChart.create({
                     track_id: track.identifier,
                     track_title: track.title,
-                    track_url: track.uri,
+                    track_url: track.url,
                     track_duration: track.duration,
                     track_count: 1,
                 });

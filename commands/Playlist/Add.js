@@ -54,7 +54,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setDescription(`${client.i18n.get(language, "playlist", "add_track", {
                         title: res.tracks[0].title,
-                        url: res.tracks[0].uri,
+                        url: res.tracks[0].url,
                         duration: convertTime(res.tracks[0].duration, true),
                         user: interaction.user
                         })}`)
@@ -83,7 +83,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setDescription(`${client.i18n.get(language, "playlist", "add_search", {
                         title: res.tracks[0].title,
-                        url: res.tracks[0].uri,
+                        url: res.tracks[0].url,
                         duration: convertTime(res.tracks[0].duration, true),
                         user: interaction.user
                         })}`)

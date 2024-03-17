@@ -49,7 +49,7 @@ module.exports = {
             .setColor(client.color)
             .setDescription(`${client.i18n.get(language, "music", "move_desc", {
                 name: subText(song.title, 70),
-                url: song.uri,
+                url: song.url,
                 pos: position
             }) }`)
 

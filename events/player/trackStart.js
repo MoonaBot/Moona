@@ -26,7 +26,7 @@ module.exports = async (client, player, track, payload) => {
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
-      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.uri}) [${track.requester}]`)
+      .setDescription(`${client.i18n.get(language, "player", "track_title")} [${subText(track.title,70)}](${track.url}) [${track.requester}]`)
       .setColor(client.color)
       /*.addFields({ name: `${client.i18n.get(language, "player", "author_title")}`, value: `${track.author}`, inline: true })
       .addFields({ name: `${client.i18n.get(language, "player", "request_title")}`, value: `${track.requester}`, inline: true })
@@ -271,7 +271,7 @@ module.exports = async (client, player, track, payload) => {
         for (let i = 0; i < player.queue.length; i++) {
           const song = player.queue[i];
           songStrings.push(
-            `**${i + 1}.** [${song.title}](${song.uri}) \`[${formatDuration(song.duration)}]\` • ${song.requester}
+            `**${i + 1}.** [${song.title}](${song.url}) \`[${formatDuration(song.duration)}]\` • ${song.requester}
             `);
         }
 
@@ -286,7 +286,7 @@ module.exports = async (client, player, track, payload) => {
             .setColor(client.color)
             .setDescription(`${client.i18n.get(language, "player", "queue_description", {
               track: song.title,
-              track_url: song.uri,
+              track_url: song.url,
               duration: formatDuration(song.duration),
               requester: song.requester,
               list_song: str == '' ? '  Nothing' : '\n' + str,

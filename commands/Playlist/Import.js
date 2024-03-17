@@ -63,7 +63,7 @@ module.exports = {
         interaction.editReply({ embeds: [embed] });
 
         for (let i = 0; i < playlist.tracks.length; i++) {
-            const res = await client.moon.search({ query: playlist.tracks[i].uri, requester: interaction.user });
+            const res = await client.moon.search({ query: playlist.tracks[i].url, requester: interaction.user });
             if(res.loadType != "empty") {
                 if(res.loadType == "track") {
                     tracks.push(res.tracks[0]);

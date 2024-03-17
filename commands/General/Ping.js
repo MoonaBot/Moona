@@ -17,8 +17,8 @@ module.exports = {
         sameVoice: false,
     },
     run: async(interaction, client) => {
-        const timestamp = await Date.now();
         await interaction.reply({ content: "Pinging...", ephemeral: true });
+        const timestamp = await Date.now();
 
         await interaction.editReply(`Pong! **${timestamp - interaction.createdTimestamp}** ms`);
         return;

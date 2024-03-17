@@ -55,7 +55,7 @@ module.exports = {
                 `${client.i18n.get(language, "playlist", "detail_track", {
                     num: i + 1,
                     title: playlists.title,
-                    url: playlists.uri,
+                    url: playlists.url,
                     author: playlists.author,
                     duration: formatDuration(playlists.duration)
                 })}

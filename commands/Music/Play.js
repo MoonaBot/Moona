@@ -49,7 +49,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setDescription(`${client.i18n.get(language, "music", "play_track", {
                                 title: subText(res.tracks[0].title, 70),
-                                url: res.tracks[0].uri,
+                                url: res.tracks[0].url,
                                 duration: convertTime(res.tracks[0].duration, true),
                                 request: res.tracks[0].requester
                             })}`)
@@ -78,7 +78,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setDescription(`${client.i18n.get(language, "music", "play_result", {
                                 title: subText(res.tracks[0].title, 70),
-                                url: res.tracks[0].uri,
+                                url: res.tracks[0].url,
                                 duration: convertTime(res.tracks[0].duration, true),
                                 request: res.tracks[0].requester
                             })}`)

@@ -83,10 +83,10 @@ module.exports = {
             if(res.loadType == "track") {
                 await player.queue.add(res.tracks[0]);
 
-                const embed = new EmbedBuilder() //`**Queued • [${res.tracks[0].title}](${res.tracks[0].uri})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
+                const embed = new EmbedBuilder() //`**Queued • [${res.tracks[0].title}](${res.tracks[0].url})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
                     .setDescription(`${client.i18n.get(language, "music", "search_result", {
                         title: res.tracks[0].title,
-                        url: res.tracks[0].uri,
+                        url: res.tracks[0].url,
                         duration: convertTime(res.tracks[0].duration, true),
                         request: res.tracks[0].requester
                     })}`)
@@ -97,11 +97,11 @@ module.exports = {
                 } else if(res.loadType == "search") {
                     let index = 1;
                     const results = res.tracks
-                        .slice(0, 5) //**(${index++}.) [${video.title}](${video.uri})** \`${convertTime(video.duration)}\` Author: \`${video.author}\`
+                        .slice(0, 5) //**(${index++}.) [${video.title}](${video.url})** \`${convertTime(video.duration)}\` Author: \`${video.author}\`
                         .map(video => `${client.i18n.get(language, "music", "search_select", {
                             num: index++,
                             title: video.title,
-                            url: video.uri,
+                            url: video.url,
                             duration: convertTime(video.duration),
                             author: video.author
                         })}`)
@@ -124,10 +124,10 @@ module.exports = {
 
                             if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[0].title}](${res.tracks[0].uri})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
+                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[0].title}](${res.tracks[0].url})** \`${convertTime(res.tracks[0].duration, true)}\` • ${res.tracks[0].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
                                     title: res.tracks[0].title,
-                                    url: res.tracks[0].uri,
+                                    url: res.tracks[0].url,
                                     duration: convertTime(res.tracks[0].duration, true),
                                     request: res.tracks[0].requester
                                 })}`)
@@ -139,10 +139,10 @@ module.exports = {
 
                             if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[1].title}](${res.tracks[1].uri})** \`${convertTime(res.tracks[1].duration, true)}\` • ${res.tracks[1].requester}
+                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[1].title}](${res.tracks[1].url})** \`${convertTime(res.tracks[1].duration, true)}\` • ${res.tracks[1].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
                                     title: res.tracks[1].title,
-                                    url: res.tracks[1].uri,
+                                    url: res.tracks[1].url,
                                     duration: convertTime(res.tracks[1].duration, true),
                                     request: res.tracks[1].requester
                                 })}`)
@@ -154,10 +154,10 @@ module.exports = {
 
                             if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[2].title}](${res.tracks[2].uri})** \`${convertTime(res.tracks[2].duration, true)}\` • ${res.tracks[2].requester}
+                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[2].title}](${res.tracks[2].url})** \`${convertTime(res.tracks[2].duration, true)}\` • ${res.tracks[2].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
                                     title: res.tracks[2].title,
-                                    url: res.tracks[2].uri,
+                                    url: res.tracks[2].url,
                                     duration: convertTime(res.tracks[2].duration, true),
                                     request: res.tracks[2].requester
                                 })}`)
@@ -169,10 +169,10 @@ module.exports = {
 
                             if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[3].title}](${res.tracks[3].uri})** \`${convertTime(res.tracks[3].duration, true)}\` • ${res.tracks[3].requester}
+                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[3].title}](${res.tracks[3].url})** \`${convertTime(res.tracks[3].duration, true)}\` • ${res.tracks[3].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
                                     title: res.tracks[3].title,
-                                    url: res.tracks[3].uri,
+                                    url: res.tracks[3].url,
                                     duration: convertTime(res.tracks[3].duration, true),
                                     request: res.tracks[3].requester
                                     })}`)
@@ -184,10 +184,10 @@ module.exports = {
 
                             if(player && player.connected && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[4].title}](${res.tracks[4].uri})** \`${convertTime(res.tracks[4].duration, true)}\` • ${res.tracks[4].requester}
+                            const embed = new EmbedBuilder() //**Queued • [${res.tracks[4].title}](${res.tracks[4].url})** \`${convertTime(res.tracks[4].duration, true)}\` • ${res.tracks[4].requester}
                                 .setDescription(`${client.i18n.get(language, "music", "search_result", {
                                     title: res.tracks[4].title,
-                                    url: res.tracks[4].uri,
+                                    url: res.tracks[4].url,
                                     duration: convertTime(res.tracks[4].duration, true),
                                     request: res.tracks[4].requester
                                     })}`)

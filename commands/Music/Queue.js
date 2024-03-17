@@ -39,7 +39,7 @@ module.exports = {
         for (let i = 0; i < player.queue.length; i++) {
             const song = player.queue[i];
             songStrings.push(
-                `${i + 1}. [${subText(song.title, 70)}](${song.uri}) ${formatDuration(song.duration)} [${song.requester}]
+                `${i + 1}. [${subText(song.title, 70)}](${song.url}) ${formatDuration(song.duration)} [${song.requester}]
                 `);
         }
 
@@ -54,7 +54,7 @@ module.exports = {
                 .setColor(client.color)
                 .setDescription(`${client.i18n.get(language, "music", "queue_description", {
                     title: subText(song.title, 70),
-                    url: song.uri,
+                    url: song.url,
                     duration: formatDuration(song.duration),
                     request: song.requester,
                     rest: str == '' ? '  Nothing' : '\n' + str,

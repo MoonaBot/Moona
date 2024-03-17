@@ -28,10 +28,10 @@ module.exports = {
             .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }))
             .setTimestamp()
 
-        client.moon.nodes.forEach((node) => {
+        client.moon.nodes.map.forEach((node) => {
             try {
-                embed.addFields({ name: "Name", value: `${node.host}` })
-                embed.addFields({ name: "Connected", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })
+                embed.addFields({ name: "Name", value: `${node.identifier}` })
+                embed.addFields({ name: "Status", value: `${node.connected ? "Connected [🟢]" : "Disconnected [🔴]"}` })
                 embed.addFields({ name: "Player", value: `${node.stats.players}` })
                 embed.addFields({ name: "Used Players", value: `${node.stats.playingPlayers}` })
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>` })
@@ -39,7 +39,7 @@ module.exports = {
                 embed.addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)} / ${prettyBytes(node.stats.memory.reservable)}` })
                 embed.addFields({ name: "System Load", value: `${(Math.round(node.stats.cpu.systemLoad * 100) / 100).toFixed(2)}%` })
                 embed.addFields({ name: "Lavalink Load", value: `${(Math.round(node.stats.cpu.lavalinkLoad * 100) / 100).toFixed(2)}%` })
-                embed.setFooter({ text: "v"+node.version });
+                embed.addFields({ name: "Version", value: "v4.0.2" });
             } catch (e) {
                 console.log(e);
             }

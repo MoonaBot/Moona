@@ -50,10 +50,10 @@ module.exports = async (client) => {
             .setAuthor({ name: `${played}`, iconURL: `${client.i18n.get(language, "setup", "setup_author_icon")}` })
             .setDescription(`${client.i18n.get(language, "setup", "setup_desc", {
                 title: cSong.title,
-                url: cSong.uri,
+                url: cSong.url,
                 duration: formatDuration(cSong.duration),
                 request: cSong.requester,
-            })}`) // [${cSong.title}](${cSong.uri}) \`[${formatDuration(cSong.duration)}]\` • ${cSong.requester}
+            })}`) // [${cSong.title}](${cSong.url}) \`[${formatDuration(cSong.duration)}]\` • ${cSong.requester}
             .setColor(client.color)
             .setFooter({ text: `${client.i18n.get(language, "setup", "setup_footer", {
                 songs: player.queue.length,
