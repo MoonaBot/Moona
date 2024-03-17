@@ -86,7 +86,7 @@ module.exports = {
 
                         interaction.editReply({ content: " ", embeds: [embed] });
                         if(!player.playing) player.play();
-                    } else if(res.loadType == "loadfailed") {
+                    } else if(res.loadType == "error") {
                         interaction.editReply(`${client.i18n.get(language, "music", "play_fail")}`); 
                         player.destroy();
                     }
