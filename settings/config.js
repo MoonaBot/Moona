@@ -22,7 +22,7 @@ module.exports = {
 
     DefaultSource: "youtube", // default search engine & "ytmsearch" / "ytsearch" / "scsearch" / "spsearch"
     LavalinkNodes: [
-       { 
+       /*{ 
         identifier: "Moona 1",
         host: "pnode1.danbot.host",
         port: 2872,
@@ -42,7 +42,7 @@ module.exports = {
         port: 443,
         password: "catfein",
         secure: true
-      },
+      },*/
       { 
         identifier: "Moona 3",
         host: "lavalink4-frankfurt.alfari.id",
