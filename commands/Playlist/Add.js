@@ -107,9 +107,9 @@ module.exports = {
 
                 const LimitTrack = playlist.tracks.length + tracks.length;
 
-                if(LimitTrack > client.config.LIMIT_TRACK) { 
+                if(LimitTrack > client.config.LimitTrack) { 
                     interaction.followUp(`${client.i18n.get(language, "playlist", "add_limit_track", {
-                        limit: client.config.LIMIT_TRACK
+                        limit: client.config.LimitTrack
                     })}`); 
                     tracks.length = 0; 
                     return; 

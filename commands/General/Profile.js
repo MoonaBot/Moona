@@ -189,7 +189,7 @@ module.exports = {
             });
         };
 
-        const credits = `KAORI BOT`;
+        const credits = `MOONA BOT`;
         canvas.setTextAlign('right')
             .setTextFont('20px Rubik-Bold');
 

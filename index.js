@@ -1,4 +1,4 @@
-const MainClient = require("./Kaori.js");
+const MainClient = require("./Moona.js");
 const client = new MainClient();
 
 client.connect();

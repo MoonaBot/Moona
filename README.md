@@ -1,9 +1,9 @@
-<p align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=NanoSpacePlus&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=gradient"/> </a> 
+<a href="#"><p align="center">
+<img src="https://i.ibb.co/2hwHrsh/Moona.png"/> </a> 
 </p>
 
 <p align="center"> 
-  <a href="https://discord.gg/SNG3dh3MbR" target="_blank"> <img src="https://discordapp.com/api/guilds/903043706410643496/widget.png?style=banner2"/> </a> 
+  <a href="https://discord.gg/" target="_blank"> <img src="https://discordapp.com/api/guilds/903043706410643496/widget.png?style=banner2"/> </a> 
 </p>
 
 <p align="center"> 
@@ -73,8 +73,8 @@
 ## 📚 Installation
 
 ```
-git clone https://github.com/Adivise/NanoSpacePlus
-cd NanoSpacePlus
+git clone https://github.com/MoonaBot/Moona
+cd Moona
 npm install
 ```
 
@@ -87,19 +87,19 @@ Copy or Rename `.env.example` to `.env` and fill out the values:
 
 ```.env
 # Bot
-TOKEN=REPLACE_HERE
-NP_REALTIME=false
-LEAVE_TIMEOUT=120000
-LANGUAGE=en
-EMBED_COLOR=#000001
+Token=REPLACE_HERE
+NpRealtime=false
+LeaveTimeout=120000
+Language=en
+ClientColor=#000001
 
 # Dev
-OWNER_ID=REPLACE_HERE
+OwnerId=REPLACE_HERE
 
 # Database
-MONGO_URI=mongodb://127.0.0.1:27017/nanospaceplus
-LIMIT_TRACK=50
-LIMIT_PLAYLIST=10
+MongoUri=mongodb://127.0.0.1:27017/Moona
+LimitTrack=50
+LimitPlaylist=10
 
 # Nodes
 NODE_HOST=localhost
@@ -224,6 +224,6 @@ After installation or finishes all you can use `node .` to start the bot. or `Ru
 
 ## ❣ Contributors
 
-<a href="https://github.com/Adivise/NanoSpacePlus/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=Adivise/NanoSpacePlus" />
+<a href="https://github.com/MoonaBot/Moona/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=MoonaBot/Moona" />
 </a>

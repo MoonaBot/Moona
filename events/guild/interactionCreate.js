@@ -1,7 +1,7 @@
 const { PermissionsBitField, InteractionType } = require("discord.js");
 const GLang = require("../../settings/models/Language.js");
 const Playlist = require("../../settings/models/Playlist.js");
-const { SEARCH_DEFAULT } = require("../../settings/config.js")
+const { SearchDefault } = require("../../settings/config.js")
 const { REGEX } = require("../../settings/regex.js");
 
 module.exports = async(client, interaction) => {
@@ -39,7 +39,7 @@ module.exports = async(client, interaction) => {
             }
           }
 
-          const Random = SEARCH_DEFAULT[Math.floor(Math.random() * SEARCH_DEFAULT.length)];
+          const Random = SearchDefault[Math.floor(Math.random() * SearchDefault.length)];
 
           if(interaction.commandName == "play") {
             checkRegex()

@@ -36,7 +36,7 @@ module.exports = {
         .addFields([
         { name: "User ID", value: interaction.client.user.id, inline: true },
         { name: "Created On", value: `<t:${int(interaction.client.user.createdTimestamp)}:D>`, inline: true },
-        { name: "Developer", value: `[${(await interaction.client.users.fetch(client.config.OWNER_ID)).tag}](https://discord.com/users/${client.config.OWNER_ID})`, inline: true }
+        { name: "Developer", value: `[${(await interaction.client.users.fetch(client.config.OwnerId)).tag}](https://discord.com/users/${client.config.OwnerId})`, inline: true }
         ])
         .addFields([
         { name: "Latency", value: `Ping **${waitnow - interaction.createdTimestamp}** ms`, inline: true },

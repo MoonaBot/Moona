@@ -1,5 +1,5 @@
 ##### InteractionCreate Event #####
-#On settings/config.js in DEV_ID
+#On settings/config.js in Developers
 dev_only: 該機器人正在維護中。(請稍後再試)
 #No permission to use command (this for bot!)
 bot_perms: 我沒有執行命令的權限！

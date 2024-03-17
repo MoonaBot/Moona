@@ -37,8 +37,8 @@ module.exports = {
         if(playlist) return msg.edit(`${client.i18n.get(language, "playlist", "create_name_exist")}`);
 
         const Limit = await Playlist.find({ owner: interaction.user.id }).countDocuments();
-        if(Limit >= client.config.LIMIT_PLAYLIST) return msg.edit(`${client.i18n.get(language, "playlist", "create_limit_playlist", {
-            limit: client.config.LIMIT_PLAYLIST
+        if(Limit >= client.config.LimitPlaylist) return msg.edit(`${client.i18n.get(language, "playlist", "create_limit_playlist", {
+            limit: client.config.LimitPlaylist
         })}`);
 
         const create = new Playlist({

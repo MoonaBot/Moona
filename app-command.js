@@ -2,7 +2,7 @@ const { ApplicationCommandOptionType, REST, Routes, ApplicationCommandManager } 
 const { readdirSync } = require("node:fs");
 const path = require('path');
 
-const { TOKEN } = require("./settings/config.js");
+const { Token } = require("./settings/config.js");
 const args = process.argv.slice(2);
 
 const delay =  require("node:timers/promises").setTimeout;
@@ -147,7 +147,7 @@ const delay =  require("node:timers/promises").setTimeout;
     console.info("No interactions read, all existing ones will be cleared...");
   }
 
-  const rest = new REST({ version: 10 }).setToken(TOKEN);
+  const rest = new REST({ version: 10 }).setToken(Token);
   const client = await rest.get(Routes.user());
   console.info(`Account information received! ${client.username}#${client.discriminator} (${client.id})`);
 

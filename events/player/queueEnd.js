@@ -28,6 +28,6 @@ module.exports = async (client, player) => {
 		.setDescription(`${client.i18n.get(language, "player", "queue_end_desc")}`);
 
 	await channel.send({ embeds: [embed] });
-	await delay(client.config.LEAVE_TIMEOUT);
+	await delay(client.config.LeaveTimeout);
 	return player.destroy();
 }

@@ -61,7 +61,7 @@ module.exports = async (client, oldState, newState) => {
 	if (oldState.guild.members.cache.get(client.user.id).voice.channelId === oldState.channelId) {
 		if (oldState.guild.members.me.voice?.channel && oldState.guild.members.me.voice.channel.members.filter((m) => !m.user.bot).size === 0) {
 
-			await delay(client.config.LEAVE_TIMEOUT);
+			await delay(client.config.LeaveTimeout);
 
 			const vcMembers = oldState.guild.members.me.voice.channel?.members.size;
 			if (!vcMembers || vcMembers === 1) {

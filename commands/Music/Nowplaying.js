@@ -24,7 +24,7 @@ module.exports = {
         const database = await Setup.findOne({ guild: interaction.guild.id });
         if (database.enable === true) return interaction.editReply(`${client.i18n.get(language, "setup", "setup_enable")}`);
 
-        const realtime = client.config.NP_REALTIME;
+        const realtime = client.config.NpRealtime;
         const msg = await interaction.editReply(`${client.i18n.get(language, "music", "np_loading")}`);
 
         const song = player.queue.current;

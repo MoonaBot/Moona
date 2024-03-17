@@ -1,5 +1,5 @@
 ##### InteractionCreate Event #####
-#On settings/config.js in DEV_ID
+#On settings/config.js in Developers
 dev_only: บอททำการปิดปรับปรุงอยู่ (โปรดกลับมาในภายหลัง)
 #No permission to use command (this for bot!)
 bot_perms: ฉันไม่มีความสามารถ เพื่อส่งข้อความ

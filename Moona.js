@@ -23,19 +23,19 @@ class MainClient extends Client {
 
     this.config = require("./settings/config.js");
     this.button = require("./settings/button.js");
-    this.owner = this.config.OWNER_ID;
-    this.dev = this.config.DEV_ID;
-    this.color = this.config.EMBED_COLOR;
-    this.i18n = new I18n(this.config.LANGUAGE);
-    if(!this.token) this.token = this.config.TOKEN;
+    this.owner = this.config.OwnerId;
+    this.dev = this.config.Developers;
+    this.color = this.config.ClientColor;
+    this.i18n = new I18n(this.config.Language);
+    if(!this.token) this.token = this.config.Token;
 
     const client = this;
 
     this.manager = new Manager({
-		nodes: this.config.NODES,
+		nodes: this.config.LavalinkNodes,
 		autoPlay: true,
 		forceSearchLinkQueries: true,
-		defaultSearchPlatform: client.config.DEFAULT_SEARCH,
+		defaultSearchPlatform: client.config.DefaultSearch,
 		allowedLinksRegexes: Object.values(Manager.regex),
 		send(id, payload) {
 			const guild = client.guilds.cache.get(id);

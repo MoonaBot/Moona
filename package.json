@@ -1,7 +1,7 @@
 {
-  "name": "kaori",
-  "version": "3.0.0",
-  "description": "The advanced Discord Bot you need, ready to accompany your relaxing life. ~Enjoyyy...",
+  "name": "moona",
+  "version": "1.0.0",
+  "description": "The best choice of discord bot for your server",
   "main": "index.js",
   "dependencies": {
     "@hammerhq/localization": "^2.2.0",
@@ -23,13 +23,13 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adivise/NanoSpacePlus.git"
+    "url": "git+https://github.com/MoonaBot/Moona.git"
   },
   "bugs": {
-    "url": "https://github.com/Adivise/NanoSpacePlus/issues"
+    "url": "https://github.com/MoonaBot/Moona/issues"
   },
-  "homepage": "https://github.com/Adivise/NanoSpacePlus/#readme",
-  "devDependencies": {
+  "homepage": "https://github.com/MoonaBot/Moona/#readme",
+  "engines": {
     "node": "^18.x"
   }
 }

@@ -1,6 +1,6 @@
 @echo off
 
-title Kaori+
+title Moona+
 
 :StartBot
 

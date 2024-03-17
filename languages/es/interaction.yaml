@@ -1,5 +1,5 @@
 ##### InteractionCreate Event #####
-#On settings/config.js in DEV_ID
+#On settings/config.js in Developers
 dev_only: El bot está en mantenimiento. (Por favor, vuelve más tarde)
 #No permission to use command (this for bot!)
 bot_perms: '¡No tengo permisos para ejecutar el comando!'
