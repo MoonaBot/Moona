@@ -173,12 +173,12 @@ module.exports = async (client) => {
 
         client.addChart = async function (player, track) {
             // Guild
-            const CGuild = await Chart.findOne({ guildId: player.guild });
+            const CGuild = await Chart.findOne({ guildId: player.guildId });
             const TGuild = await CGuild.playedHistory.find(x => x.track_id === track.identifier);
         
             if (TGuild) {
                 // Played History
-                await Chart.updateOne({ guildId: player.guild, "playedHistory.track_id": track.identifier }, { $inc: { "playedHistory.$.track_count": 1 } });
+                await Chart.updateOne({ guildId: player.guildId, "playedHistory.track_id": track.identifier }, { $inc: { "playedHistory.$.track_count": 1 } });
             } else {
                 // Played History
                 CGuild.playedHistory.push({

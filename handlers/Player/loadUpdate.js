@@ -5,19 +5,19 @@ const Setup = require("../../settings/models/Setup.js");
   
 module.exports = async (client) => {
     client.updateMessage = async function(player, message, _="default") {
-        if (!player[player.guild]) player[player.guild] = {};
-        const oldMessage = player[player.guild][_];
+        if (!player[player.guildId]) player[player.guildId] = {};
+        const oldMessage = player[player.guildId][_];
         if (oldMessage) {
             const targetMessage = oldMessage.channel.messages.cache.get(oldMessage.id);
             if (targetMessage) {
                 await targetMessage.delete();
             }
         }
-        return (player[player.guild][_] = message);
+        return (player[player.guildId][_] = message);
     }
 
     client.UpdateQueueMsg = async function (player) {
-        const database = await Setup.findOne({ guild: player.guild });
+        const database = await Setup.findOne({ guild: player.guildId });
         if (database.enable === false) return;
 
         const channel = await client.channels.cache.get(database.channel);
@@ -26,7 +26,7 @@ module.exports = async (client) => {
         const msg = channel.messages.cache(database.playmsg);
         if (!msg) return;
     
-        const guildModel = await GLang.findOne({ guild: player.guild });
+        const guildModel = await GLang.findOne({ guild: player.guildId });
         const { language } = guildModel;
 
         const songStrings = [];
@@ -75,7 +75,7 @@ module.exports = async (client) => {
     };
 
     client.UpdateMusic = async function (player) {
-        const database = await Setup.findOne({ guild: player.guild });
+        const database = await Setup.findOne({ guild: player.guildId });
         if (database.enable === false) return;
 
         const channel = await client.channels.cache.get(database.channel);
@@ -84,7 +84,7 @@ module.exports = async (client) => {
         const msg = channel.messages.cache.get(database.playmsg);
         if (!msg) return;
     
-        const guildModel = await GLang.findOne({ guild: player.guild });
+        const guildModel = await GLang.findOne({ guild: player.guildId });
         const { language } = guildModel;
 
         const queueMsg = `${client.i18n.get(language, "setup", "setup_queuemsg")}`;

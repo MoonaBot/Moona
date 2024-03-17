@@ -139,7 +139,7 @@ module.exports = async (client, player, track, payload) => {
       }
     };
     const collector = startPlay.createMessageComponentCollector({ filter, time: track.duration });
-    player[player.guild].collector = collector;
+    player[player.guildId].collector = collector;
 
     collector.on('collect', async (message) => {
       const id = message.customId;

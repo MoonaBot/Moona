@@ -1,5 +1,5 @@
 module.exports = async (client, player, oldChannel, newChannel) => {
-        const guild = client.guilds.cache.get(player.guild)
+        const guild = client.guilds.cache.get(player.guildId)
         if(!guild) return;
 
         const channel = guild.channels.cache.get(player.textChannel);

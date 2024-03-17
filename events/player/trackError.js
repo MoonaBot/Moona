@@ -24,7 +24,7 @@ module.exports = async (client, player, track, payload) => {
 
     channel.send({ embeds: [embed] });
 
-    console.log('[DEBUG]', `Track Error in ${player.guild} Auto-Leaved!`);
+    console.log('[DEBUG]', `Track Error in ${player.guildId} Auto-Leaved!`);
     if (!player.voiceChannel) player.destroy();
 
 }
