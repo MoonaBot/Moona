@@ -50,12 +50,5 @@ module.exports = {
         password: "catfein",
         secure: true
       },
-      { 
-        identifier: "Moona 4",
-        host: "lava-v3.ajieblogs.eu.org",
-        port: 443,
-        password: "https://dsc.gg/ajidevserver",
-        secure: true
-      },
     ],
 }

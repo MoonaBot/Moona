@@ -13,10 +13,10 @@ class MainClient extends Client {
             allowedMentions: { parse: ["users", "roles"] },
             intents: [
                 GatewayIntentBits.Guilds,
-                //GatewayIntentBits.GuildMembers,
+                GatewayIntentBits.GuildMembers,
                 GatewayIntentBits.GuildMessages,
                 GatewayIntentBits.GuildVoiceStates,
-                //GatewayIntentBits.MessageContent,
+                GatewayIntentBits.MessageContent,
             ]
         });
         this.on("error", console.info);

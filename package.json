@@ -9,7 +9,7 @@
     "canvas-constructor": "^7.0.1",
     "discord.js": "^14.14.1",
     "mongoose": "^8.2.1",
-    "moonlink.js": "^3.5.5",
+    "moonlink.js": "^3.6.0",
     "moonlink.js-lyrics": "^1.0.1-2",
     "node-cron": "^3.0.0",
     "pretty-bytes": "^5.6.0",
