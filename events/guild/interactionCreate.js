@@ -47,23 +47,9 @@ module.exports = async(client, interaction) => {
             checkRegex()
 							let choice = []
 							await ytsr.search(url || Random, { limit: 10, safeSearch: true }).then(result => {
-								result.forEach(x => { choice.push({ name: `${x.name}`, value: `https://www.youtube.com/watch?v=${x.videoId}` }) })
+								result.forEach(x => { choice.push({ name: `${x.title}`, value: `x.url` }) })
 							});
 							return await interaction.respond(choice).catch(() => { });
-          } else if (interaction.options.getSubcommand() == "playskip") {
-            checkRegex()
-              let choice = []
-              await yt.search(url || Random, { safeSearch: true, limit: 10 }).then(result => {
-                  result.forEach(x => { choice.push({ name: x.title, value: x.url }) })
-              });
-              return await interaction.respond(choice).catch(() => { });
-          } else if (interaction.options.getSubcommand() == "playtop") {
-            checkRegex()
-              let choice = []
-              await yt.search(url || Random, { safeSearch: true, limit: 10 }).then(result => {
-                  result.forEach(x => { choice.push({ name: x.title, value: x.url }) })
-              });
-              return await interaction.respond(choice).catch(() => { });
           } else if (interaction.options.getSubcommand() == "add") { 
               const playlists = await Playlist.find({ owner: interaction.user.id });
               let choice = []

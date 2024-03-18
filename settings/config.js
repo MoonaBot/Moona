@@ -1,6 +1,6 @@
 module.exports = {
     Token: process.env.Token || "YOUR_TOKEN",  // your bot token
-    ClientColor: process.env.ClientColor || "#5865F2", //<= default is "#000001"
+    ClientColor: process.env.ClientColor || "#B999FF", //<= default is "#000001"
 
     SearchDefault: ["Moona Hoshinova"],
 
