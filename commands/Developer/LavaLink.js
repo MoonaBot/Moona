@@ -24,14 +24,13 @@ module.exports = {
         // owner only
         if(interaction.user.id != client.owner) return interaction.editReply({ content: `${client.i18n.get(language, "interaction", "owner_only")}` });
 
-        const embed = new EmbedBuilder()
-            .setColor(client.color)
-            .setAuthor({ name: 'Lavalink Stats' })
-            .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
-        
         var pages = [];
 
         client.moon.nodes.map.forEach((node) => {
+            const embed = new EmbedBuilder()
+                .setColor(client.color)
+                .setAuthor({ name: 'Lavalink Stats' })
+                .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 1024 }));
             try {
                 embed.setTitle(`#${node.identifier} [${node.state === "READY" ? "🟢" : "🔴"}]`)
                 embed.setDescription(`v${node.version}`)
