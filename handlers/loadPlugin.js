@@ -1,7 +1,7 @@
 const { MoonlinkNode, Structure } = require('moonlink.js');
-
-
 const YouTubeMusic = require("ytmusic-api").default;
+
+const { request } = require('undici');
 
 module.exports = async (client) => {
     client.ytm = new YouTubeMusic();
@@ -9,13 +9,11 @@ module.exports = async (client) => {
 
 Structure.extend(
     'MoonlinkNode',
-    class MoonaNode extends MoonlinkNode {
-        constructor(...opt) {
-            super(...opt);
+    class MoonaNode {
+        constructor() {
             this.version = this.getVersion() || null;
         }
         async getVersion() {
-            const { request } = require('undici');
             const { body } = await request(
                 `${this.secure?"https://":"http://"}${this.host}/version`,
                 { headers: { Authorization: this.password } }
