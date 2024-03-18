@@ -47,7 +47,7 @@ module.exports = async(client, interaction) => {
             checkRegex()
 							let choice = []
 							await ytsr.search(url || Random, { limit: 10, safeSearch: true }).then(result => {
-								result.forEach(x => { choice.push({ name: `${x.title}`, value: `x.url` }) })
+								result.forEach(x => { choice.push({ name: x.title, value: x.url }) })
 							});
 							return await interaction.respond(choice).catch(() => { });
           } else if (interaction.options.getSubcommand() == "add") { 
