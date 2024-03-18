@@ -132,7 +132,7 @@ module.exports = {
         next: {
             label: "Next",
             emoji: "➡",
-            style: "Primary"
+            style: "Secondary"
         },
         remove: {
             label: "Remove",
