@@ -127,7 +127,7 @@ module.exports = {
         back: {
             label: "Back",
             emoji: "⬅",
-            style: "Primary"
+            style: "Secondary"
         },
         next: {
             label: "Next",
