@@ -127,12 +127,12 @@ module.exports = {
         back: {
             label: "Back",
             emoji: "⬅",
-            style: "Secondary"
+            style: "Primary"
         },
         next: {
             label: "Next",
             emoji: "➡",
-            style: "Secondary"
+            style: "Primary"
         },
         remove: {
             label: "Remove",
