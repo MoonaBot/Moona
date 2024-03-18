@@ -25,23 +25,23 @@ module.exports = {
       { 
         identifier: "Moona 1",
         host: "lavalink4-dbh.alfari.id",
-        port: 80,
+        port: 443,
         password: "catfein",
-        secure: false
+        secure: true
       },
       { 
         identifier: "Moona 2",
         host: "lavalink4-frankfurt.alfari.id",
-        port: 80,
+        port: 443,
         password: "catfein",
-        secure: false
+        secure: true
       },
       { 
         identifier: "Moona 3",
         host: "lavalink4.alfari.id",
-        port: 80,
+        port: 443,
         password: "catfein",
-        secure: false
+        secure: true
       },
     ],
 }
