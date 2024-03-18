@@ -22,7 +22,6 @@ module.exports = async (client, player, track, payload) => {
     if (db.enable) return;
     const guildModel = await GLang.findOne({ guild: channel.guild.id });
 	const { language } = guildModel;
-	const songs = await client.ytm.getSong(track.identifier);
   
     const embeded = new EmbedBuilder()
       //.setAuthor({ name: `${client.i18n.get(language, "player", "track_title")}`, iconURL: `${client.i18n.get(language, "player", "track_icon")}` })
@@ -129,7 +128,7 @@ module.exports = async (client, player, track, payload) => {
         );*/
    
 
-    const startPlay = await channel.send({ embeds: [embeded], components: [row, row2] });
+    const startPlay = await channel.send({ embeds: [embeded], components: [row, /*row2*/] });
     await client.updateMessage(player, startPlay, "startPlay");
 
     const filter = (message) => {
@@ -319,7 +318,7 @@ module.exports = async (client, player, track, payload) => {
 
         message.reply({ embeds: [embed], ephemeral: true });
       } else if(id === "get-lyrics") {
-          if(!player) collector.stop();
+         /* if(!player) collector.stop();
           await message.deferReply({ ephemeral: true });
 
           let lyrics = await client.ytm.getLyrics(songs.videoId);
@@ -334,7 +333,7 @@ module.exports = async (client, player, track, payload) => {
             .setThumbnail(songs.thumbnails[0].url)
             .setDescription(lyrics.length > 4096 ? lyrics.substring(0, 4096-3)+"...": lyrics)
             .setFooter ({ text: `Provided by ${client.user.username} Bot Lyrics`, iconURL: client.user.displayAvatarURL({ forceStatic: true }) });
-            message.followUp({ embeds: [embed] });
+            message.followUp({ embeds: [embed] });*/
       }
     });
 

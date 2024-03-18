@@ -28,7 +28,6 @@ module.exports = {
         const msg = await interaction.editReply(`${client.i18n.get(language, "music", "np_loading")}`);
 
         const song = player.current;
-        const songs = await client.ytm.getVideo(song.identifier);
         const CurrentDuration = formatDuration(player.position);
         const TotalDuration = formatDuration(song.duration);
         const Part = Math.floor(player.position / song.duration * 100);
@@ -44,7 +43,7 @@ module.exports = {
             .setTimestamp(song.startTimestamp);
 
             if (song.artworkUrl) {
-                /*const songInfo = (await client.ytm.getVideos(song.identifier));
+                /*const songInfo = {};
                 const views = songInfo.views;
                 const uploadat = songInfo.uploadedAt;*/
                 

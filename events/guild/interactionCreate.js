@@ -4,6 +4,8 @@ const Playlist = require("../../settings/models/Playlist.js");
 const { SearchDefault } = require("../../settings/config.js")
 const { REGEX } = require("../../settings/regex.js");
 
+const ytsr = require('youtube-sr').default;
+
 module.exports = async(client, interaction) => {
     if (interaction.isCommand || interaction.isContextMenuCommand || interaction.isModalSubmit || interaction.isChatInputCommand) {
         if (!interaction.guild || interaction.user.bot) return;
@@ -44,7 +46,7 @@ module.exports = async(client, interaction) => {
           if(interaction.commandName == "play") {
             checkRegex()
 							let choice = []
-							await client.ytm.searchVideos(url || Random).then(result => {
+							await ytsr.search(url || Random, { limit: 10, safeSearch: true }).then(result => {
 								result.forEach(x => { choice.push({ name: `${x.name}`, value: `https://www.youtube.com/watch?v=${x.videoId}` }) })
 							});
 							return await interaction.respond(choice).catch(() => { });
