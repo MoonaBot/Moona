@@ -27,7 +27,7 @@ module.exports = {
     run: async (interaction, client, user, language, player) => {
         await interaction.deferReply({ ephemeral: false });
 
-        const CurrentSong = player.queue.current;
+        const CurrentSong = player.current;
 
         let value = interaction.options.getString("search");
         let songs = null;

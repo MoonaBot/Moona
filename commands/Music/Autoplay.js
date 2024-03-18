@@ -29,7 +29,7 @@ module.exports = {
 
             return interaction.editReply({ embeds: [embed] });
         } else {
-            const identifier = player.queue.current.identifier;
+            const identifier = player.current.identifier;
             const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
             const res = await player.search({ query: search, requester: interaction.user });
 

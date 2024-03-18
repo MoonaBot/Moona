@@ -261,7 +261,7 @@ module.exports = async (client, player, track, payload) => {
         if(!player) {
           collector.stop();
         }
-        const song = player.queue.current;
+        const song = player.current;
         const qduration = `${formatDuration(player.queue.duration)}`;
         
         let pagesNum = Math.ceil(player.queue.length / 10);

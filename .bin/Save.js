@@ -57,7 +57,7 @@ module.exports = {
         if(!playlist) return interaction.editReply(`${client.i18n.get(language, "playlist", "savequeue_notfound")}`);
         if(playlist.owner !== interaction.user.id) return interaction.editReply(`${client.i18n.get(language, "playlist", "savequeue_owner")}`);
 
-        const current = player.queue.current;
+        const current = player.current;
 
         tracks.push(current);
 
@@ -81,7 +81,7 @@ module.exports = {
         if(playlist.owner !== interaction.user.id) return interaction.editReply(`${client.i18n.get(language, "playlist", "savequeue_owner")}`);
 
         const queue = player.queue.map(track => track);
-        const current = player.queue.current;
+        const current = player.current;
 
         tracks.push(current);
         tracks.push(...queue);

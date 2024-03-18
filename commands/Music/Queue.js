@@ -29,7 +29,7 @@ module.exports = {
     run: async (interaction, client, user, language, player) => {
         await interaction.deferReply({ ephemeral: false });
 
-        const song = player.queue.current;
+        const song = player.current;
         const qduration = `${formatDuration(player.queue.duration)}`;
 
         let pagesNum = Math.ceil(player.queue.length / 10);

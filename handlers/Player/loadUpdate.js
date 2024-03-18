@@ -41,7 +41,7 @@ module.exports = async (client) => {
 
         const Str = songStrings.slice(0, 10).join('\n');
 
-        const cSong = player.queue.current;
+        const cSong = player.current;
         const qDuration = `${formatDuration(player.queue.duration)}`;
 
         const played = player.playing ? `${client.i18n.get(language, "setup", "setup_nowplay")}` : `${client.i18n.get(language, "setup", "setup_songpause")}`;

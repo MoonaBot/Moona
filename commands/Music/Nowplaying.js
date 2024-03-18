@@ -27,7 +27,7 @@ module.exports = {
         const realtime = client.config.NpRealtime;
         const msg = await interaction.editReply(`${client.i18n.get(language, "music", "np_loading")}`);
 
-        const song = player.queue.current;
+        const song = player.current;
         const songs = await client.ytm.getVideo(song.identifier);
         const CurrentDuration = formatDuration(player.position);
         const TotalDuration = formatDuration(song.duration);

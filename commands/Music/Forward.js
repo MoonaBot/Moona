@@ -33,7 +33,7 @@ module.exports = {
         const value = interaction.options.getInteger("seconds");
 
         if (value && !isNaN(value)) {
-            if((player.position + value * 1000) < player.queue.current.duration) {
+            if((player.position + value * 1000) < player.current.duration) {
                 await player.seek(player.position + value * 1000);
                 
                 const embed = new EmbedBuilder()
@@ -54,7 +54,7 @@ module.exports = {
         }
 
         if (!value) {
-            if((player.position + forward * 1000) < player.queue.current.duration) {
+            if((player.position + forward * 1000) < player.current.duration) {
                 await player.seek(player.position + forward * 1000);
                 
                 const embed = new EmbedBuilder()
