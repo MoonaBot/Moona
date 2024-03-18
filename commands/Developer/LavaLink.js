@@ -33,7 +33,7 @@ module.exports = {
                 .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 1024 }));
             try {
                 embed.setTitle(`#${node.identifier} | [${node.state === "READY" ? "🟢" : "🔴"}]`)
-                embed.setDescription(`v${node.version}`)
+                embed.setDescription(`v4.0.4`)
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>`, inline:true })
                 embed.addFields({ name: "Player", value: `${node.stats.playingPlayers} / ${node.stats.players}`, inline:true })
                 embed.addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)} / ${prettyBytes(node.stats.memory.reservable)}`, inline:true })
