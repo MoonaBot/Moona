@@ -87,14 +87,14 @@ module.exports = {
 
         if (target?.globalName) {
             canvas.setColor(KColors.White)
-                .setTextFont('55px Rubik-Bold')
+                .setTextFont('55px Rubik-Bold, NotoColorEmoji')
                 .printText(username, 250, 70+30);
             canvas.setColor(KColors.Greyple)
-                .setTextFont('35px Rubik')
+                .setTextFont('35px Rubik, NotoColorEmoji')
                 .printText('@'+subText(target.username, 18), 250, 70+70);
         } else {
             canvas.setColor(KColors.White)
-                .setTextFont('55px Rubik-Bold')
+                .setTextFont('55px Rubik-Bold, NotoColorEmoji')
                 .printText(username, 250, 70 + 70);
         }
 
@@ -170,7 +170,7 @@ module.exports = {
                 canvas.setColor(topcolor[numb++])
                     .printRoundedRectangle(40, 300 + (i * 60),50, 50, radius(5))
                 canvas.setColor(KColors.White)
-                    .setTextFont("30px Rubik")
+                    .setTextFont("30px Rubik, NotoColorEmoji")
                     .printText((i+1).toString(), 55, 340 + (i * 60))
                 canvas.setColor(KColors.DarkerGrey)
                     .setTextFont('30px Rubik-Medium')
@@ -181,11 +181,11 @@ module.exports = {
                         cutLength = cutLength - 7;
                     }
                     canvas.setColor(KColors.White)
-                        .setTextFont('30px Rubik')
+                        .setTextFont('30px Rubik, NotoColorEmoji')
                         .printText(`${subText(d.track_title, cutLength)}`, (Number(d.track_count) > 9 ? 160 : 145), 340 + (i * 60));
                 } else {
                     canvas.setColor(KColors.White)
-                        .setTextFont('30px Rubik')
+                        .setTextFont('30px Rubik, NotoColorEmoji')
                         .printText(`${d.track_title}`, (Number(d.track_count) > 9 ? 160 : 145), 340 + (i * 60));
                 }
             });
