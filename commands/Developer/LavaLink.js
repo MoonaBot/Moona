@@ -32,7 +32,7 @@ module.exports = {
                 .setAuthor({ name: 'Lavalink Stats' })
                 .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 1024 }));
             try {
-                embed.setTitle(`#${node.identifier} | [${node.state === "READY" ? "🟢" : "🔴"}]`)
+                embed.setTitle(`${node.identifier} [\`${node.state === "READY" ? "🟢" : "🔴"}\`]`)
                 embed.setDescription(`v4.0.4`)
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>`, inline:true })
                 embed.addFields({ name: "Player", value: `${node.stats.playingPlayers} / ${node.stats.players}`, inline:true })
