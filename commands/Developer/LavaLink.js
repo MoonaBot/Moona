@@ -33,7 +33,7 @@ module.exports = {
                 .setAuthor({ name: 'Lavalink Stats' })
                 .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 1024 }))
                 .setTitle(`${node.identifier} [\`${node.state === "READY" ? "🟢" : "🔴"}\`]`)
-                .setDescription(`v${node.version}`)
+                .setDescription(`v4.0.4`)
                 .addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>`, inline:true })
                 .addFields({ name: "Player", value: `${node.stats.playingPlayers} / ${node.stats.players}`, inline:true })
                 .addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)} / ${prettyBytes(node.stats.memory.reservable)}`, inline:true })
