@@ -40,7 +40,7 @@ module.exports = async (client, player, track, payload) => {
       .setTimestamp();
 
       if (track.artworkUrl) {
-        embeded.setImage(`https://i3.ytimg.com/vi/${song.identifier}/maxresdefault.jpg`);
+        embeded.setImage(`https://i3.ytimg.com/vi/${track.identifier}/maxresdefault.jpg`);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
