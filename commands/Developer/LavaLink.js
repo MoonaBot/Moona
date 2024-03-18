@@ -37,7 +37,7 @@ module.exports = {
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>`, inline:true })
                 embed.addFields({ name: "Player", value: `${node.stats.playingPlayers} / ${node.stats.players}`, inline:true })
                 embed.addFields({ name: "Memory Usage", value: `${prettyBytes(node.stats.memory.used)} / ${prettyBytes(node.stats.memory.reservable)}`, inline:true })
-                embed.addFields({ name: "Cores", value: `${node.stats.cpu.cores + " Core(s)"}`, inline:true })
+                embed.addFields({ name: "CPU Cores", value: `${node.stats.cpu.cores + " Core(s)"}`, inline:true })
                 embed.addFields({ name: "System Load", value: `${(Math.round(node.stats.cpu.systemLoad * 100) / 100).toFixed(2)}%`, inline:true })
                 embed.addFields({ name: "Lavalink Load", value: `${(Math.round(node.stats.cpu.lavalinkLoad * 100) / 100).toFixed(2)}%`, inline:true })
             } catch (e) {
