@@ -20,7 +20,7 @@ module.exports = {
         sameVoice: false,
     },
     run: async (interaction, client, user, language) => {
-        await interaction.deferReply({ ephemeral: false});
+        await interaction.deferReply({ ephemeral: false, fetchReply: true });
         // owner only
         if(interaction.user.id != client.owner) return interaction.editReply({ content: `${client.i18n.get(language, "interaction", "owner_only")}` });
 
