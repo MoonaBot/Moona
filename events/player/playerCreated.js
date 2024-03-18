@@ -1,3 +1,3 @@
-module.exports = async (client, player) => {
-	console.log('[DEBUG]', `Player Created from ${player.guildId}`);
+module.exports = async (client, guildId) => {
+	console.log('[DEBUG]', `Player Created from ${guildId}`);
 }

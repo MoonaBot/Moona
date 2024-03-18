@@ -61,7 +61,7 @@ module.exports = async (client) => {
                 duration: qDuration,
             })}` }) //${player.queue.length} • Song's in Queue | Volume • ${player.volume}% | ${qDuration} • Total Duration
 
-            if(cSong.thumbnail) {
+            if(cSong.artworkUrl) {
                 embed.setImage(`https://img.youtube.com/vi/${cSong.identifier}/sddefault.jpg`);
             } else {
                 embed.setImage(`${client.i18n.get(language, "setup", "setup_playembed_image")}`);

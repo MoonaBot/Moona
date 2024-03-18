@@ -66,7 +66,7 @@ module.exports = {
                     duration: qduration,
                 })}` });
 
-                if (song.thumbnail) {
+                if (song.artworkUrl) {
                     embed.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
                 } else {
                     embed.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));

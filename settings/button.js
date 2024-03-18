@@ -7,8 +7,8 @@ module.exports = {
             style: "Success" //Primary //Secondary //Success //Danger
         },
         replay: {
-            label: "Replay",
-            emoji: "⬅",
+            label: "Previous",
+            emoji: "⏮️",
             style: "Primary"
         },
         stop: {
@@ -18,7 +18,7 @@ module.exports = {
         },
         skip: {
             label: "Skip",
-            emoji: "➡",
+            emoji: "⏭️",
             style: "Primary"
         },
         loop: {
@@ -113,15 +113,32 @@ module.exports = {
 
     queue_page: {
         back: {
-            label: " ",
+            label: "Back",
             emoji: "⬅",
             style: "Secondary"
         },
         next: {
-            label: " ",
+            label: "Next",
             emoji: "➡",
             style: "Secondary"
         },
+    },
+    pages: {
+        back: {
+            label: "Back",
+            emoji: "⬅",
+            style: "Secondary"
+        },
+        next: {
+            label: "Next",
+            emoji: "➡",
+            style: "Secondary"
+        },
+        remove: {
+            label: "Remove",
+            emoji: "🗑️",
+            style: "Danger"
+        }
     },
 
     playlist_page: {

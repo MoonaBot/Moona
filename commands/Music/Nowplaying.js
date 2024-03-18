@@ -43,7 +43,7 @@ module.exports = {
             .addFields({ name: `${client.i18n.get(language, "music", "np_volume")}`, value: `${player.volume}%`, inline: true })*/
             .setTimestamp(song.startTimestamp);
 
-            if (song.thumbnail) {
+            if (song.artworkUrl) {
                 /*const songInfo = (await client.ytm.getVideos(song.identifier));
                 const views = songInfo.views;
                 const uploadat = songInfo.uploadedAt;*/

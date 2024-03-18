@@ -39,8 +39,8 @@ module.exports = async (client, player, track, payload) => {
       })}`, value: `\`\`\`🔴 | 🎶──────────────────────────────\`\`\``, inline: false })*/
       .setTimestamp();
 
-      if (track.thumbnail) {
-        //embeded.setThumbnail(track.thumbnail);
+      if (track.artworkUrl) {
+        embeded.setThumbnail(track.artworkUrl);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
@@ -298,7 +298,7 @@ module.exports = async (client, player, track, payload) => {
               total_duration: qduration,
             })}` });
 
-          if (song.thumbnail) {
+          if (song.artworkUrl) {
             embed.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
           } else {
               embed.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
