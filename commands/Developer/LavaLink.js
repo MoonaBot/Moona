@@ -26,17 +26,7 @@ module.exports = {
 
         var pages = [];
 
-        client.moon.nodes.map.forEach(async(node) => {
-            const { body } = await request(
-                `${node.secure ? "https://" : "http://"}${node.host}/version`,
-                {
-                    headers: {
-                        Authorization: node.password 
-                    }
-                });
-
-            node.version = await body.text();
-            
+        client.moon.nodes.map.forEach((node) => {
             const embed = new EmbedBuilder()
                 .setColor(client.color)
                 .setAuthor({ name: 'Lavalink Stats' })
@@ -53,9 +43,9 @@ module.exports = {
             } catch (e) {
                 console.log(e);
             }
-            await pages.push(embed);
+            pages.push(embed);
         });
 
-        return await ButtonPage.execute(interaction, pages);
+        return ButtonPage.execute(interaction, pages);
     }
 }
