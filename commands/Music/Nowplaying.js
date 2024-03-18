@@ -48,7 +48,7 @@ module.exports = {
                 const views = songInfo.views;
                 const uploadat = songInfo.uploadedAt;*/
                 
-                //embeded.setThumbnail(songs.thumbnails[0].url);
+                embeded.setImage(`https://i3.ytimg.com/vi/${song.identifier}/maxresdefault.jpg`);
                 /*embeded.addFields({ name: `${client.i18n.get(language, "music", "np_view")}`, value: `${views}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_upload")}`, value: `${uploadat}`, inline: true })
                 embeded.addFields({ name: `${client.i18n.get(language, "music", "np_download")}`, value: `**[Click Here](https://www.y2mate.com/youtube/${song.identifier})**`, inline: true })

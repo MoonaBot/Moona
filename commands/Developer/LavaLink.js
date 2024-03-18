@@ -26,13 +26,23 @@ module.exports = {
 
         var pages = [];
 
-        client.moon.nodes.map.forEach((node) => {
+        client.moon.nodes.map.forEach(async(node) => {
+            const { body } = await request(
+                `${node.secure ? "https://" : "http://"}${node.host}/version`,
+                {
+                    headers: {
+                        Authorization: node.password 
+                    }
+                });
+
+            node.version = await body.text();
+            
             const embed = new EmbedBuilder()
                 .setColor(client.color)
                 .setAuthor({ name: 'Lavalink Stats' })
                 .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 1024 }));
             try {
-                embed.setTitle(`#${node.identifier} [${node.state === "READY" ? "🟢" : "🔴"}]`)
+                embed.setTitle(`#${node.identifier} | [${node.state === "READY" ? "🟢" : "🔴"}]`)
                 embed.setDescription(`v${node.version}`)
                 embed.addFields({ name: "Uptime", value: `<t:${verifyTimestamp(Date.now() - node.stats.uptime)}:R>`, inline:true })
                 embed.addFields({ name: "Player", value: `${node.stats.playingPlayers} / ${node.stats.players}`, inline:true })
@@ -43,9 +53,9 @@ module.exports = {
             } catch (e) {
                 console.log(e);
             }
-            pages.push(embed);
+            await pages.push(embed);
         });
 
-        return ButtonPage.execute(interaction, pages);
+        return await ButtonPage.execute(interaction, pages);
     }
 }

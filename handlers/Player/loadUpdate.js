@@ -62,7 +62,7 @@ module.exports = async (client) => {
             })}` }) //${player.queue.length} • Song's in Queue | Volume • ${player.volume}% | ${qDuration} • Total Duration
 
             if(cSong.artworkUrl) {
-                embed.setImage(`https://img.youtube.com/vi/${cSong.identifier}/sddefault.jpg`);
+                embed.setImage(`https://i3.ytimg.com/vi/${cSong.identifier}/maxresdefault.jpg`);
             } else {
                 embed.setImage(`${client.i18n.get(language, "setup", "setup_playembed_image")}`);
             }

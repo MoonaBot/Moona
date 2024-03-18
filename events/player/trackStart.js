@@ -40,7 +40,7 @@ module.exports = async (client, player, track, payload) => {
       .setTimestamp();
 
       if (track.artworkUrl) {
-        embeded.setThumbnail(track.artworkUrl);
+        embeded.setImage(`https://i3.ytimg.com/vi/${song.identifier}/maxresdefault.jpg`);
       } else {
         embeded.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
       }
@@ -299,7 +299,7 @@ module.exports = async (client, player, track, payload) => {
             })}` });
 
           if (song.artworkUrl) {
-            embed.setThumbnail(`https://img.youtube.com/vi/${song.identifier}/maxresdefault.jpg`);
+            embed.setImage(`https://i3.ytimg.com/vi/${song.identifier}/maxresdefault.jpg`);
           } else {
               embed.setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 2048 }));
           }
