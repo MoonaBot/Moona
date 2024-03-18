@@ -24,24 +24,24 @@ module.exports = {
     LavalinkNodes: [
       { 
         identifier: "Moona 1",
-        host: "lavalink4.alfari.id",
-        port: 443,
+        host: "lavalink4-dbh.alfari.id",
+        port: 80,
         password: "catfein",
-        secure: true
+        secure: false
       },
       { 
         identifier: "Moona 2",
-        host: "lavalink4-dbh.alfari.id",
-        port: 443,
+        host: "lavalink4-frankfurt.alfari.id",
+        port: 80,
         password: "catfein",
-        secure: true
+        secure: false
       },
       { 
         identifier: "Moona 3",
-        host: "lavalink4-frankfurt.alfari.id",
-        port: 443,
+        host: "lavalink4.alfari.id",
+        port: 80,
         password: "catfein",
-        secure: true
+        secure: false
       },
     ],
 }
