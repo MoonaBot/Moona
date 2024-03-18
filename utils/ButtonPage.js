@@ -16,11 +16,11 @@ exports.execute = async (
 
     const buttons = [
         new ButtonBuilder()
-            .setCustomId('back')
+            .setCustomId('page_back')
             .setEmoji(_b.back.emoji)
             .setStyle(_b.back.style),
         new ButtonBuilder()
-            .setCustomId('next')
+            .setCustomId('page_next')
             .setEmoji(_b.next.emoji)
             .setStyle(_b.next.style),
     ];
@@ -52,10 +52,10 @@ exports.execute = async (
     collector.on("collect", async (i) => {
         if (!i.deferred) await i.deferUpdate();
         switch (i.customId) {
-            case buttons[0].customId:
+            case buttons[0].data.custom_id:
             page = page > 0 ? --page : pages.length - 1;
             break;
-            case buttons[1].customId:
+            case buttons[1].data.custom_id:
             page = page + 1 < pages.length ? ++page : 0;
             break;
             default:
