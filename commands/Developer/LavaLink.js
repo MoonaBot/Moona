@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const ButtonPage = require('../../utils/../../utils/ButtonPage.js');
+const ButtonPage = require('../../utils/ButtonPage.js');
 const prettyBytes = require("pretty-bytes");
 const { request } = require("undici");
 
